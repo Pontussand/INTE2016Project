@@ -1,0 +1,54 @@
+KOMMANDON
+
+ls - lista
+mkdir [dirname] - skapa mapp
+rm [filename.txt] - ta bort
+rmdir [dirname] - ta bort
+cd
+cd ... - prev
+cd per/Dev/annika - sökväg
+touch  [filename.txt] - skapar fil
+cat [filename.txt] = läsa fil
+echo "hello world" > filename.txt
+pwd - print working dir.
+
+
+KLASSER
+
+Directory()
+private String name;
+private ArrayList<File> files;
+private ArrayList<Directory> directories;
+
+example
+String getContentNames()
+return...
+
+
+~
+
+File()
+private String name;
+private String content;
+
+~
+
+CommandLine()
+Directory root;
+
+methods
+String ls
+void mkdir
+void rm (filename.txt)
+void rmdir(dirname)
+void cd
+void cd(String flag)
+void touch (String filename.txt)
+String cat(filename.txt)
+void echo ("hello world" > filename.txt)
+String pwd()
+
+~
+
+Main
+new CommandLine();
