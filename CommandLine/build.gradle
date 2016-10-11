@@ -16,13 +16,13 @@ dependencies {
 sourceSets {
     main {
         java {
-            srcDir 'src'
+            srcDir 'src/java'
         }
     }
 
     test {
         java {
-            srcDir 'test'
+            srcDir 'test/java'
         }
     }
 }
