@@ -52,14 +52,17 @@ public class CommandLineTest {
     }
 
     @Test
-    public void createDirTest() {
+    public void createRemoveDirTest() {
         String newDirName = "New Folder";
-        ArrayList <String> expectedFolders = testFolderContent;
+        File newDir = new File(testFolder+"/"+newDirName);
+        ArrayList <String> expectedFolders = new ArrayList<>(testFolderContent);
         expectedFolders.add(newDirName);
 
-        commandLine.newDir(testFolder, newDirName);
-
+        commandLine.newDir(newDir);
         assertEquals(expectedFolders, commandLine.listFolders(testFolder));
+
+        commandLine.removeDirOrFile(newDir);
+        assertEquals(testFolderContent, commandLine.listFolders(testFolder));
     }
 
 }

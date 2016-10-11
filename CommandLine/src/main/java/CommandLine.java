@@ -48,10 +48,17 @@ public class CommandLine {
         return new File(currentDir.getParent());
     }
 
-    public void newDir(File dirLocation, String dirName) {
-        File location = new File(dirLocation+"/"+dirName);
+    public void newDir(File newDir) {
         try {
-            Files.createDirectory(location.toPath());
+            Files.createDirectory(newDir.toPath());
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    public void removeDirOrFile(File file){
+        try {
+            Files.delete(file.toPath());
         }catch (IOException e){
             e.printStackTrace();
         }
