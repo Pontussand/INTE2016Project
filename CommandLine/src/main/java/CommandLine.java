@@ -23,44 +23,22 @@ public class CommandLine {
 //
 //    }
 
-    public ArrayList<String> listFoldersFromInput(String path) {
+    public ArrayList<String> listFolders(String path) {
 
         File dir = new File(path);
         String[] files = dir.list();
 
         ArrayList<String> str = new ArrayList<>();
 
-        if (files.length == 0) {
+        if(files == null) {
+            System.out.println("the directory doesn't exist.");
+        }else if (files.length == 0) {
             System.out.println("The directory is empty");
 
         } else {
 
             for (String aFile : files) {
                 System.out.println(aFile);
-                str.add(aFile);
-            }
-        }
-        return str;
-    }
-
-
-
-
-    public ArrayList<String> listFolders() {
-
-//        my local project path
-        String dirPath = "/Users/per/Dev/annika/INTE/FinalProject/testFolder";
-        File dir = new File(dirPath);
-        String[] files = dir.list();
-
-        ArrayList <String> str = new ArrayList<>();
-
-        if (files.length == 0) {
-            System.out.println("The directory is empty");
-
-        } else {
-
-            for (String aFile : files) {
                 str.add(aFile);
             }
         }

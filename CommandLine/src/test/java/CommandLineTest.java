@@ -7,6 +7,9 @@ import static org.junit.Assert.assertEquals;
 public class CommandLineTest {
 
     private  CommandLine commandLine;
+    // your local project path
+    private String localProjectDir = "/media/Data/Users/Felix/Documents/ubuntu GitHub/INTE2016Project/CommandLine";
+    private String testFolder = localProjectDir + "/testFolder";
 
 
     @Before
@@ -18,29 +21,20 @@ public class CommandLineTest {
     @Test
     public void listTest() {
         //        based on my local project path
-        ArrayList<String> expectedFolders = new ArrayList<>();
-        expectedFolders.add(".DS_Store");
-        expectedFolders.add("untitled folder");
+        ArrayList<String> expectedFilesFolders = new ArrayList<>();
+        expectedFilesFolders.add("file1.txt");
+        expectedFilesFolders.add("file2.txt");
+        expectedFilesFolders.add("Folder1");
+        expectedFilesFolders.add("Folder2");
 
-        assertEquals(expectedFolders, commandLine.listFolders());
-    }
+        ArrayList<String> output = commandLine.listFolders(testFolder);
+        System.out.println(output);
 
-    @Test
-    public void listFromInputTest() {
-        //        my local project path
-        String userInput = "/Users/per/Dev/annika/INTE/FinalProject/testFolder";
-        ArrayList<String> expectedString = new ArrayList<>();
-        expectedString.add(".DS_Store");
-        expectedString.add("untitled folder");
-
-        assertEquals(commandLine.listFoldersFromInput(userInput), expectedString);
+        assertEquals(expectedFilesFolders, output);
     }
 
     @Test
     public void findProjectDir() {
-//        my local project path
-        String localProjectDir = "/Users/per/Dev/annika/INTE/FinalProject/CommandLine";
-
         assertEquals(localProjectDir, commandLine.findProjectDir());
     }
 
