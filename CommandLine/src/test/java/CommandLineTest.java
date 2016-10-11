@@ -53,6 +53,7 @@ public class CommandLineTest {
 
     }
 
+    @Test
     public void createDirTest() {
         String newDirName = "New Folder";
         ArrayList <String> expectedFolders = testFolderContent;

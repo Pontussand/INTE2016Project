@@ -1,11 +1,7 @@
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.FileSystems;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Scanner;
-import javax.swing.filechooser.*;
 
 
 public class CommandLine {
@@ -47,8 +43,6 @@ public class CommandLine {
     }
 
     public File getParentDir(File currentDir) {
-//        File parentDir;
-//        parentDir = currentDir.getParent();
 
         return new File(currentDir.getParent());
     }
