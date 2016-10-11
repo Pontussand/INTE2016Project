@@ -8,28 +8,33 @@ import static org.junit.Assert.assertEquals;
 public class CommandLineTest {
 
     // your local project path
-    private File localProjectDir = new File("/Users/per/Dev/annika/INTE/FinalProject/CommandLine");
 
     // the parent of your local project path
-    private File localProjectDirParent = new File("/Users/per/Dev/annika/INTE/FinalProject");
-    private String testFolder = localProjectDir + "/testFolder";
+    private File localProjectDirParent = new File("/media/Data/Users/Felix/Documents/ubuntu GitHub/INTE2016Project");
 
-    CommandLine commandLine;
+    // your local project path HERE vv
+    private File localProjectDir = new File("/media/Data/Users/Felix/Documents/ubuntu GitHub/INTE2016Project/CommandLine");
+    private File testFolder = new File(localProjectDir + "/testFolder");
+    private ArrayList<String> testFolderContent;
+
+    private CommandLine commandLine;
 
 
     @Before
     public void setup() {
         commandLine = new CommandLine();
+
+        testFolderContent = new ArrayList<>();
+        testFolderContent.add("file1.txt");
+        testFolderContent.add("file2.txt");
+        testFolderContent.add("Folder1");
+        testFolderContent.add("Folder2");
     }
 
     @Test
     public void listTest() {
         //        based on my local project path
-        ArrayList<String> expectedFilesFolders = new ArrayList<>();
-        expectedFilesFolders.add("file1.txt");
-        expectedFilesFolders.add("file2.txt");
-        expectedFilesFolders.add("Folder1");
-        expectedFilesFolders.add("Folder2");
+        ArrayList<String> expectedFilesFolders = testFolderContent;
 
         ArrayList<String> output = commandLine.listFolders(testFolder);
         System.out.println(output);
@@ -45,6 +50,17 @@ public class CommandLineTest {
     @Test
     public void getParentDir() {
         assertEquals(localProjectDirParent, commandLine.getParentDir(localProjectDir));
+
+    }
+
+    public void createDirTest() {
+        String newDirName = "New Folder";
+        ArrayList <String> expectedFolders = testFolderContent;
+        expectedFolders.add(newDirName);
+
+        commandLine.newDir(testFolder, newDirName);
+
+        assertEquals(expectedFolders, commandLine.listFolders(testFolder));
     }
 
 }

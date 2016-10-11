@@ -1,5 +1,7 @@
 import java.io.File;
+import java.io.IOException;
 import java.nio.file.FileSystems;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -18,10 +20,9 @@ public class CommandLine {
     }
 
 
-    public ArrayList<String> listFolders(String path) {
+    public ArrayList<String> listFolders(File path) {
 
-        File dir = new File(path);
-        String[] files = dir.list();
+        String[] files = path.list();
 
         ArrayList<String> str = new ArrayList<>();
 
@@ -52,9 +53,13 @@ public class CommandLine {
         return new File(currentDir.getParent());
     }
 
-    public void newDir(String dirName) {
-
-
+    public void newDir(File dirLocation, String dirName) {
+        File location = new File(dirLocation+"/"+dirName);
+        try {
+            Files.createDirectory(location.toPath());
+        }catch (IOException e){
+            e.printStackTrace();
+        }
     }
 
 }
