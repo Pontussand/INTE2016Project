@@ -1,21 +1,25 @@
 import org.junit.*;
 
+import java.io.File;
 import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
 
 public class CommandLineTest {
 
-    private  CommandLine commandLine;
     // your local project path
-    private String localProjectDir = "/media/Data/Users/Felix/Documents/ubuntu GitHub/INTE2016Project/CommandLine";
+    private File localProjectDir = new File("/Users/per/Dev/annika/INTE/FinalProject/CommandLine");
+
+    // the parent of your local project path
+    private File localProjectDirParent = new File("/Users/per/Dev/annika/INTE/FinalProject");
     private String testFolder = localProjectDir + "/testFolder";
+
+    CommandLine commandLine;
 
 
     @Before
     public void setup() {
         commandLine = new CommandLine();
-
     }
 
     @Test
@@ -38,19 +42,9 @@ public class CommandLineTest {
         assertEquals(localProjectDir, commandLine.findProjectDir());
     }
 
-//    @Test
-//    public void createDirTest() {
-////    not yet implemented
-//
-//        String newDirName = "New Folder";
-//        ArrayList <String> expectedFolders = new ArrayList<>();
-//        expectedFolders.add(".DS_Store");
-//        expectedFolders.add("untitled folder");
-//        expectedFolders.add(newDirName);
-//
-//        commandLine.newDir(newDirName);
-//
-//        assertEquals(expectedFolders, commandLine.listFolders());
-//    }
+    @Test
+    public void getParentDir() {
+        assertEquals(localProjectDirParent, commandLine.getParentDir(localProjectDir));
+    }
 
 }

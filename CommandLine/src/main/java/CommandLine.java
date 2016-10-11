@@ -8,20 +8,15 @@ import javax.swing.filechooser.*;
 
 public class CommandLine {
 
+    private final String userDir;
+    private File currentDir;
+
     public CommandLine() {
+        this.userDir = findProjectDir();
+        this.currentDir = new File(userDir);
 
-
-//        this.commandPrompt();
     }
 
-//    private void commandPrompt() {
-//        System.out.println("> ");
-//
-//        Scanner keyboard = new Scanner(System.in);
-//        String input = keyboard.nextLine();
-//
-//
-//    }
 
     public ArrayList<String> listFolders(String path) {
 
@@ -50,8 +45,16 @@ public class CommandLine {
         return userDir;
     }
 
+    public File getParentDir(File currentDir) {
+//        File parentDir;
+//        parentDir = currentDir.getParent();
+
+        return new File(currentDir.getParent());
+    }
+
     public void newDir(String dirName) {
 
 
     }
+
 }
