@@ -3,10 +3,14 @@ import java.nio.file.FileSystems;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Scanner;
+import javax.swing.filechooser.*;
+
 
 public class CommandLine {
 
     public CommandLine() {
+
+
 //        this.commandPrompt();
     }
 
@@ -36,7 +40,6 @@ public class CommandLine {
                 str.add(aFile);
             }
         }
-
         return str;
     }
 
@@ -45,7 +48,7 @@ public class CommandLine {
 
     public ArrayList<String> listFolders() {
 
-//        local files on annikas mac
+//        my local project path
         String dirPath = "/Users/per/Dev/annika/INTE/FinalProject/testFolder";
         File dir = new File(dirPath);
         String[] files = dir.list();
@@ -58,17 +61,18 @@ public class CommandLine {
         } else {
 
             for (String aFile : files) {
-                System.out.println(aFile);
                 str.add(aFile);
             }
         }
-
         return str;
     }
 
+    public String findProjectDir() {
+        String userDir = new File(System.getProperty("user.dir")).getAbsolutePath();
+        return userDir;
+    }
+
     public void newDir(String dirName) {
-
-
 
 
     }

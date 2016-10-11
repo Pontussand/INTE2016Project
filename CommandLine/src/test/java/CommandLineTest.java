@@ -17,6 +17,7 @@ public class CommandLineTest {
 
     @Test
     public void listTest() {
+        //        based on my local project path
         ArrayList<String> expectedFolders = new ArrayList<>();
         expectedFolders.add(".DS_Store");
         expectedFolders.add("untitled folder");
@@ -26,6 +27,7 @@ public class CommandLineTest {
 
     @Test
     public void listFromInputTest() {
+        //        my local project path
         String userInput = "/Users/per/Dev/annika/INTE/FinalProject/testFolder";
         ArrayList<String> expectedString = new ArrayList<>();
         expectedString.add(".DS_Store");
@@ -34,8 +36,18 @@ public class CommandLineTest {
         assertEquals(commandLine.listFoldersFromInput(userInput), expectedString);
     }
 
+    @Test
+    public void findProjectDir() {
+//        my local project path
+        String localProjectDir = "/Users/per/Dev/annika/INTE/FinalProject/CommandLine";
+
+        assertEquals(localProjectDir, commandLine.findProjectDir());
+    }
+
 //    @Test
 //    public void createDirTest() {
+////    not yet implemented
+//
 //        String newDirName = "New Folder";
 //        ArrayList <String> expectedFolders = new ArrayList<>();
 //        expectedFolders.add(".DS_Store");
