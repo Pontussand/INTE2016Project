@@ -18,7 +18,7 @@ public class CommandLine {
 //
 //    }
 
-    public String listFolders(String path) {
+    public String listFoldersFromInput(String path) {
 
         File dir = new File(path);
         String[] files = dir.list();

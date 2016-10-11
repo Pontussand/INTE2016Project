@@ -18,7 +18,7 @@ public class CommandLineTest {
 
         CommandLine commandLine = new CommandLine();
 
-        assertEquals(commandLine.listFolders(userInput), expectedString);
+        assertEquals(commandLine.listFoldersFromInput(userInput), expectedString);
 
     }
 
