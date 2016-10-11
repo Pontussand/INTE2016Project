@@ -1,6 +1,7 @@
 import java.io.File;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class CommandLine {
@@ -18,12 +19,12 @@ public class CommandLine {
 //
 //    }
 
-    public String listFoldersFromInput(String path) {
+    public ArrayList<String> listFoldersFromInput(String path) {
 
         File dir = new File(path);
         String[] files = dir.list();
 
-        String str = "";
+        ArrayList<String> str = new ArrayList<>();
 
         if (files.length == 0) {
             System.out.println("The directory is empty");
@@ -32,7 +33,7 @@ public class CommandLine {
 
             for (String aFile : files) {
                 System.out.println(aFile);
-                str += aFile;
+                str.add(aFile);
             }
         }
 
@@ -42,14 +43,14 @@ public class CommandLine {
 
 
 
-    public String listFolders() {
+    public ArrayList<String> listFolders() {
 
 //        local files on annikas mac
         String dirPath = "/Users/per/Dev/annika/INTE/FinalProject/testFolder";
         File dir = new File(dirPath);
         String[] files = dir.list();
 
-        String str = "";
+        ArrayList <String> str = new ArrayList<>();
 
         if (files.length == 0) {
             System.out.println("The directory is empty");
@@ -58,10 +59,17 @@ public class CommandLine {
 
             for (String aFile : files) {
                 System.out.println(aFile);
-                str += aFile;
+                str.add(aFile);
             }
         }
 
         return str;
+    }
+
+    public void newDir(String dirName) {
+
+
+
+
     }
 }
