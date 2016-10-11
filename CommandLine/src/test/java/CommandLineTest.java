@@ -35,16 +35,14 @@ public class CommandLineTest {
     public void listTest() {
         //        based on my local project path
         ArrayList<String> expectedFilesFolders = testFolderContent;
-
         ArrayList<String> output = commandLine.listFolders(testFolder);
-        System.out.println(output);
 
         assertEquals(expectedFilesFolders, output);
     }
 
     @Test
     public void findProjectDir() {
-        assertEquals(localProjectDir, commandLine.findProjectDir());
+        assertEquals(localProjectDir.toString(), commandLine.findProjectDir());
     }
 
     @Test
@@ -53,6 +51,7 @@ public class CommandLineTest {
 
     }
 
+    @Test
     public void createDirTest() {
         String newDirName = "New Folder";
         ArrayList <String> expectedFolders = testFolderContent;

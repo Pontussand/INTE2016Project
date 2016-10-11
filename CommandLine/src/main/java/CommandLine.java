@@ -43,6 +43,7 @@ public class CommandLine {
 
     public String findProjectDir() {
         String userDir = new File(System.getProperty("user.dir")).getAbsolutePath();
+        System.out.println(userDir);
         return userDir;
     }
 
