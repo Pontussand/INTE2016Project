@@ -11,6 +11,9 @@ public class CommandPrompt {
 			command(command);
 		}
 	}
+	
+	
+	
 	public void command(String command) {
 		String commandPart = command.split(" ")[0];
 		String target = command.split(" ")[command.indexOf(" ")];
