@@ -8,62 +8,62 @@ import java.util.ArrayList;
 
 public class CommandLine {
 
-    private final String userDir;
-    private File currentDir;
+	private final String userDir;
+	private File currentDir;
 
-    public CommandLine() {
-        this.userDir = findProjectDir();
-        this.currentDir = new File(userDir);
+	public CommandLine() {
+		this.userDir = findProjectDir();
+		this.currentDir = new File(userDir);
 
-    }
+	}
 
 
-    public ArrayList<String> listFolders(File path) {
+	public ArrayList<String> listFolders(File path) {
 
-        String[] files = path.list();
+		String[] files = path.list();
 
-        ArrayList<String> str = new ArrayList<>();
+		ArrayList<String> str = new ArrayList<>();
 
-        if(files == null) {
-            System.out.println("the directory doesn't exist.");
-        }else if (files.length == 0) {
-            System.out.println("The directory is empty");
+		if (files == null) {
+			System.out.println("the directory doesn't exist.");
+		} else if (files.length == 0) {
+			System.out.println("The directory is empty");
 
-        } else {
+		} else {
 
-            for (String aFile : files) {
-                System.out.println(aFile);
-                str.add(aFile);
-            }
-        }
-        return str;
-    }
+			for (String aFile : files) {
+				System.out.println(aFile);
+				str.add(aFile);
+			}
+		}
+		return str;
+	}
 
-    public String findProjectDir() {
-        String userDir = new File(System.getProperty("user.dir")).getAbsolutePath();
-        System.out.println(userDir);
-        return userDir;
-    }
+	public String findProjectDir() {
+		String userDir = new File(System.getProperty("user.dir")).getAbsolutePath();
+		System.out.println(userDir);
+		return userDir;
+	}
 
-    public File getParentDir(File currentDir) {
+	public File getParentDir(File currentDir) {
 
-        return new File(currentDir.getParent());
-    }
+		return new File(currentDir.getParent());
+	}
 
-    public void newDir(File newDir) {
-        try {
-            Files.createDirectory(newDir.toPath());
-        }catch (IOException e){
-            e.printStackTrace();
-        }
-    }
+	public void newDir(File newDir) {
+		try {
+			Files.createDirectory(newDir.toPath());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
-    public void removeDirOrFile(File file){
-        try {
-            Files.delete(file.toPath());
-        }catch (IOException e){
-            e.printStackTrace();
-        }
-    }
+	public void removeDirOrFile(File file) {
+		try {
+			Files.delete(file.toPath());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
 }

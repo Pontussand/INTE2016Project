@@ -1,3 +1,5 @@
+package command;
+
 import java.util.Scanner;
 
 public class CommandTest {
