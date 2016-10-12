@@ -22,26 +22,25 @@ public class CommandLine {
 
         String[] files = path.list();
 
-        ArrayList<String> str = new ArrayList<>();
+        ArrayList<String> strings = new ArrayList<>();
 
-        if(files == null) {
+        if (files == null) {
             System.out.println("the directory doesn't exist.");
-        }else if (files.length == 0) {
+        } else if (files.length == 0) {
             System.out.println("The directory is empty");
 
         } else {
 
             for (String aFile : files) {
                 System.out.println(aFile);
-                str.add(aFile);
+                strings.add(aFile);
             }
         }
-        return str;
+        return strings;
     }
 
     public String findProjectDir() {
         String userDir = new File(System.getProperty("user.dir")).getAbsolutePath();
-        System.out.println(userDir);
         return userDir;
     }
 
