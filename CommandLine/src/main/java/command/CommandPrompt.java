@@ -2,7 +2,7 @@ package command;
 
 import java.util.Scanner;
 
-public class CommandTest {
+public class CommandPrompt {
 	public Scanner scan = new Scanner(System.in);
 	private void run(){
 		while(true){
@@ -27,7 +27,7 @@ public class CommandTest {
 		}
 	}
 	public static void main(String[] args){
-		CommandTest test = new CommandTest();
+		CommandPrompt test = new CommandPrompt();
 		test.run();
 	}
 }
