@@ -4,14 +4,14 @@ import java.util.Scanner;
 
 public class CommandPrompt {
 	public Scanner scan = new Scanner(System.in);
-	private void run(){
-		while(true){
+
+	private void run() {
+		while(true) {
 			String command = scan.nextLine();
 			command(command);
 		}
 	}
-	
-	public void command(String command){
+	public void command(String command) {
 		String commandPart = command.split(" ")[0];
 		String target = command.split(" ")[command.indexOf(" ")];
 		
@@ -27,7 +27,7 @@ public class CommandPrompt {
 			System.out.println("Command doesnt exit");
 		}
 	}
-	public static void main(String[] args){
+	public static void main(String[] args) {
 		CommandPrompt test = new CommandPrompt();
 		test.run();
 	}
