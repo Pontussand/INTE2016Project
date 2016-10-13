@@ -25,7 +25,7 @@ public class FakeDir extends FakeFSO{
 		return ret;
 	}
 
-	public FakeFSO searchByPath(String path){
+	public FakeFSO getByPath(String path){
 		String localFSO = path.split(FakePath.DIR_SEPARATOR, 2)[0];
 		return contents.get(localFSO);
 	}

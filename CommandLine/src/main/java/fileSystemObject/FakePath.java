@@ -16,17 +16,21 @@ public class FakePath {
 		return successful;
 	}
 
+	//TODO: finish implementing
 	public boolean mkdir() {
 		root.addFSO(new FakeDir(path));
 		return true;
 	}
 
-	public FakePath[] listFiles(){
+	public FakePath[] listContents(){
+		FakeDir thisDir = (FakeDir)root.getByPath(path);
+		String[] subfolders = thisDir.listContents();
+		FakePath[] subDirPaths = new FakePath[subfolders.length];
 		return null;
 	}
 
-	public boolean equals(Object other){
-		if(other instanceof FakePath){
+	public boolean equals(Object other) {
+		if (other instanceof FakePath) {
 			FakePath o = (FakePath) other;
 			o.path.equals(path);
 		}

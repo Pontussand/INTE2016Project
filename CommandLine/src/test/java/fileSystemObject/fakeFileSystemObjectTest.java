@@ -22,7 +22,7 @@ public class fakeFileSystemObjectTest {
 		assertTrue(newDir.mkdir());
 
 		FakePath[] expectedListing = {new FakePath("testDir1")};
-		FakePath[] listing = root.listFiles();
+		FakePath[] listing = root.listContents();
 		//assertEquals(expectedListing.length, listing.length);
 
 		for(int i = 0; i < /*expectedL*/listing.length; i++){
