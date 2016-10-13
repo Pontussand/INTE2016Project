@@ -36,10 +36,10 @@ public class FilemanagerTest {
     }
 
     @Test
-    public void listTest() {
+    public void ls_listContent() {
         //        based on my local project path
         ArrayList<String> expectedFilesFolders = testFolderContent;
-        ArrayList<String> output = filemanager.listFolders(testFolder);
+        ArrayList<String> output = filemanager.ls(testFolder);
 
         assertEquals(expectedFilesFolders, output);
     }
@@ -51,7 +51,7 @@ public class FilemanagerTest {
 
     @Test
     public void getParentDir() {
-        assertEquals(localProjectDirParent, filemanager.getParentDir(localProjectDir));
+        assertEquals(localProjectDirParent, filemanager.findParentDir(localProjectDir));
 
     }
 

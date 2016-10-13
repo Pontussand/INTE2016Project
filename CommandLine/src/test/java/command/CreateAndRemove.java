@@ -46,18 +46,18 @@ public class CreateAndRemove {
 
 
     @Test
-    public void createeDirTest() {
+    public void mkdir_newDir() {
         expectedFolders.add(newDirName);
-        filemanager.newDir(newDir);
+        filemanager.mkdir(newDir);
 
-        assertEquals(expectedFolders, filemanager.listFolders(testFolder));
+        assertEquals(expectedFolders, filemanager.ls(testFolder));
     }
 
 
     @Test
-    public void removeDir() {
-        filemanager.removeDirOrFile(newDir);
-        assertEquals(testFolderContent, filemanager.listFolders(testFolder));
+    public void rmdir_removeEmpty() {
+        filemanager.rmdir(newDir);
+        assertEquals(testFolderContent, filemanager.ls(testFolder));
     }
 
 
