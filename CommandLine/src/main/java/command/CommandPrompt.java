@@ -12,14 +12,14 @@ public class CommandPrompt {
 		}
 	}
 
-	public String command(String command) {
-		String commandPart = command;
+	public String command(String commandInput) {
+		String commandPart = commandInput;
 		String target = "";
-		String result = command;
+		String result = commandInput;
 
-		if(command.contains(" ")){
-			commandPart = command.split(" ")[0];
-			target = command.substring(command.indexOf(" ") +1);
+		if(commandInput.contains(" ")){
+			commandPart = commandInput.split(" ")[0];
+			target = commandInput.substring(commandInput.indexOf(" ") +1);
 			result = commandPart + " fil: " + target;
 		}
 

@@ -5,17 +5,14 @@ package command;
  */
 
 import org.junit.*;
-import org.junit.Assert.*;
+import static org.junit.Assert.*;
 
 public class FileManagerInputControlTest {
 
-
-
-
-    
     @Test
     public void correctFileName_noSpaces(){
-    //    assertEquals();
+        Filemanager fm = new Filemanager();
+        assertEquals(false, fm.correctFileName("abc def"));
     }
 
 

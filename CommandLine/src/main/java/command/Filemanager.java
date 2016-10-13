@@ -8,16 +8,16 @@ import java.util.ArrayList;
 
 public class Filemanager {
 
-    private FileSystemAdapter fso;
+//   private FileSystemAdapter fso;
 
-    public Filemanager(FileSystemAdapter fso) {
-        this.fso = fso;
-    }
+//    public Filemanager(FileSystemAdapter fso) {
+//        this.fso = fso;
+//    }
 
     public boolean correctFileName(String fileName) {
-//        if (fileName.contains(" ")) {
-//            return false;
-//        }
+        if (fileName.contains(" ")) {
+            return false;
+        }
 //        if (fileName.contains("")) {
 //            return false;
 //        } else {
