@@ -11,25 +11,32 @@ public class CommandPrompt {
 			command(command);
 		}
 	}
-	
-	
-	
-	public void command(String command) {
-		String commandPart = command.split(" ")[0];
-		String target = command.split(" ")[command.indexOf(" ")];
-		
+
+	public String command(String command) {
+		String commandPart = command;
+		String target = "";
+		String result = command;
+
+		if(command.contains(" ")){
+			commandPart = command.split(" ")[0];
+			target = command.substring(command.indexOf(" ") +1);
+			result = commandPart + " fil: " + target;
+		}
+
 		switch (commandPart) {
 
-		case "1":
-			System.out.println("Metod1" + target);
-			break;
-		case "2":
-			System.out.println("Metod2" + target);
-			break;
+		case "ls":
+			return result;
+		case "mkdir":
+			return result;
+		case "pwd":
+			return result;
 		default:
-			System.out.println("Command doesnt exit");
+			result = "Command doesn't exit";
+			return result;
 		}
 	}
+
 	public static void main(String[] args) {
 		CommandPrompt test = new CommandPrompt();
 		test.run();
