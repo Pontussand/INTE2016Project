@@ -3,7 +3,7 @@ package file_system_adapter;
 import java.io.File;
 import java.util.ArrayList;
 
-public class TestFileSystemAdapter implements FileSystemAdapter {
+public class FakeFileSystemAdapter implements FileSystemAdapter {
 
 	@Override
 	public String[] ls(String path){
