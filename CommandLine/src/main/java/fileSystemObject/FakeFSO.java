@@ -1,25 +1,14 @@
 package fileSystemObject;
 
-/**
- * Created by felix on 2016-10-12.
- */
-public class FakeFSO {
-	String path;
+public abstract class FakeFSO {
+	private String name;
 
-	public FakeFSO(String path){
-		this.path = path;
+	public FakeFSO(String name){
+		this.name = name;
 	}
 
-
-	public FakeFSO[] listFiles(){
-		return null;
+	public String getName(){
+		return name;
 	}
 
-	public boolean equals(Object other){
-		if(other instanceof FakeFSO){
-			FakeFSO o = (FakeFSO) other;
-			o.path.equals(path);
-		}
-		return false;
-	}
 }

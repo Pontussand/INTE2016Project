@@ -3,27 +3,24 @@ package fileSystemObject;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.io.File;
-import java.util.ArrayList;
-
 import static org.junit.Assert.assertEquals;
 
 
 public class fakeFileSystemObjectTest {
-	FakeFSO root;
+	FakeFSOPath root;
 	String testDir1 = "testDir1";
 
 	@Before
 	public void setup(){
-		root = new FakeFSO("/");
+		root = new FakeFSOPath("/");
 	}
 
 	@Test
 	public void addDirectory(){
-		FakeFSO newDir = new FakeFSO("/"+testDir1);
+		FakeFSOPath newDir = new FakeFSOPath("/"+testDir1);
 
-		FakeFSO[] expectedListing = {new FakeFSO("testDir1")};
-		FakeFSO[] listing = root.listFiles();
+		FakeFSOPath[] expectedListing = {new FakeFSOPath("testDir1")};
+		FakeFSOPath[] listing = root.listFiles();
 		assertEquals(expectedListing.length, listing.length);
 
 		for(int i = 0; i < expectedListing.length; i++){
