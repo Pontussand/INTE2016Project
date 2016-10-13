@@ -1,71 +1,41 @@
 package command;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.util.ArrayList;
 
+import file_system_adapter.FileSystemAdapter;
+
+import java.io.File;
+import java.util.ArrayList;
 
 public class Filemanager {
 
-    private final String userDir;
-    private File currentDir;
+    private FileSystemAdapter fso;
 
-    public Filemanager() {
-        this.userDir = findProjectDir();
-        this.currentDir = new File(userDir);
-
+    public Filemanager(FileSystemAdapter fso) {
+        this.fso = fso;
     }
 
 
-    public ArrayList<String> ls(File path) {
 
-        String[] files = path.list();
 
-        ArrayList<String> strings = new ArrayList<>();
 
-        if (files == null) {
-            System.out.println("the directory doesn't exist.");
-        } else if (files.length == 0) {
-            System.out.println("The directory is empty");
-        } else {
 
-            for (String aFile : files) {
-                System.out.println(aFile);
-                strings.add(aFile);
-            }
-        }
+    public void ls(File path) {
 
-        return strings;
+        fso.ls(path);
+
     }
 
-    public String findProjectDir() {
-        String userDir = new File(System.getProperty("user.dir")).getAbsolutePath();
-//		System.out.println(userDir);
-        return userDir;
+    void findProjectDir() {
+
     }
 
-    public File findParentDir(File currentDir) {
+    void findParentDir(File currentDir) {
 
-        return new File(currentDir.getParent());
     }
 
-    public void mkdir(File newDir) {
-        try {
-            Files.createDirectory(newDir.toPath());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+    void mkdir(File newDir) {
 
-    public void rmdir(File file) {
-        try {
-            Files.delete(file.toPath());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
-
 
 
 }
