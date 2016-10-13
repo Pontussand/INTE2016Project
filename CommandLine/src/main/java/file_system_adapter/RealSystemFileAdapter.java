@@ -1,25 +1,15 @@
-package command;
+package file_system_adapter;
+
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.ArrayList;
 
+public class RealSystemFileAdapter implements FileSystemAdapter {
 
-public class Filemanager {
-
-    private final String userDir;
-    private File currentDir;
-
-    public Filemanager() {
-        this.userDir = findProjectDir();
-        this.currentDir = new File(userDir);
-
-    }
-
-
-    public ArrayList<String> listFolders(File path) {
-
+    @Override
+    public ArrayList<String> ls(File path) {
         String[] files = path.list();
 
         ArrayList<String> strings = new ArrayList<>();
@@ -39,33 +29,27 @@ public class Filemanager {
         return strings;
     }
 
+
+    @Override
     public String findProjectDir() {
         String userDir = new File(System.getProperty("user.dir")).getAbsolutePath();
-//		System.out.println(userDir);
         return userDir;
     }
 
-    public File getParentDir(File currentDir) {
+    @Override
+    public File findParentDir(File currentDir) {
 
         return new File(currentDir.getParent());
     }
 
-    public void newDir(File newDir) {
+    @Override
+    public void mkdir(File newDir) {
         try {
             Files.createDirectory(newDir.toPath());
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
-    public void removeDirOrFile(File file) {
-        try {
-            Files.delete(file.toPath());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-
-
 }
+
+
