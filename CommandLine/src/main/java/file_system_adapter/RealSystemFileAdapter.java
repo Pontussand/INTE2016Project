@@ -8,8 +8,15 @@ import java.util.ArrayList;
 
 public class RealSystemFileAdapter implements FileSystemAdapter {
 
+    public RealSystemFileAdapter() {
+
+    }
+
     @Override
     public ArrayList<String> ls(File path) {
+
+//        
+
         String[] files = path.list();
 
         ArrayList<String> strings = new ArrayList<>();
