@@ -7,7 +7,7 @@ public class TestFileSystemAdapter implements FileSystemAdapter {
 
     @Override
     public ArrayList<String> ls(File path) {
-        return new ArrayList<String>;
+        return new ArrayList<String>();
     }
 
 
