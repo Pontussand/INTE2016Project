@@ -13,7 +13,7 @@ public class TestFileSystemAdapter implements FileSystemAdapter {
 
     @Override
     public String findProjectDir() {
-        return new String;
+        return new String();
     }
 
 
