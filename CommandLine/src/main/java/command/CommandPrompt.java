@@ -6,9 +6,14 @@ public class CommandPrompt {
 	public Scanner scan = new Scanner(System.in);
 
 	private void run() {
-		while(true) {
+		boolean loop = true;
+		while(loop) {
 			String command = scan.nextLine();
-			command(command);
+			if (command.equalsIgnoreCase("exit")) {
+				loop = false;
+			} else {
+				command(command);
+			}
 		}
 	}
 
@@ -17,7 +22,7 @@ public class CommandPrompt {
 		String target = "";
 		String result = command;
 
-		if(command.contains(" ")){
+		if(command.contains(" ")) {
 			commandPart = command.split(" ")[0];
 			target = command.substring(command.indexOf(" ") +1);
 			result = commandPart + " fil: " + target;
@@ -44,7 +49,7 @@ public class CommandPrompt {
 	}
 
 	public static void main(String[] args) {
-		System.out.println("Command Prompt starting...");
+		System.out.println("Command Prompt starting...");       // Just so we know it's running
 		CommandPrompt test = new CommandPrompt();
 		test.run();
 		System.out.println("Command Prompt exiting!");
