@@ -5,31 +5,49 @@ import java.util.ArrayList;
 
 public class TestFileSystemAdapter implements FileSystemAdapter {
 
-    public TestFileSystemAdapter() {
+	@Override
+	public String[] ls(String path){
+		return null;
+	}
 
-    }
+	@Override
+	public boolean mkdir(String path){
+		return false;
+	}
 
-    @Override
-    public ArrayList<String> ls(File path) {
-        return new ArrayList<String>();
-    }
+	@Override
+	public boolean mkdirs(String path){
+		return false;
+	}
 
+	@Override
+	public boolean createFile(String filePath){
+		return false;
+	}
 
-    @Override
-    public String findProjectDir() {
-        return new String();
-    }
+	@Override
+	public boolean appendToFile(String filePath, String content){
+		return false;
+	}
 
+	@Override
+	public boolean writeToFile(String filePath, String content){
+		return false;
+	}
 
-//    returvärde behöver ändras?
-    @Override
-    public File findParentDir(File currentDir) {
-        return new File("");
-    }
+	@Override
+	public boolean deleteFile(String path){
+		return false;
+	}
 
-    @Override
-    public void mkdir(File newDir) {
+	@Override
+	public boolean createDirectory(String path){
+		return false;
+	}
 
-    }
+	@Override
+	public boolean deleteDirectory(String path){
+		return false;
+	}
 
 }
