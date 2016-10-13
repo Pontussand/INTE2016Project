@@ -1,3 +1,4 @@
+/*
 package fileSystemObject;
 
 import org.junit.Before;
@@ -25,9 +26,12 @@ public class fakeFileSystemObjectTest {
 		FakePath[] listing = root.listFiles();
 		//assertEquals(expectedListing.length, listing.length);
 
-		for(int i = 0; i < /*expectedL*/listing.length; i++){
+		for(int i = 0; i < */
+/*expectedL*//*
+listing.length; i++){
 			System.out.println(listing[i]);
 			//assertEquals(expectedListing[i], listing[i]);
 		}
 	}
 }
+*/

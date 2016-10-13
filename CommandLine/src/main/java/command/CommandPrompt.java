@@ -44,7 +44,9 @@ public class CommandPrompt {
 	}
 
 	public static void main(String[] args) {
+		System.out.println("Command Prompt starting...");
 		CommandPrompt test = new CommandPrompt();
 		test.run();
+		System.out.println("Command Prompt exiting!");
 	}
 }

@@ -22,11 +22,11 @@ public class Filemanager {
 
 
 
-    public void ls(File path) {
-
-        fso.ls(path);
-
-    }
+//    public void ls(File path) {
+//
+//        fso.ls(path);
+//
+//    }
 
     void findProjectDir() {
 

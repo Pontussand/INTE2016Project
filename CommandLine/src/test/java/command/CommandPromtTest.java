@@ -11,11 +11,11 @@ public class CommandPromtTest {
     private static String mkdir_expected = "mkdir fil: abc";
     private static String wrongCommand = "Command doesn't exit";
 
-//    @Test
-//    public void commandCommandAndFilename(){
-//        CommandPrompt cp = new CommandPrompt();
-//        assertEquals("abc fil: def", cp.command("abc def"));
-//    }
+    @Test
+    public void commandCommandAndFilename(){
+        CommandPrompt cp = new CommandPrompt();
+        assertEquals("abc fil: def", cp.command("abc def"));
+    }
 
     @Test
     public void command_lsFileName(){
