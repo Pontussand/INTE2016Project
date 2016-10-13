@@ -14,7 +14,28 @@ public class Filemanager {
         this.fso = fso;
     }
 
+    public boolean correctFileName(String fileName) {
+//        if (fileName.contains(" ")) {
+//            return false;
+//        }
+//        if (fileName.contains("")) {
+//            return false;
+//        } else {
+//            return true;
+//        }
+//    }
+        return false;
+    }
 
+    public boolean fileExists(String fileName){
+        return false;
+    }
+    public boolean correctDirectoryName(String directoryName){
+        return false;
+    }
+    public boolean directoryExists(String directoryName){
+        return false;
+    }
 // test ok filnamn
 // test fil finns eller ej
 // test ok path
@@ -24,7 +45,7 @@ public class Filemanager {
 
     public void ls(File path) {
 
-        fso.ls(path);
+     //   fso.ls(path);
 
     }
 
