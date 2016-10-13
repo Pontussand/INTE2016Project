@@ -5,18 +5,22 @@ import java.util.ArrayList;
 
 public interface FileSystemAdapter {
 
-    ArrayList<String> ls(File path);
+    String[] ls(String path);
 
-    String findProjectDir();
+    boolean mkdir(String path);
 
-    //    returvärde behöver ändras
-    File findParentDir(File currentDir);
+	boolean mkdirs(String path);
 
-    void mkdir(File newDir);
+    boolean createFile(String filePath);
+
+	boolean appendToFile(String filePath, String content);
+
+	boolean writeToFile(String filePath, String content);
+
+    boolean deleteFile(String path);
+
+    boolean createDirectory(String path);
+
+    boolean deleteDirectory(String path);
 }
 
-
-//    public boolean createFile(String path);
-//    public boolean deleteFile(String path);
-//    public boolean createDirectory(String path);
-//    public boolean deleteDirectory(String path);
