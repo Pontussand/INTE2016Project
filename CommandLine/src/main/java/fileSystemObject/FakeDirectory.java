@@ -1,18 +1,26 @@
 package fileSystemObject;
 
 
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
 
 public class FakeDirectory extends FakeFSO {
-	private HashSet<FakeFSO> contents = new HashSet<>();
+	private HashMap<String, FakeFSO> contents = new HashMap();
 
 	public FakeDirectory(String name) {
 		super(name);
 	}
 
+	/**
+	 * @return File System Objects sorted by name
+	 */
 	public FakeFSO[] getContents() {
-		FakeFSO[] emptyArr = new FakeFSO[contents.size()];
-		return contents.toArray(emptyArr);
+		List<FakeFSO> children = new ArrayList<>(contents.values());
+		Collections.sort(children);
+		FakeFSO[] ret = new FakeFSO[children.size()];
+		return children.toArray(ret);
 	}
 
 	/**
@@ -20,8 +28,10 @@ public class FakeDirectory extends FakeFSO {
 	 * @return true if the FSO was added
 	 */
 	public boolean addFSO(FakeFSO fso){
-		boolean exist = contents.add(fso);
-		return exist;
+		boolean exist = contents.containsKey(fso.getName());
+		if(!exist)
+			contents.put(fso.getName(), fso);
+		return !exist;
 	}
 
 	public FakeFSO pathSearch(String path){

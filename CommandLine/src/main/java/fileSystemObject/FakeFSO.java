@@ -1,6 +1,6 @@
 package fileSystemObject;
 
-public abstract class FakeFSO {
+public abstract class FakeFSO implements Comparable<FakeFSO>{
 	private String name;
 
 	public FakeFSO(String name){
@@ -9,5 +9,9 @@ public abstract class FakeFSO {
 
 	public String getName(){
 		return name;
+	}
+
+	public int compareTo(FakeFSO other){
+		return name.compareTo(other.getName());
 	}
 }
