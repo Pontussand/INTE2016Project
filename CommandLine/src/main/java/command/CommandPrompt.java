@@ -27,6 +27,12 @@ public class CommandPrompt {
 
 		case "ls":
 			return result;
+		//command for findProjectDir
+		case "fpd":
+			return result;
+		//command for findParentDir
+		case "fpad":
+			return result;
 		case "mkdir":
 			return result;
 		case "pwd":

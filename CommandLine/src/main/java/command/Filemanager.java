@@ -15,7 +15,10 @@ public class Filemanager {
     }
 
 
-
+// test ok filnamn
+// test fil finns eller ej
+// test ok path
+// test path finns eller ej
 
 
 
