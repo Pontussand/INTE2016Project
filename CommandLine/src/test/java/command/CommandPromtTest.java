@@ -14,42 +14,42 @@ public class CommandPromtTest {
 /*    @Test
     public void commandCommandAndFilename(){
         CommandPrompt cp = new CommandPrompt();
-        assertEquals("abc fil: def", cp.command("abc def"));
+        assertEquals("abc fil: def", cp.processCommand("abc def"));
     }*/
 
     @Test
     public void command_lsFileName(){
         CommandPrompt cp = new CommandPrompt();
-        assertEquals(ls_expected, cp.command(ls_filename));
+        assertEquals(ls_expected, cp.processCommand(ls_filename));
     }
 
     @Test
     public void command_mkdirFileName(){
         CommandPrompt cp = new CommandPrompt();
-        assertEquals(mkdir_expected, cp.command(mkdir_filename));
+        assertEquals(mkdir_expected, cp.processCommand(mkdir_filename));
     }
 
     @Test
     public void command_wrongCommand(){
         CommandPrompt cp = new CommandPrompt();
-        assertEquals(wrongCommand, cp.command("3 abc"));
+        assertEquals(wrongCommand, cp.processCommand("3 abc"));
     }
 
     @Test
     public void command_lsNoFileName(){
         CommandPrompt cp = new CommandPrompt();
-        assertEquals("ls fil: ", cp.command("ls "));
+        assertEquals("ls fil: ", cp.processCommand("ls "));
     }
 
     @Test
     public void command_pwd(){
         CommandPrompt cp = new CommandPrompt();
-        assertEquals("pwd", cp.command("pwd"));
+        assertEquals("pwd", cp.processCommand("pwd"));
     }
 
     @Test
     public void command_lsFileNameNoSpace(){
         CommandPrompt cp = new CommandPrompt();
-        assertEquals(wrongCommand, cp.command("lsabc"));
+        assertEquals(wrongCommand, cp.processCommand("lsabc"));
     }
 }

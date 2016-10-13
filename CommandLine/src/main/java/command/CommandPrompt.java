@@ -8,23 +8,23 @@ public class CommandPrompt {
 	private void run() {
 		boolean loop = true;
 		while(loop) {
-			String command = scan.nextLine();
-			if (command.equalsIgnoreCase("exit")) {
+			String cmd = scan.nextLine();
+			if (cmd.equalsIgnoreCase("exit")) {
 				loop = false;
 			} else {
-				command(command);
+				processCommand(cmd);
 			}
 		}
 	}
 
-	public String command(String command) {
-		String commandPart = command;
+	public String processCommand(String cmd) {
+		String commandPart = cmd;
 		String target = "";
-		String result = command;
+		String result = cmd;
 
-		if(command.contains(" ")) {
-			commandPart = command.split(" ")[0];
-			target = command.substring(command.indexOf(" ") +1);
+		if(cmd.contains(" ")) {
+			commandPart = cmd.split(" ")[0];
+			target = cmd.substring(cmd.indexOf(" ") +1);
 			result = commandPart + " fil: " + target;
 		}
 
@@ -32,10 +32,10 @@ public class CommandPrompt {
 
 		case "ls":
 			return result;
-		//command for findProjectDir
+		//processCommand for findProjectDir
 		case "fpd":
 			return result;
-		//command for findParentDir
+		//processCommand for findParentDir
 		case "fpad":
 			return result;
 		case "mkdir":
