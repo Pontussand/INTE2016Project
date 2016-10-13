@@ -11,7 +11,7 @@ public class FileManagerInputControlTest {
 
     @Test
     public void correctFileName_noSpaces(){
-        assertEquals();
+    //    assertEquals();
     }
 
 
