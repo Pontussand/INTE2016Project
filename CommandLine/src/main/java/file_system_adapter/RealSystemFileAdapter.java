@@ -14,6 +14,9 @@ public class RealSystemFileAdapter implements FileSystemAdapter {
 
     @Override
     public ArrayList<String> ls(File path) {
+
+//        
+
         String[] files = path.list();
 
         ArrayList<String> strings = new ArrayList<>();
