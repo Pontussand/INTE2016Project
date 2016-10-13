@@ -1,37 +1,44 @@
-/*
 package fileSystemObject;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 
 public class fakeFileSystemObjectTest {
-	FakePath root;
-	String testDir1 = "testDir1";
+	FakeDirectory root;
 
 	@Before
 	public void setup(){
-		root = new FakePath("/");
+		root = new FakeDirectory("root");
 	}
 
 	@Test
-	public void mkdir(){
-		FakePath newDir = new FakePath("/"+testDir1);
-		assertTrue(newDir.mkdir());
+	public void mkdirOneDir(){
+		FakeDirectory newDir = new FakeDirectory("testDir");
+		assertTrue(root.addFSO(newDir));
 
-		FakePath[] expectedListing = {new FakePath("testDir1")};
-		FakePath[] listing = root.listFiles();
-		//assertEquals(expectedListing.length, listing.length);
+		FakeFSO[] expectedListing = {new FakeDirectory("testDir")};
+		FakeFSO[] listing = root.getContents();
 
-		for(int i = 0; i < */
-/*expectedL*//*
-listing.length; i++){
-			System.out.println(listing[i]);
-			//assertEquals(expectedListing[i], listing[i]);
-		}
+		assertArrayEquals(expectedListing, listing);
+	}
+
+	@Test
+	public void mkdirTwoDir(){
+		FakeDirectory newDir1 = new FakeDirectory("testDir1");
+		FakeDirectory newDir2 = new FakeDirectory("testDir2");
+		assertTrue(root.addFSO(newDir1));
+		assertTrue(root.addFSO(newDir2));
+
+		FakeFSO[] expectedListing = {new FakeDirectory("testDir2"), new FakeDirectory("testDir1")};
+		FakeFSO[] listing = root.getContents();
+		//System.out.println(listing.length);
+
+		assertArrayEquals(expectedListing, listing);
 	}
 }
-*/

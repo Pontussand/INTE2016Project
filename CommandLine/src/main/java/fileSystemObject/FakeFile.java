@@ -16,4 +16,13 @@ public class FakeFile extends FakeFSO {
 	public void setContents(String contents) {
 		this.contents = contents;
 	}
+
+	@Override
+	public boolean equals(Object other){
+		if(other instanceof FakeFile){
+			FakeFile o = (FakeFile) other;
+			return o.getName().equals(getName());
+		}
+		return false;
+	}
 }

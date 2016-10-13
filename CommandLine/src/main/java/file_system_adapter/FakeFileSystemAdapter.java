@@ -1,9 +1,13 @@
 package file_system_adapter;
 
+import fileSystemObject.FakeDirectory;
+import fsobject.Directory;
+
 import java.io.File;
 import java.util.ArrayList;
 
 public class FakeFileSystemAdapter implements FileSystemAdapter {
+	private FakeDirectory root;
 
 	@Override
 	public String[] ls(String path){
@@ -12,7 +16,8 @@ public class FakeFileSystemAdapter implements FileSystemAdapter {
 
 	@Override
 	public boolean mkdir(String path){
-		return false;
+		root.addFSO(new FakeDirectory(path));
+		return true;
 	}
 
 	@Override
@@ -48,6 +53,11 @@ public class FakeFileSystemAdapter implements FileSystemAdapter {
 	@Override
 	public boolean deleteDirectory(String path){
 		return false;
+	}
+
+	/**intended for testing only*/
+	protected void setRoot(FakeDirectory root){
+		this.root = root;
 	}
 
 }

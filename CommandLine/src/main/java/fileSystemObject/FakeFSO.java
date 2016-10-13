@@ -10,5 +10,4 @@ public abstract class FakeFSO {
 	public String getName(){
 		return name;
 	}
-
 }
