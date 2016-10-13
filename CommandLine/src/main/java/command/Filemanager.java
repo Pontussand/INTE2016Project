@@ -23,8 +23,8 @@ public class Filemanager {
 //        } else {
 //            return true;
 //        }
-//    }
-        return false;
+//        }
+        return true;
     }
 
     public boolean fileExists(String fileName){
