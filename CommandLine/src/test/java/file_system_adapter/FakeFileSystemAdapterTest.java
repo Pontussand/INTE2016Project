@@ -18,11 +18,11 @@ public class FakeFileSystemAdapterTest {
 		FakeDirectory root = new FakeDirectory("root");
 		sa.setRoot(root);
 
-		assertTrue(sa.mkdir("/testDir"));
+		assertTrue(sa.mkdir("root/users/testDir"));
 
 		FakeFSO[] contents = root.getContents();
 		assertEquals(contents.length, 1);
 		assertTrue(contents[0] instanceof FakeDirectory);
-		assertEquals(contents[0].getName(), "testDir");
+		assertEquals("testDir", contents[0].getName());
 	}
 }

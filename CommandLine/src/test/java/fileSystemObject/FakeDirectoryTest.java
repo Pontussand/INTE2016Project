@@ -3,8 +3,7 @@ package fileSystemObject;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 
 public class FakeDirectoryTest {
@@ -65,5 +64,36 @@ public class FakeDirectoryTest {
 		FakeFSO[] listing = testDir.getContents();
 
 		assertArrayEquals(expectedListing, listing);
+	}
+
+	@Test
+	public void pathSearch(){
+		// testDir/AA/BB/CC
+		// "find testDir/AA/BB" should return BB Fake Directory object
+		FakeDirectory AA = new FakeDirectory("AA");
+		FakeDirectory AB = new FakeDirectory("AB");
+		FakeDirectory AC = new FakeDirectory("AC");
+		testDir.addFSO(AA);
+		testDir.addFSO(AB);
+		testDir.addFSO(AC);
+
+		FakeDirectory BA = new FakeDirectory("BA");
+		FakeDirectory BB = new FakeDirectory("BB");
+		FakeDirectory BC = new FakeDirectory("BC");
+		AA.addFSO(BA);
+		AA.addFSO(BB);
+		AA.addFSO(BC);
+
+		FakeDirectory CA = new FakeDirectory("CA");
+		FakeDirectory CB = new FakeDirectory("CB");
+		FakeDirectory CC = new FakeDirectory("CC");
+		BB.addFSO(CA);
+		BB.addFSO(CB);
+		BB.addFSO(CC);
+
+		FakeFSO result = testDir.pathSearch("AA/BB");
+		assertTrue(result instanceof FakeDirectory);
+		System.out.println(result.getName());
+		assertSame(BB, result);
 	}
 }
