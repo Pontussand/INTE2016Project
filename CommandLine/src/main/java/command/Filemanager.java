@@ -18,7 +18,7 @@ public class Filemanager {
     }
 
 
-    public ArrayList<String> listFolders(File path) {
+    public ArrayList<String> ls(File path) {
 
         String[] files = path.list();
 
@@ -45,12 +45,12 @@ public class Filemanager {
         return userDir;
     }
 
-    public File getParentDir(File currentDir) {
+    public File findParentDir(File currentDir) {
 
         return new File(currentDir.getParent());
     }
 
-    public void newDir(File newDir) {
+    public void mkdir(File newDir) {
         try {
             Files.createDirectory(newDir.toPath());
         } catch (IOException e) {
@@ -58,7 +58,7 @@ public class Filemanager {
         }
     }
 
-    public void removeDirOrFile(File file) {
+    public void rmdir(File file) {
         try {
             Files.delete(file.toPath());
         } catch (IOException e) {
