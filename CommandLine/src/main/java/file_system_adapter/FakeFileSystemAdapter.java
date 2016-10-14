@@ -12,7 +12,7 @@ public class FakeFileSystemAdapter implements FileSystemAdapter {
 	}
 
 	@Override
-	public boolean dirExist(String path){
+	public boolean fsoExist(String path){
 		return false;
 	}
 

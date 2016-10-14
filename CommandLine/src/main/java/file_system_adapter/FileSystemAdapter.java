@@ -7,7 +7,7 @@ public interface FileSystemAdapter {
 
     String[] ls(String path);
 
-	boolean dirExist(String path);
+	boolean fsoExist(String path);
 
     boolean mkdir(String path);
 
