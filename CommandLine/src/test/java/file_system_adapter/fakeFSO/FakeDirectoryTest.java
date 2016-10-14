@@ -1,4 +1,4 @@
-package fileSystemObject;
+package file_system_adapter.fakeFSO;
 
 import org.junit.Before;
 import org.junit.Test;

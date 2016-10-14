@@ -1,4 +1,4 @@
-package fileSystemObject;
+package file_system_adapter.fakeFSO;
 
 
 import file_system_adapter.FakeFileSystemAdapter;

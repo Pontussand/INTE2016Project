@@ -1,7 +1,7 @@
 package file_system_adapter;
 
-import fileSystemObject.FakeDirectory;
-import fileSystemObject.FakeFSO;
+import file_system_adapter.fakeFSO.FakeDirectory;
+import file_system_adapter.fakeFSO.FakeFSO;
 import org.junit.*;
 import static org.junit.Assert.*;
 

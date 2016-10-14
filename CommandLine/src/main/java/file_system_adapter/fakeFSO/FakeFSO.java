@@ -1,4 +1,4 @@
-package fileSystemObject;
+package file_system_adapter.fakeFSO;
 
 public abstract class FakeFSO implements Comparable<FakeFSO>{
 	private String name;
