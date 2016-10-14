@@ -66,6 +66,8 @@ public class FakeFileSystemAdapter implements FileSystemAdapter {
 
 	private String getParentDirPath(String path){
 		int stop = path.lastIndexOf(DIR_SEPERATOR);
+		if(stop == -1)
+			return "";
 		return path.substring(0, stop);
 	}
 

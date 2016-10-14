@@ -36,26 +36,39 @@ public class FakeDirectory extends FakeFSO {
 		return !exist;
 	}
 
-	//TODO: may need refactoring
 	public FakeFSO pathSearch(String path) {
-		String separator = FakeFileSystemAdapter.DIR_SEPERATOR;
+		if(path.equals(""))
+			return this;
 
-		boolean lastRecursion = !path.contains(separator);
-		if (lastRecursion) {
-			String childName = path;
-			FakeFSO child = contents.get(childName);
-			return child;
-		}
-
-		int pathChildEnd = path.indexOf(separator);
-		String childName = path.substring(0, pathChildEnd);
-		String passOnPath = path.substring(pathChildEnd + 1);
+		String childName = getChildName(path);
 		FakeFSO child = contents.get(childName);
-		if (child != null && child instanceof FakeDirectory) {
+
+		if(child != null && child instanceof FakeDirectory){
+			String passOnPath = getPassOnPath(path);
 			FakeDirectory dChild = (FakeDirectory) child;
 			return dChild.pathSearch(passOnPath);
 		}
 		return null;
+	}
+
+	private String getChildName(String path){
+		String separator = FakeFileSystemAdapter.DIR_SEPERATOR;
+		int start = path.indexOf(separator) + 1;
+		int end = path.indexOf(separator, start);
+		if(end == -1){
+			end = path.length();
+		}
+		return path.substring(start, end);
+	}
+
+	private String getPassOnPath(String path){
+		String separator = FakeFileSystemAdapter.DIR_SEPERATOR;
+		int sep1 = path.indexOf(separator);
+		int sep2 = path.indexOf(separator, sep1 + 1);
+		if(sep2 == -1){
+			sep2 = path.length();
+		}
+		return path.substring(sep2);
 	}
 
 	@Override

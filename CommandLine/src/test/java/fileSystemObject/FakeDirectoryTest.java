@@ -68,8 +68,6 @@ public class FakeDirectoryTest {
 
 	@Test
 	public void pathSearch(){
-		// testDir/AA/BB/CC
-		// "find testDir/AA/BB" should return BB Fake Directory object
 		FakeDirectory AA = new FakeDirectory("AA");
 		FakeDirectory AB = new FakeDirectory("AB");
 		FakeDirectory AC = new FakeDirectory("AC");
@@ -91,8 +89,15 @@ public class FakeDirectoryTest {
 		BB.addFSO(CB);
 		BB.addFSO(CC);
 
-		FakeFSO result = testDir.pathSearch("AA/BB");
+		FakeFSO result = testDir.pathSearch("/AA/BB/CC");
+		System.out.println("Result:"+result);
 		assertTrue(result instanceof FakeDirectory);
-		assertSame(BB, result);
+		assertSame(CC, result);
+	}
+
+	@Test
+	public void pathSearchRoot(){
+		FakeFSO result = testDir.pathSearch("");
+		assertSame(testDir, result);
 	}
 }
