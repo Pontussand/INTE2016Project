@@ -16,7 +16,7 @@ public class FakeFileTest {
 	}
 
 	@Test
-	public void createFile(){
+	public void addFSO_fileInRoot(){
 		FakeFile file = new FakeFile("name", "file contents");
 		assertTrue(testDir.addFSO(file));
 
@@ -26,8 +26,20 @@ public class FakeFileTest {
 		assertArrayEquals(expectedListing, listing);
 	}
 
+	@Test(expected=IllegalArgumentException.class)
+	public void constructor_nullName(){
+		FakeFile file = new FakeFile(null, "");
+	}
+
 	@Test
-	public void appendFile(){
+	public void constructor_nullContents(){
+		FakeFile file = new FakeFile("name", null);
+		FakeFile expectedOutput = new FakeFile("name", "");
+		assertEquals(file, expectedOutput);
+	}
+
+	@Test
+	public void append(){
 		FakeFile file = new FakeFile("name", "This is a");
 		file.append(" file.");
 		assertEquals("This is a file.", file.getContents());

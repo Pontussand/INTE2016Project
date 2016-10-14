@@ -15,7 +15,7 @@ public class FakeDirectoryTest {
 	}
 
 	@Test
-	public void mkdirOneDir(){
+	public void addFSO_OneDir(){
 		FakeDirectory newDir = new FakeDirectory("name");
 		assertTrue(testDir.addFSO(newDir));
 
@@ -26,7 +26,7 @@ public class FakeDirectoryTest {
 	}
 
 	@Test
-	public void mkdirDuplicate(){
+	public void addFSO_DuplicateDirs(){
 		FakeDirectory original = new FakeDirectory("name");
 		FakeDirectory duplicate = new FakeDirectory("name");
 		assertTrue(testDir.addFSO(original));
@@ -39,7 +39,7 @@ public class FakeDirectoryTest {
 	}
 
 	@Test
-	public void mkdirTwoDir(){
+	public void addFSO_TwoDir(){
 		FakeDirectory dirA = new FakeDirectory("A");
 		FakeDirectory dirB = new FakeDirectory("B");
 		assertTrue(testDir.addFSO(dirA));
@@ -53,7 +53,7 @@ public class FakeDirectoryTest {
 	}
 
 	@Test
-	public void mkdirTwoDirReverseOrder(){
+	public void addFSO_TwoDirReverseOrder(){
 		FakeDirectory dirB = new FakeDirectory("B");
 		FakeDirectory dirA = new FakeDirectory("A");
 		//note that the input order have changed
@@ -67,7 +67,7 @@ public class FakeDirectoryTest {
 	}
 
 	@Test
-	public void pathSearch(){
+	public void pathsearch_findInLargerStructure(){
 		FakeDirectory AA = new FakeDirectory("AA");
 		FakeDirectory AB = new FakeDirectory("AB");
 		FakeDirectory AC = new FakeDirectory("AC");
@@ -89,14 +89,16 @@ public class FakeDirectoryTest {
 		BB.addFSO(CB);
 		BB.addFSO(CC);
 
-		FakeFSO result = testDir.pathSearch("/AA/BB/CC");
+		FakeFSO result = testDir.pathSearch("/AA/BB");
 		System.out.println("Result:"+result);
 		assertTrue(result instanceof FakeDirectory);
-		assertSame(CC, result);
+		assertSame(BB, result);
 	}
 
 	@Test
-	public void pathSearchRoot(){
+	public void pathSearch_findRoot(){
+		FakeDirectory decoy = new FakeDirectory("root");
+		testDir.addFSO(decoy);
 		FakeFSO result = testDir.pathSearch("");
 		assertSame(testDir, result);
 	}

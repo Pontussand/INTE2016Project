@@ -6,6 +6,8 @@ public class FakeFile extends FakeFSO {
 
 	public FakeFile(String name, String contents) {
 		super(name);
+		if(contents == null)
+			contents = "";
 		this.contents = contents;
 	}
 

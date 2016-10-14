@@ -4,11 +4,16 @@ import file_system_adapter.fake_FSO.FakeDirectory;
 
 public class FakeFileSystemAdapter implements FileSystemAdapter {
 	public static final String DIR_SEPERATOR = "/";
-	private FakeDirectory root;
+	private FakeDirectory root = new FakeDirectory("root");
 
 	@Override
 	public String[] ls(String path){
 		return null;
+	}
+
+	@Override
+	public boolean dirExist(String path){
+		return false;
 	}
 
 	@Override

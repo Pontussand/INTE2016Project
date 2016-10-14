@@ -25,4 +25,6 @@ public class FakeFileSystemAdapterTest {
 		assertTrue(contents[0] instanceof FakeDirectory);
 		assertEquals("testDir", contents[0].getName());
 	}
+
+
 }

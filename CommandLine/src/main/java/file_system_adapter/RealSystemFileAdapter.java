@@ -14,6 +14,11 @@ public class RealSystemFileAdapter implements FileSystemAdapter {
     }
 
     @Override
+    public boolean dirExist(String path){
+        return false;
+    }
+
+    @Override
     public boolean mkdir(String path){
         return false;
     }
