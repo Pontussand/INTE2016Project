@@ -14,15 +14,15 @@ public class FakeFileSystemAdapterTest {
 	}
 
 	@Test
-	public void mkdirOneDir(){
+	public void mkdirOneRootDir(){
 		FakeDirectory root = new FakeDirectory("root");
 		sa.setRoot(root);
 
-		assertTrue(sa.mkdir("/testDir"));
+		assertTrue(sa.mkdir("testDir"));
 
 		FakeFSO[] contents = root.getContents();
 		assertEquals(contents.length, 1);
 		assertTrue(contents[0] instanceof FakeDirectory);
-		assertEquals(contents[0].getName(), "testDir");
+		assertEquals("testDir", contents[0].getName());
 	}
 }
