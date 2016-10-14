@@ -1,6 +1,6 @@
 package file_system_adapter;
 
-import file_system_adapter.fakeFSO.FakeDirectory;
+import file_system_adapter.fake_FSO.FakeDirectory;
 
 public class FakeFileSystemAdapter implements FileSystemAdapter {
 	public static final String DIR_SEPERATOR = "/";

@@ -1,4 +1,4 @@
-package file_system_adapter.fakeFSO;
+package file_system_adapter.fake_FSO;
 
 
 public class FakeFile extends FakeFSO {
