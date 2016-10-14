@@ -14,12 +14,12 @@ public class FakeFileSystemAdapter implements FileSystemAdapter {
 	@Override
 	public boolean mkdir(String path){
 		String folderName = getFSOName(path);
+		boolean validPath = !folderName.equals("");
 
-		if(!(folderName.equals("") || folderName.contains(DIR_SEPERATOR))) {
+		if(validPath) {
 			String parentDirPath = getParentDirPath(path);
 			FakeDirectory parentDir = (FakeDirectory) root.pathSearch(parentDirPath);
-			parentDir.addFSO(new FakeDirectory(path));
-			return true;
+			return parentDir.addFSO(new FakeDirectory(path));
 		}
 		return false;
 	}
