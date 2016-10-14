@@ -1,4 +1,4 @@
-package command.test;
+package command;
 
 import command.CommandPrompt;
 import org.junit.Before;

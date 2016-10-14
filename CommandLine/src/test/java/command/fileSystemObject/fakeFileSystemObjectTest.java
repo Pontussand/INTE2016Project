@@ -1,5 +1,5 @@
 
-package command.test.fileSystemObject;
+package command.fileSystemObject;
 
 /*
 import org.junit.Before;

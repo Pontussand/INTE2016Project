@@ -1,5 +1,5 @@
 
-package command.test;
+package command;
 
 /*
 import org.junit.Before;
