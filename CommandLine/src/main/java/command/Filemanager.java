@@ -15,13 +15,17 @@ public class FileManager {
 //    }
 
     public boolean correctFileName(String fileName) {
-//        if (fileName.contains(" ")) {
-//            return false;
-//        }else if (!fileName.endsWith(".txt")) {
-//            return false;
-//        }
-//        return true;
-        return(!fileName.contains(" ")&&fileName.endsWith(".txt"));
+        return(!fileName.contains(" ")
+                &&fileName.endsWith(".txt"))
+                &&!fileName.contains("<")
+                &&!fileName.contains(">")
+                &&!fileName.contains(":")
+                &&!fileName.contains("\"")
+                &&!fileName.contains("/")
+                &&!fileName.contains("\\")
+                &&!fileName.contains("|")
+                &&!fileName.contains("?")
+                &&!fileName.contains("*");
     }
 
     public boolean fileExists(String fileName){
@@ -33,12 +37,11 @@ public class FileManager {
     public boolean directoryExists(String directoryName){
         return false;
     }
+
 // test ok filnamn
 // test fil finns eller ej
 // test ok path
 // test path finns eller ej
-
-
 
     public void ls(File path) {
 
@@ -57,6 +60,5 @@ public class FileManager {
     void mkdir(File newDir) {
 
     }
-
 
 }
