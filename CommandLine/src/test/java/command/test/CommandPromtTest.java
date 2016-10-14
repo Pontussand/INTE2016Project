@@ -1,5 +1,6 @@
-package command;
+package command.test;
 
+import command.CommandPrompt;
 import org.junit.*;
 import static org.junit.Assert.*;
 

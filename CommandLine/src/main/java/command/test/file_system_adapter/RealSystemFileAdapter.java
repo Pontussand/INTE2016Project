@@ -1,10 +1,5 @@
-package file_system_adapter;
+package command.test.file_system_adapter;
 
-
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.util.ArrayList;
 
 public class RealSystemFileAdapter implements FileSystemAdapter {
 
