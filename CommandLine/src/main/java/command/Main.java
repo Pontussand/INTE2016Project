@@ -3,10 +3,10 @@ package command;
 import command.fsobject.Directory;
 
 public class Main {
-	public static void main(String[] args) {
+    public static void main(String[] args) {
 
-		new Directory();
+        new Directory();
 
-		System.out.println("hello world!");
-	}
+        System.out.println("hello world!");
+    }
 }

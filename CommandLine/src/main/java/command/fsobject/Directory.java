@@ -9,7 +9,6 @@ public class Directory extends Fso {
 
     public Directory() {
         createPath();
-
     }
 
     private void createPath() {
@@ -24,8 +23,4 @@ public class Directory extends Fso {
             }
         }
     }
-
-
-
-
 }

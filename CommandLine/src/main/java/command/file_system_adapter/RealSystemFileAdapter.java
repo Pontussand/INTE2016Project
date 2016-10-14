@@ -1,50 +1,43 @@
 package command.file_system_adapter;
 
 
+import java.io.File;
+
 public class RealSystemFileAdapter implements FileSystemAdapter {
 
     @Override
-    public String[] ls(String path){
+    public String[] ls(String path) {
         return null;
     }
 
     @Override
-    public boolean mkdir(String path){
+    public boolean createFile(String filePath) {
         return false;
     }
 
     @Override
-    public boolean mkdirs(String path){
+    public boolean appendToFile(String filePath, String content) {
         return false;
     }
 
     @Override
-    public boolean createFile(String filePath){
+    public boolean writeToFile(String filePath, String content) {
         return false;
     }
 
     @Override
-    public boolean appendToFile(String filePath, String content){
+    public boolean deleteFile(String path) {
         return false;
     }
 
     @Override
-    public boolean writeToFile(String filePath, String content){
-        return false;
+    public boolean createDirectory(String path) {
+        File directory = new File(path);
+        return directory.mkdir();
     }
 
     @Override
-    public boolean deleteFile(String path){
-        return false;
-    }
-
-    @Override
-    public boolean createDirectory(String path){
-        return false;
-    }
-
-    @Override
-    public boolean deleteDirectory(String path){
+    public boolean deleteDirectory(String path) {
         return false;
     }
 

@@ -7,10 +7,10 @@ import java.io.File;
 
 public class Filemanager {
 
-    private FileSystemAdapter fso;
+    private FileSystemAdapter fileSystemAdapter;
 
-    public Filemanager(FileSystemAdapter fso) {
-        this.fso = fso;
+    public Filemanager(FileSystemAdapter fileSystemAdapter) {
+        this.fileSystemAdapter = fileSystemAdapter;
     }
 
 
@@ -18,8 +18,6 @@ public class Filemanager {
 // command.test fil finns eller ej
 // command.test ok path
 // command.test path finns eller ej
-
-
 
 //    public void ls(File path) {
 //
@@ -35,9 +33,7 @@ public class Filemanager {
 
     }
 
-    void mkdir(File newDir) {
-
+    void mkdir(String path) {
+        this.fileSystemAdapter.createDirectory(path);
     }
-
-
 }

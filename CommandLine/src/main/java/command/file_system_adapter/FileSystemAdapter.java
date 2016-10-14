@@ -4,15 +4,12 @@ public interface FileSystemAdapter {
 
     String[] ls(String path);
 
-    boolean mkdir(String path);
-
-	boolean mkdirs(String path);
 
     boolean createFile(String filePath);
 
-	boolean appendToFile(String filePath, String content);
+    boolean appendToFile(String filePath, String content);
 
-	boolean writeToFile(String filePath, String content);
+    boolean writeToFile(String filePath, String content);
 
     boolean deleteFile(String path);
 
