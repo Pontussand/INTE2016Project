@@ -93,7 +93,6 @@ public class FakeDirectoryTest {
 
 		FakeFSO result = testDir.pathSearch("AA/BB");
 		assertTrue(result instanceof FakeDirectory);
-		System.out.println(result.getName());
 		assertSame(BB, result);
 	}
 }

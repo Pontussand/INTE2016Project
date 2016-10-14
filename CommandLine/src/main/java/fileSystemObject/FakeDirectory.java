@@ -36,19 +36,21 @@ public class FakeDirectory extends FakeFSO {
 		return !exist;
 	}
 
+	//TODO: may need refactoring
 	public FakeFSO pathSearch(String path) {
 		String separator = FakeFileSystemAdapter.DIR_SEPERATOR;
-		System.out.println(path);
+
+		boolean lastRecursion = !path.contains(separator);
+		if (lastRecursion) {
+			String childName = path;
+			FakeFSO child = contents.get(childName);
+			return child;
+		}
 
 		int pathChildEnd = path.indexOf(separator);
 		String childName = path.substring(0, pathChildEnd);
 		String passOnPath = path.substring(pathChildEnd + 1);
-		boolean lastRecursion = !passOnPath.contains(separator);
-
 		FakeFSO child = contents.get(childName);
-		if (lastRecursion) {
-			return child;
-		}
 		if (child != null && child instanceof FakeDirectory) {
 			FakeDirectory dChild = (FakeDirectory) child;
 			return dChild.pathSearch(passOnPath);
