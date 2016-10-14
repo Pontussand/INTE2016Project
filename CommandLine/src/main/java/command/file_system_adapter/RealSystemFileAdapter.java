@@ -1,4 +1,4 @@
-package command.test.file_system_adapter;
+package command.file_system_adapter;
 
 
 public class RealSystemFileAdapter implements FileSystemAdapter {

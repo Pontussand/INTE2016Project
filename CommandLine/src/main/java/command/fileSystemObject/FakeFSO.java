@@ -1,4 +1,4 @@
-package command.test.fileSystemObject;
+package command.fileSystemObject;
 
 public abstract class FakeFSO {
 	private String name;

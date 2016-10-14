@@ -1,6 +1,7 @@
-/*
+
 package command.test.fileSystemObject;
 
+/*
 import org.junit.Before;
 import org.junit.Test;
 

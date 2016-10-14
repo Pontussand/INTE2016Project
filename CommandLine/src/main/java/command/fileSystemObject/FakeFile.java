@@ -1,4 +1,4 @@
-package command.test.fileSystemObject;
+package command.fileSystemObject;
 
 
 public class FakeFile extends FakeFSO {

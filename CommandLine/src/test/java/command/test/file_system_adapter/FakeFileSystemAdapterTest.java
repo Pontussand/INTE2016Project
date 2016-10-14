@@ -1,5 +1,6 @@
 package command.test.file_system_adapter;
 
+import command.file_system_adapter.FakeFileSystemAdapter;
 import org.junit.*;
 
 public class FakeFileSystemAdapterTest {

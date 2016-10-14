@@ -1,8 +1,9 @@
 package command.test;
 
 import command.CommandPrompt;
-import org.junit.*;
-import static org.junit.Assert.*;
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 
 public class CommandPromtTest {
 
