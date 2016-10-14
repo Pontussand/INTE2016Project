@@ -1,6 +1,7 @@
 package command.test;
 
 import command.CommandPrompt;
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -13,6 +14,13 @@ public class CommandPromtTest {
     private static String mkdir_expected = "mkdir fil: abc";
     private static String wrongCommand = "Command doesn't exit";
 
+    private CommandPrompt cmdprompt;
+
+    @Before
+    public void setUp() {
+        cmdprompt = new CommandPrompt();
+    }
+
 /*    @Test
     public void commandCommandAndFilename(){
         CommandPrompt cp = new CommandPrompt();
@@ -21,37 +29,31 @@ public class CommandPromtTest {
 
     @Test
     public void command_lsFileName(){
-        CommandPrompt cp = new CommandPrompt();
-        assertEquals(ls_expected, cp.processCommand(ls_filename));
+        assertEquals(ls_expected, cmdprompt.processCommand(ls_filename));
     }
 
     @Test
     public void command_mkdirFileName(){
-        CommandPrompt cp = new CommandPrompt();
-        assertEquals(mkdir_expected, cp.processCommand(mkdir_filename));
+        assertEquals(mkdir_expected, cmdprompt.processCommand(mkdir_filename));
     }
 
     @Test
     public void command_wrongCommand(){
-        CommandPrompt cp = new CommandPrompt();
-        assertEquals(wrongCommand, cp.processCommand("3 abc"));
+        assertEquals(wrongCommand, cmdprompt.processCommand("3 abc"));
     }
 
     @Test
     public void command_lsNoFileName(){
-        CommandPrompt cp = new CommandPrompt();
-        assertEquals("ls fil: ", cp.processCommand("ls "));
+        assertEquals("ls fil: ", cmdprompt.processCommand("ls "));
     }
 
     @Test
     public void command_pwd(){
-        CommandPrompt cp = new CommandPrompt();
-        assertEquals("pwd", cp.processCommand("pwd"));
+        assertEquals("pwd", cmdprompt.processCommand("pwd"));
     }
 
     @Test
     public void command_lsFileNameNoSpace(){
-        CommandPrompt cp = new CommandPrompt();
-        assertEquals(wrongCommand, cp.processCommand("lsabc"));
+        assertEquals(wrongCommand, cmdprompt.processCommand("lsabc"));
     }
 }
