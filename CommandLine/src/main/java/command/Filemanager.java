@@ -6,7 +6,7 @@ import file_system_adapter.FileSystemAdapter;
 import java.io.File;
 import java.util.ArrayList;
 
-public class Filemanager {
+public class FileManager {
 
 //   private FileSystemAdapter fso;
 
@@ -15,16 +15,13 @@ public class Filemanager {
 //    }
 
     public boolean correctFileName(String fileName) {
-        if (fileName.contains(" ")) {
-            return false;
-        }
-//        if (fileName.contains("")) {
+//        if (fileName.contains(" ")) {
 //            return false;
-//        } else {
-//            return true;
+//        }else if (!fileName.endsWith(".txt")) {
+//            return false;
 //        }
-//        }
-        return true;
+//        return true;
+        return(!fileName.contains(" ")&&fileName.endsWith(".txt"));
     }
 
     public boolean fileExists(String fileName){
