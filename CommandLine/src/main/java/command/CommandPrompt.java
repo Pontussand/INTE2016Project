@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class CommandPrompt {
 	public Scanner scan = new Scanner(System.in);
+	Filemanager fm = new Filemanager();
 
 	private void run() {
 		while(true) {
@@ -31,7 +32,7 @@ public class CommandPrompt {
 		case "fpd":
 			return result;
 		//command for findParentDir
-		case "fpad":
+		case "touch":
 			return result;
 		case "mkdir":
 			return result;
