@@ -10,8 +10,6 @@ public class CommandPromtTest {
     private static String mkdir_filename = "mkdir abc";
     private static String mkdir_expected = "mkdir fil: abc";
     private static String wrongCommand = "Command doesn't exit";
-    private static String incorrectFileName = "Incorrect fileName";
-    private static String correctFileName = "Correct fileName";
 
     CommandPrompt cp;
 
