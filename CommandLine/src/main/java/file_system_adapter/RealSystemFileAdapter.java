@@ -8,55 +8,65 @@ import java.util.ArrayList;
 
 public class RealSystemFileAdapter implements FileSystemAdapter {
 
-    @Override
-    public String[] ls(String path){
-        return null;
-    }
+	@Override
+	public String[] ls(String path) {
+		return null;
+	}
 
-    @Override
-    public boolean fsoExist(String path){
-        return false;
-    }
+	@Override
+	public boolean fsoExist(String path) {
+		return false;
+	}
 
-    @Override
-    public boolean mkdir(String path){
-        return false;
-    }
+	@Override
+	public boolean isFile(String path) {
+		return false;
+	}
 
-    @Override
-    public boolean mkdirs(String path){
-        return false;
-    }
+	@Override
+	public boolean isDir(String path) {
+		return false;
+	}
 
-    @Override
-    public boolean createFile(String filePath){
-        return false;
-    }
+	@Override
+	public boolean mkdir(String path) {
+		return false;
+	}
 
-    @Override
-    public boolean appendToFile(String filePath, String content){
-        return false;
-    }
+	@Override
+	public boolean mkdirs(String path) {
+		return false;
+	}
 
-    @Override
-    public boolean writeToFile(String filePath, String content){
-        return false;
-    }
+	@Override
+	public boolean createFile(String filePath) {
+		return false;
+	}
 
-    @Override
-    public boolean deleteFile(String path){
-        return false;
-    }
+	@Override
+	public boolean appendToFile(String filePath, String content) {
+		return false;
+	}
 
-    @Override
-    public boolean createDirectory(String path){
-        return false;
-    }
+	@Override
+	public boolean writeToFile(String filePath, String content) {
+		return false;
+	}
 
-    @Override
-    public boolean deleteDirectory(String path){
-        return false;
-    }
+	@Override
+	public boolean deleteFile(String path) {
+		return false;
+	}
+
+	@Override
+	public boolean createDirectory(String path) {
+		return false;
+	}
+
+	@Override
+	public boolean deleteDirectory(String path) {
+		return false;
+	}
 
 
     /*OLD:

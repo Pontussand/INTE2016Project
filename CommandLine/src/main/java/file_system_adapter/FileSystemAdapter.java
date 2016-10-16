@@ -9,6 +9,10 @@ public interface FileSystemAdapter {
 
 	boolean fsoExist(String path);
 
+	boolean isFile(String path);
+
+	boolean isDir(String path);
+
     boolean mkdir(String path);
 
 	boolean mkdirs(String path);
