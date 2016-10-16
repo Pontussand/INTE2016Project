@@ -4,12 +4,21 @@ import java.util.Scanner;
 
 public class CommandPrompt {
 	public Scanner scan = new Scanner(System.in);
-	Filemanager fm = new Filemanager();
+	public Filemanager fm = new Filemanager();
+	public String[] last20Commands = new String[20];
 
 	private void run() {
 		while(true) {
 			String command = scan.nextLine();
 			command(command);
+		}
+	}
+	private void addCommandToList(String commandUsed){
+		if(!commandUsed.equals("!!")) {
+			for (int a = 0; a < 19; a++) {
+				last20Commands[19 - a] = last20Commands[18 - a];
+			}
+			last20Commands[0] = commandUsed;
 		}
 	}
 
@@ -23,6 +32,7 @@ public class CommandPrompt {
 			target = commandInput.substring(commandInput.indexOf(" ") +1);
 			result = commandPart + " fil: " + target;
 		}
+		addCommandToList(commandPart);
 
 		switch (commandPart) {
 
@@ -38,6 +48,12 @@ public class CommandPrompt {
 			return result;
 		case "pwd":
 			return result;
+		case "!!":
+			String commandsused = "";
+			for(int a = 0; a < last20Commands.length; a++){
+				commandsused += last20Commands[a];
+			}
+			return commandsused;
 		default:
 			result = "Command doesn't exit";
 			return result;
