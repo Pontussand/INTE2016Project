@@ -9,16 +9,25 @@ import static org.junit.Assert.*;
 
 public class FileManager_InputControlTest {
 
-   FileManager fm;
+   Filemanager fm = new Filemanager();
 
     @Before
    public void filemanager(){
-       fm = new FileManager();
+       fm = new Filemanager();
+   }
+
+   private String textFileNameLength(int length){
+       String fileName = "";
+       for(int a = 0; a < length - 4; a++){
+           fileName += "a";
+       }
+
+       return fileName + ".txt";
    }
 
     @Test
     public void correctFileName_noSpaces_validName(){
-        FileManager fm = new FileManager();
+        Filemanager fm = new Filemanager();
         assertEquals(true, fm.correctFileName("abcdef.txt"));
     }
 
@@ -29,67 +38,77 @@ public class FileManager_InputControlTest {
 
     @Test
     public void correctFileName_wrongFileType(){
-        FileManager fm = new FileManager();
+        Filemanager fm = new Filemanager();
         assertEquals(false, fm.correctFileName("abc.jpg"));
     }
 
     @Test
     public void correctFileName_rightFileType(){
-        FileManager fm = new FileManager();
+        Filemanager fm = new Filemanager();
         assertEquals(true, fm.correctFileName("abc.txt"));
     }
 
     @Test
     public void correctFileName_unvalidCharSmaller(){
-        FileManager fm = new FileManager();
+        Filemanager fm = new Filemanager();
         assertEquals(false, fm.correctFileName("<abc.txt"));
     }
 
     @Test
     public void correctFileName_unvalidCharBigger(){
-        FileManager fm = new FileManager();
+        Filemanager fm = new Filemanager();
         assertEquals(false, fm.correctFileName(">abc.txt"));
     }
 
     @Test
+    public void command_fileNameTooLong(){
+        assertEquals(false, fm.correctFileName(textFileNameLength(256)));
+    }
+
+    @Test
+    public void command_fileNameMaxLength(){
+        assertEquals(true, fm.correctFileName(textFileNameLength(255)));
+    }
+
+    @Test
     public void correctFileName_unvalidCharColon(){
-        FileManager fm = new FileManager();
+        Filemanager fm = new Filemanager();
         assertEquals(false, fm.correctFileName(":abc.txt"));
     }
 
     @Test
     public void correctFileName_unvalidCharQuote(){
-        FileManager fm = new FileManager();
+        Filemanager fm = new Filemanager();
         assertEquals(false, fm.correctFileName("abc\".txt"));
     }
 
     @Test
     public void correctFileName_unvalidCharSlash(){
-        FileManager fm = new FileManager();
+        Filemanager fm = new Filemanager();
         assertEquals(false, fm.correctFileName("/abc.txt"));
     }
 
     @Test
     public void correctFileName_unvalidCharBackslash(){
-        FileManager fm = new FileManager();
+        Filemanager fm = new Filemanager();
         assertEquals(false, fm.correctFileName("abc\\.txt"));
     }
 
     @Test
     public void correctFileName_unvalidCharBar(){
-        FileManager fm = new FileManager();
+        Filemanager fm = new Filemanager();
         assertEquals(false, fm.correctFileName("|abc.txt"));
     }
 
     @Test
     public void correctFileName_unvalidCharQuestion(){
-        FileManager fm = new FileManager();
+        Filemanager fm = new Filemanager();
         assertEquals(false, fm.correctFileName("?abc.txt"));
     }
 
     @Test
     public void correctFileName_unvalidCharAsterisk(){
-        FileManager fm = new FileManager();
+        Filemanager fm = new Filemanager();
         assertEquals(false, fm.correctFileName("*abc.txt"));
     }
 }

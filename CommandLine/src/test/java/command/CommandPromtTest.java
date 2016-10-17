@@ -10,6 +10,7 @@ public class CommandPromtTest {
     private static String mkdir_filename = "mkdir abc";
     private static String mkdir_expected = "mkdir fil: abc";
     private static String wrongCommand = "Command doesn't exit";
+    private static String expected20commands = "lsfdptouchmkdirlsfdptouchmkdirlsfdptouchmkdirlsfdptouchmkdirlsfdptouchmkdir";
 
     CommandPrompt cp;
 
@@ -18,9 +19,24 @@ public class CommandPromtTest {
         cp = new CommandPrompt();
     }
 
+    @Before
+    public void Perform20Commands(){
+        for(int a = 0; a <5; a++) {
+            cp.command("mkdir hej");
+            cp.command("touch bla");
+            cp.command("fdp tja");
+            cp.command("ls tja");
+        }
+    }
+
     @Test
     public void command_lsFileName(){
         assertEquals(ls_expected, cp.command(ls_filename));
+    }
+
+    @Test
+    public void command_twoExclemetionMarks(){
+        assertEquals(expected20commands, cp.command("!!"));
     }
 
     @Test
