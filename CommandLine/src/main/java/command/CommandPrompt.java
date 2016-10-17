@@ -6,6 +6,7 @@ public class CommandPrompt {
 	public Scanner scan = new Scanner(System.in);
 	public Filemanager fm = new Filemanager();
 	public String[] last20Commands = new String[20];
+	private String currentDir = "/";
 
 	private void run() {
 		boolean loop = true;

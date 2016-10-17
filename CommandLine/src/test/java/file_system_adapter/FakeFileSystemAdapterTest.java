@@ -49,7 +49,7 @@ public class FakeFileSystemAdapterTest {
 
 		assertTrue(sa.mkdir("/testDir"));
 
-		FakeFSO[] contents = root.getContents();
+		FakeFSO[] contents = root.getContent();
 		assertEquals(contents.length, 1);
 		assertTrue(contents[0] instanceof FakeDirectory);
 		assertEquals("testDir", contents[0].getName());
@@ -63,7 +63,7 @@ public class FakeFileSystemAdapterTest {
 		assertTrue(sa.mkdir("/testDir1"));
 		assertTrue(sa.mkdir("/testDir2"));
 
-		FakeFSO[] contents = root.getContents();
+		FakeFSO[] contents = root.getContent();
 		assertEquals(contents.length, 2);
 		assertTrue(contents[0] instanceof FakeDirectory);
 		assertEquals("testDir1", contents[0].getName());
@@ -78,7 +78,7 @@ public class FakeFileSystemAdapterTest {
 		assertTrue(sa.mkdir("/parentDir"));
 		assertTrue(sa.mkdir("/parentDir/childDir"));
 
-		FakeFSO[] contents = root.getContents();
+		FakeFSO[] contents = root.getContent();
 		assertEquals(contents.length, 2);
 		assertTrue(contents[0] instanceof FakeDirectory);
 		assertEquals("testDir1", contents[0].getName());

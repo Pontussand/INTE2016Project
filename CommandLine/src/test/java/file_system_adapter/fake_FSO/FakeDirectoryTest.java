@@ -3,6 +3,8 @@ package file_system_adapter.fake_FSO;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.lang.reflect.Array;
+
 import static org.junit.Assert.*;
 
 
@@ -20,7 +22,7 @@ public class FakeDirectoryTest {
         assertTrue(testDir.addFSO(newDir));
 
         FakeFSO[] expectedListing = {new FakeDirectory("name")};
-        FakeFSO[] listing = testDir.getContents();
+        FakeFSO[] listing = testDir.getContent();
 
         assertArrayEquals(expectedListing, listing);
     }
@@ -33,7 +35,7 @@ public class FakeDirectoryTest {
         assertTrue(!testDir.addFSO(duplicate));
 
         FakeFSO[] expectedListing = {new FakeDirectory("name")};
-        FakeFSO[] listing = testDir.getContents();
+        FakeFSO[] listing = testDir.getContent();
 
         assertArrayEquals(expectedListing, listing);
     }
@@ -47,7 +49,7 @@ public class FakeDirectoryTest {
 
         //Order matters!
         FakeFSO[] expectedListing = {new FakeDirectory("A"), new FakeDirectory("B")};
-        FakeFSO[] listing = testDir.getContents();
+        FakeFSO[] listing = testDir.getContent();
 
         assertArrayEquals(expectedListing, listing);
     }
@@ -61,7 +63,7 @@ public class FakeDirectoryTest {
         assertTrue(testDir.addFSO(dirA));
 
         FakeFSO[] expectedListing = {new FakeDirectory("A"), new FakeDirectory("B")};
-        FakeFSO[] listing = testDir.getContents();
+        FakeFSO[] listing = testDir.getContent();
 
         assertArrayEquals(expectedListing, listing);
     }
@@ -115,6 +117,20 @@ public class FakeDirectoryTest {
 
         assertEquals(fakeFileString, "Once upon a time...");
     }
+
+    @Test
+    public void getContents_listFiles() {
+        FakeDirectory fakeDir = new FakeDirectory("/Home");
+        fakeDir.addFSO(new FakeDirectory("First"));
+        fakeDir.addFSO(new FakeDirectory("Second"));
+
+        FakeFSO[] expectedContent = new FakeFSO[2];
+        expectedContent[0] = new FakeDirectory("First");
+        expectedContent[1] = new FakeDirectory("Second");
+
+        assertArrayEquals(expectedContent, fakeDir.getContent());
+    }
+
 
 
 

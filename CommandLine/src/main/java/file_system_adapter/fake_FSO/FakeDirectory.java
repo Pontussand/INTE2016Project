@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class FakeDirectory extends FakeFSO {
-	private HashMap<String, FakeFSO> contents = new HashMap();
+	private HashMap<String, FakeFSO> content = new HashMap();
 
 	public FakeDirectory(String name) {
 		super(name);
@@ -18,8 +18,8 @@ public class FakeDirectory extends FakeFSO {
 	/**
 	 * @return File System Objects sorted by name
 	 */
-	public FakeFSO[] getContents() {
-		List<FakeFSO> children = new ArrayList<>(contents.values());
+	public FakeFSO[] getContent() {
+		List<FakeFSO> children = new ArrayList<>(content.values());
 		Collections.sort(children);
 		FakeFSO[] ret = new FakeFSO[children.size()];
 		return children.toArray(ret);
@@ -30,9 +30,9 @@ public class FakeDirectory extends FakeFSO {
 	 * @return true if the FSO was added
 	 */
 	public boolean addFSO(FakeFSO fso) {
-		boolean exist = contents.containsKey(fso.getName());
+		boolean exist = content.containsKey(fso.getName());
 		if (!exist)
-			contents.put(fso.getName(), fso);
+			content.put(fso.getName(), fso);
 		return !exist;
 	}
 
@@ -41,7 +41,7 @@ public class FakeDirectory extends FakeFSO {
 			return this;
 
 		String childName = getChildName(path);
-		FakeFSO child = contents.get(childName);
+		FakeFSO child = content.get(childName);
 		String passOnPath = getPassOnPath(path);
 		boolean endOfPath = passOnPath.equals("");
 
