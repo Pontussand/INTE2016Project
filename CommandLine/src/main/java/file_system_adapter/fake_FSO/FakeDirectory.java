@@ -37,35 +37,39 @@ public class FakeDirectory extends FakeFSO {
 	}
 
 	public FakeFSO pathSearch(String path) {
-		if(path.equals(""))
+		if (path.equals(""))
 			return this;
 
 		String childName = getChildName(path);
 		FakeFSO child = contents.get(childName);
 
-		if(child != null && child instanceof FakeDirectory){
+		if (child != null && child instanceof FakeDirectory) {
 			String passOnPath = getPassOnPath(path);
 			FakeDirectory dChild = (FakeDirectory) child;
 			return dChild.pathSearch(passOnPath);
 		}
+
+		else if (child != null && (child instanceof FakeFile)) {
+			return child;
+		}
 		return null;
 	}
 
-	private String getChildName(String path){
+	private String getChildName(String path) {
 		String separator = FakeFileSystemAdapter.DIR_SEPERATOR;
 		int start = path.indexOf(separator) + 1;
 		int end = path.indexOf(separator, start);
-		if(end == -1){
+		if (end == -1) {
 			end = path.length();
 		}
 		return path.substring(start, end);
 	}
 
-	private String getPassOnPath(String path){
+	private String getPassOnPath(String path) {
 		String separator = FakeFileSystemAdapter.DIR_SEPERATOR;
 		int sep1 = path.indexOf(separator);
 		int sep2 = path.indexOf(separator, sep1 + 1);
-		if(sep2 == -1){
+		if (sep2 == -1) {
 			sep2 = path.length();
 		}
 		return path.substring(sep2);

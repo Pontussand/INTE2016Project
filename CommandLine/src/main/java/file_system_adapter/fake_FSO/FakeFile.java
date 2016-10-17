@@ -6,13 +6,16 @@ public class FakeFile extends FakeFSO {
 
 	public FakeFile(String name, String contents) {
 		super(name);
-		if(contents == null)
+
+		if (contents == null) {
 			contents = "";
+		}
+
 		this.contents = contents;
 	}
 
 	public String getContents() {
-		return contents;
+		return this.contents;
 	}
 
 	public void setContents(String contents) {
