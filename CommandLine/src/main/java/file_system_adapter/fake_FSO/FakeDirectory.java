@@ -42,14 +42,14 @@ public class FakeDirectory extends FakeFSO {
 
 		String childName = getChildName(path);
 		FakeFSO child = contents.get(childName);
+		String passOnPath = getPassOnPath(path);
+		boolean endOfPath = passOnPath.equals("");
 
 		if (child != null && child instanceof FakeDirectory) {
-			String passOnPath = getPassOnPath(path);
 			FakeDirectory dChild = (FakeDirectory) child;
 			return dChild.pathSearch(passOnPath);
 		}
-
-		else if (child != null && (child instanceof FakeFile)) {
+		else if (child != null && (child instanceof FakeFile) && endOfPath) {
 			return child;
 		}
 		return null;
