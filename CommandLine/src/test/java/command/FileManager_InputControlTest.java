@@ -26,7 +26,7 @@ public class FileManager_InputControlTest {
    }
 
     @Test
-    public void correctFileName_noSpaces_validName(){
+    public void correctFileName_noSpaces(){
         Filemanager fm = new Filemanager();
         assertEquals(true, fm.correctFileName("abcdef.txt"));
     }
@@ -58,16 +58,6 @@ public class FileManager_InputControlTest {
     public void correctFileName_unvalidCharBigger(){
         Filemanager fm = new Filemanager();
         assertEquals(false, fm.correctFileName(">abc.txt"));
-    }
-
-    @Test
-    public void command_fileNameTooLong(){
-        assertEquals(false, fm.correctFileName(textFileNameLength(256)));
-    }
-
-    @Test
-    public void command_fileNameMaxLength(){
-        assertEquals(true, fm.correctFileName(textFileNameLength(255)));
     }
 
     @Test
@@ -110,5 +100,21 @@ public class FileManager_InputControlTest {
     public void correctFileName_unvalidCharAsterisk(){
         Filemanager fm = new Filemanager();
         assertEquals(false, fm.correctFileName("*abc.txt"));
+    }
+
+    @Test
+    public void command_fileNameTooLong(){
+        assertEquals(false, fm.correctFileName(textFileNameLength(256)));
+    }
+
+    @Test
+    public void command_fileNameMaxLength(){
+        assertEquals(true, fm.correctFileName(textFileNameLength(255)));
+    }
+
+    @Test
+    public void correctDirectoryName_noSpaces(){
+        Filemanager fm = new Filemanager();
+        assertEquals(true, fm.correctDirectoryName("\\abcdef"));
     }
 }

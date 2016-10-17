@@ -5,7 +5,7 @@ package command;
 
 import java.io.File;
 
-public class Filemanager { //fix name FileManager
+public class Filemanager {
 
 //   private FileSystemAdapter fso;
 
@@ -32,7 +32,17 @@ public class Filemanager { //fix name FileManager
         return false;
     }
     public boolean correctDirectoryName(String directoryName){
-        return false;
+        return(!directoryName.contains(" ")
+                && directoryName.startsWith("\\")
+                &&!directoryName.contains("<")
+                &&!directoryName.contains(">")
+                &&!directoryName.contains(":")
+                &&!directoryName.contains("\"")
+                &&!directoryName.contains("/")
+                &&!directoryName.contains("|")
+                &&!directoryName.contains("?")
+                &&!directoryName.contains("*")
+                && (directoryName.length() < 256));
     }
     public boolean directoryExists(String directoryName){
         return false;
