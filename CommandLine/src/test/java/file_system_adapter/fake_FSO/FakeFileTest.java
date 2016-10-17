@@ -44,4 +44,5 @@ public class FakeFileTest {
 		file.append(" file.");
 		assertEquals("This is a file.", file.getContents());
 	}
+
 }
