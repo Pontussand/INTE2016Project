@@ -1,6 +1,8 @@
 package file_system_adapter;
 
 import file_system_adapter.fake_FSO.FakeDirectory;
+import file_system_adapter.fake_FSO.FakeFSO;
+import file_system_adapter.fake_FSO.FakeFile;
 
 public class FakeFileSystemAdapter implements FileSystemAdapter {
     public static final String DIR_SEPERATOR = "/";
@@ -8,8 +10,24 @@ public class FakeFileSystemAdapter implements FileSystemAdapter {
 
 
     @Override
-    public String[] ls(String path) {
-//        root.getContents(path);
+    public String ls(String path) {
+        FakeFSO fakeFSO = root.pathSearch(path);
+
+        if (fakeFSO == null || fakeFSO instanceof FakeFile) {
+
+        }
+
+        else if (fakeFSO instanceof FakeDirectory) {
+            FakeFSO[] fsoArray = ((FakeDirectory) fakeFSO).getContent();
+
+            String listOfContent = "";
+
+            for (FakeFSO fake : fsoArray) {
+                listOfContent += fake.getName() + "\"";
+            }
+
+            return listOfContent;
+        }
 
         return null;
     }

@@ -6,8 +6,7 @@ public class Ls extends Command {
 
     public String doCommand(String currentDir, String input) {
         FileSystemAdapter adapter = super.getAdapter();
-//        adapter.ls();
-        return "";
+        return adapter.ls(currentDir);
     }
 
 

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public interface FileSystemAdapter {
 
-    String[] ls(String path);
+    String ls(String path);
 
 	boolean fsoExist(String path);
 
