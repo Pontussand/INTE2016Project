@@ -33,6 +33,7 @@ public class Filemanager { //fix name FileManager
     }
     public boolean correctDirectoryName(String directoryName){
         return(!directoryName.contains(" ")
+                && directoryName.startsWith("\\")
                 &&!directoryName.contains("<")
                 &&!directoryName.contains(">")
                 &&!directoryName.contains(":")
