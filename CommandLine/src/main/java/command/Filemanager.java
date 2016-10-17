@@ -5,7 +5,7 @@ package command;
 
 import java.io.File;
 
-public class Filemanager { //fix name FileManager
+public class Filemanager {
 
 //   private FileSystemAdapter fso;
 
