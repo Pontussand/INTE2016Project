@@ -2,3 +2,5 @@ CommandLine/build
 CommandLine/out
 CommandLine/.idea
 CommandLine/.gradle
+CommandLine/src/main/main.iml
+CommandLine/src/test/test.iml

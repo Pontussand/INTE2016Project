@@ -71,18 +71,26 @@ public class FakeFileSystemAdapterTest {
 	}
 
 	@Test
-	public void mkdir_oneChildDir(){
+	public void mkdir_childDir(){
 		FakeDirectory root = new FakeDirectory("root");
 		sa.setRoot(root);
 
-		assertTrue(sa.mkdir("/parentDir"));
+		FakeDirectory parentSDir = new FakeDirectory("parentDir");
+		root.addFSO(parentSDir);
 		assertTrue(sa.mkdir("/parentDir/childDir"));
 
-		FakeFSO[] contents = root.getContent();
-		assertEquals(contents.length, 2);
+		FakeFSO[] contents = parentSDir.getContent();
+		assertEquals(contents.length, 1);
 		assertTrue(contents[0] instanceof FakeDirectory);
-		assertEquals("testDir1", contents[0].getName());
-		assertEquals("testDir2", contents[1].getName());
+		assertEquals("childDir", contents[0].getName());
+	}
+
+	@Test
+	public void mkdir_noSuchParent(){
+		FakeDirectory root = new FakeDirectory("root");
+		sa.setRoot(root);
+
+		assertTrue(!sa.mkdir("/parentDir/childDir"));
 	}
 
 

@@ -21,7 +21,7 @@ public class FakeFileTest {
 		assertTrue(testDir.addFSO(file));
 
 		FakeFSO[] expectedListing = {new FakeFile("name", "file contents")};
-		FakeFSO[] listing = testDir.getContents();
+		FakeFSO[] listing = testDir.getContent();
 
 		assertArrayEquals(expectedListing, listing);
 	}

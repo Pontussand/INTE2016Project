@@ -17,11 +17,6 @@ public class RealSystemFileAdapter implements FileSystemAdapter {
 	}
 
 	@Override
-	public boolean fsoExist(String path) {
-		return false;
-	}
-
-	@Override
 	public boolean isFile(String path) {
 		return false;
 	}
