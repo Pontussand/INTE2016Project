@@ -9,7 +9,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 
-<<<<<<< HEAD:CommandLine/src/test/java/fileSystemObject/fakeFileSystemObjectTest.java
+
 //public class fakeFileSystemObjectTest {
 //	FakePath root;
 //	String testDir1 = "testDir1";

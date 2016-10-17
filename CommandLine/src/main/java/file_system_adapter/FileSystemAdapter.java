@@ -1,8 +1,17 @@
-package command.file_system_adapter;
+package file_system_adapter;
+
+import java.io.File;
+import java.util.ArrayList;
 
 public interface FileSystemAdapter {
 
     String[] ls(String path);
+
+	boolean fsoExist(String path);
+
+	boolean isFile(String path);
+
+	boolean isDir(String path);
 
     boolean mkdir(String path);
 
