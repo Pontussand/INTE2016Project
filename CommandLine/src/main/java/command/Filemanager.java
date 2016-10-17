@@ -1,10 +1,9 @@
 package command;
 
 
-import file_system_adapter.FileSystemAdapter;
+import command.file_system_adapter.FileSystemAdapter;
 
 import java.io.File;
-import java.util.ArrayList;
 
 public class Filemanager { //fix name FileManager
 
@@ -39,10 +38,10 @@ public class Filemanager { //fix name FileManager
         return false;
     }
 
-// test ok filnamn
-// test fil finns eller ej
-// test ok path
-// test path finns eller ej
+// command.test ok filnamn
+// command.test fil finns eller ej
+// command.test ok path
+// command.test path finns eller ej
 
     public void ls(File path) {
 

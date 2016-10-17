@@ -8,9 +8,9 @@ public class CommandPrompt {
 	public String[] last20Commands = new String[20];
 
 	private void run() {
+		boolean loop = true;
 		while(true) {
-			String command = scan.nextLine();
-			command(command);
+			command(scan.nextLine());
 		}
 	}
 	private void addCommandToList(String commandUsed){
@@ -38,11 +38,10 @@ public class CommandPrompt {
 
 		case "ls":
 			return result;
-		//command for findProjectDir
-		case "fpd":
-			return result;
 		//command for findParentDir
 		case "touch":
+		//command for findParentDir
+		case "fpad":
 			return result;
 		case "mkdir":
 			return result;
@@ -61,7 +60,9 @@ public class CommandPrompt {
 	}
 
 	public static void main(String[] args) {
+		System.out.println("Command Prompt starting...");       // Just so we know it's running
 		CommandPrompt test = new CommandPrompt();
 		test.run();
+		System.out.println("Command Prompt exiting!");
 	}
 }

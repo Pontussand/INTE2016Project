@@ -1,7 +1,4 @@
-package file_system_adapter;
-
-import java.io.File;
-import java.util.ArrayList;
+package command.file_system_adapter;
 
 public interface FileSystemAdapter {
 

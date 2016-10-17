@@ -1,4 +1,4 @@
-package fsobject;
+package command.fsobject;
 
 public abstract class Fso {
 

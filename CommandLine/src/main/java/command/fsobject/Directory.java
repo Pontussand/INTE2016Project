@@ -1,4 +1,4 @@
-package fsobject;
+package command.fsobject;
 
 import java.io.IOException;
 import java.nio.file.Files;

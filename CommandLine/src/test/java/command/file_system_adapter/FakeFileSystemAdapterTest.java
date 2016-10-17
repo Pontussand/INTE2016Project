@@ -1,7 +1,7 @@
-package file_system_adapter;
+package command.file_system_adapter;
 
+import command.file_system_adapter.FakeFileSystemAdapter;
 import org.junit.*;
-import static org.junit.Assert.*;
 
 public class FakeFileSystemAdapterTest {
 	FakeFileSystemAdapter sa;
