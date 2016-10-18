@@ -5,12 +5,11 @@ import file_system_adapter.fake_FSO.FakeDirectory;
 import file_system_adapter.fake_FSO.FakeFSO;
 import org.junit.Before;
 import org.junit.Test;
-import prompt.util.Path;
 
 import static org.junit.Assert.assertEquals;
 
 
-public class LsTest {
+public class CdTest {
 
 	private Ls ls;
 	private FakeFileSystemAdapter fakeAdapter;
@@ -25,21 +24,6 @@ public class LsTest {
 		ls.setAdapter(fakeAdapter);
 	}
 
-	@Test
-	public void doCommand_correctString() {
-		Path currentDir = new Path("/Folder1");
-		String input = null;
 
-		FakeDirectory fakeDir = new FakeDirectory("Folder1");
-
-		fakeDir.addFSO(new FakeDirectory("Testfolder1"));
-		fakeDir.addFSO(new FakeDirectory("Testfolder2"));
-
-		root.addFSO(fakeDir);
-
-		String expected = "Testfolder1\nTestfolder2\n";
-
-		assertEquals(expected, ls.doCommand(currentDir, input));
-	}
 
 }
