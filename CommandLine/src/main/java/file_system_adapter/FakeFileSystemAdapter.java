@@ -9,29 +9,27 @@ public class FakeFileSystemAdapter implements FileSystemAdapter {
 	private FakeDirectory root = new FakeDirectory("root");
 
 
-    @Override
-    public String[] ls(String path) {
-        FakeFSO fakeFSO = root.pathSearch(path);
+	@Override
+	public String[] ls(String path) {
+		FakeFSO fakeFSO = root.pathSearch(path);
 
-        if (fakeFSO == null || fakeFSO instanceof FakeFile) {
+		if (fakeFSO == null || fakeFSO instanceof FakeFile) {
 
-        }
+		} else if (fakeFSO instanceof FakeDirectory) {
+			FakeFSO[] fsoArray = ((FakeDirectory) fakeFSO).getContent();
 
-        else if (fakeFSO instanceof FakeDirectory) {
-            FakeFSO[] fsoArray = ((FakeDirectory) fakeFSO).getContent();
+			String[] listOfContent = new String[fsoArray.length];
 
-            String[] listOfContent = new String[fsoArray.length];
+			for (int i = 0; i < fsoArray.length; i++) {
+				listOfContent[i] = fsoArray[i].getName();
 
-            for (int i = 0; i < fsoArray.length; i ++) {
-                listOfContent[i] = fsoArray[i].getName();
+			}
 
-            }
+			return listOfContent;
+		}
 
-            return listOfContent;
-        }
-
-        return null;
-    }
+		return null;
+	}
 
 	@Override
 	public boolean isFile(String path) {
@@ -40,7 +38,12 @@ public class FakeFileSystemAdapter implements FileSystemAdapter {
 
 	@Override
 	public boolean isDir(String path) {
-		return false;
+		FakeFSO fso = root.pathSearch(path);
+		if (fso == null || !(fso instanceof FakeDirectory)) {
+			return false;
+		}else{
+			return true;
+		}
 	}
 
 	@Override
@@ -52,7 +55,7 @@ public class FakeFileSystemAdapter implements FileSystemAdapter {
 			String parentDirPath = Path.getParentPath(path);
 			FakeDirectory parentDir = (FakeDirectory) root.pathSearch(parentDirPath);
 
-			if(parentDir == null) {
+			if (parentDir == null) {
 				return false;
 			}
 			return parentDir.addFSO(new FakeDirectory(folderName));

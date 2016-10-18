@@ -2,6 +2,7 @@ package file_system_adapter;
 
 import file_system_adapter.fake_FSO.FakeDirectory;
 import file_system_adapter.fake_FSO.FakeFSO;
+import file_system_adapter.fake_FSO.FakeFile;
 import org.junit.*;
 
 import static org.junit.Assert.*;
@@ -15,6 +16,38 @@ public class FakeFileSystemAdapterTest {
 		fakeAdapter = new FakeFileSystemAdapter();
 		root = new FakeDirectory("root");
 		fakeAdapter.setRoot(root);
+	}
+
+	@Test
+	public void isDir_rootDir(){
+		root.addFSO(new FakeDirectory("Directory"));
+		assertTrue(fakeAdapter.isDir("/Directory"));
+	}
+
+	@Test
+	public void isDir_SubFolderDir(){
+		FakeDirectory folder1 = new FakeDirectory("Folder1");
+		FakeDirectory dir = new FakeDirectory("Directory");
+
+		folder1.addFSO(dir);
+		root.addFSO(folder1);
+		assertTrue(fakeAdapter.isDir("/Folder1/Directory"));
+	}
+
+	@Test
+	public void isDir_rootFile(){
+		root.addFSO(new FakeFile("Directory", ""));
+		assertTrue(!fakeAdapter.isDir("/Directory"));
+	}
+
+	@Test
+	public void isDir_SubFolderFile(){
+		FakeDirectory folder1 = new FakeDirectory("Folder1");
+		FakeFile file = new FakeFile("Directory", "");
+
+		folder1.addFSO(file);
+		root.addFSO(folder1);
+		assertTrue(!fakeAdapter.isDir("/Folder1/Directory"));
 	}
 
 	@Test
