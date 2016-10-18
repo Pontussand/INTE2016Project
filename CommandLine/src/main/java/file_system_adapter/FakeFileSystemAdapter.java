@@ -1,18 +1,36 @@
 package file_system_adapter;
 
 import file_system_adapter.fake_FSO.FakeDirectory;
+import file_system_adapter.fake_FSO.FakeFSO;
+import file_system_adapter.fake_FSO.FakeFile;
 
 public class FakeFileSystemAdapter implements FileSystemAdapter {
 	public static final String DIR_SEPERATOR = "/";
 	private FakeDirectory root = new FakeDirectory("root");
 
 
-	@Override
-	public String[] ls(String path) {
-//        root.getContents(path);
+    @Override
+    public String ls(String path) {
+        FakeFSO fakeFSO = root.pathSearch(path);
 
-		return null;
-	}
+        if (fakeFSO == null || fakeFSO instanceof FakeFile) {
+
+        }
+
+        else if (fakeFSO instanceof FakeDirectory) {
+            FakeFSO[] fsoArray = ((FakeDirectory) fakeFSO).getContent();
+
+            String listOfContent = "";
+
+            for (FakeFSO fake : fsoArray) {
+                listOfContent += fake.getName() + "\"";
+            }
+
+            return listOfContent;
+        }
+
+        return null;
+    }
 
 	@Override
 	public boolean isFile(String path) {

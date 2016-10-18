@@ -12,7 +12,7 @@ public class RealSystemFileAdapter implements FileSystemAdapter {
 	private File root = new File("root");
 
 	@Override
-	public String[] ls(String path) {
+	public String ls(String path) {
 		return null;
 	}
 

@@ -8,10 +8,13 @@ import static org.junit.Assert.*;
 
 public class FakeFileSystemAdapterTest {
 	FakeFileSystemAdapter sa;
+	FakeDirectory root;
 
 	@Before
 	public void before() {
 		sa = new FakeFileSystemAdapter();
+		root = new FakeDirectory("root");
+		sa.setRoot(root);
 	}
 
 	@Test
@@ -44,8 +47,8 @@ public class FakeFileSystemAdapterTest {
 
 	@Test
 	public void mkdir_oneRootDir() {
-		FakeDirectory root = new FakeDirectory("root");
-		sa.setRoot(root);
+//		FakeDirectory root = new FakeDirectory("root");
+//		sa.setRoot(root);
 
 		assertTrue(sa.mkdir("/testDir"));
 
@@ -57,8 +60,8 @@ public class FakeFileSystemAdapterTest {
 
 	@Test
 	public void mkdir_twoRootDir() {
-		FakeDirectory root = new FakeDirectory("root");
-		sa.setRoot(root);
+//		FakeDirectory root = new FakeDirectory("root");
+//		sa.setRoot(root);
 
 		assertTrue(sa.mkdir("/testDir1"));
 		assertTrue(sa.mkdir("/testDir2"));
@@ -71,9 +74,9 @@ public class FakeFileSystemAdapterTest {
 	}
 
 	@Test
-	public void mkdir_childDir(){
-		FakeDirectory root = new FakeDirectory("root");
-		sa.setRoot(root);
+	public void mkdir_oneChildDir(){
+//		FakeDirectory root = new FakeDirectory("root");
+//		sa.setRoot(root);
 
 		FakeDirectory parentSDir = new FakeDirectory("parentDir");
 		root.addFSO(parentSDir);
@@ -86,11 +89,13 @@ public class FakeFileSystemAdapterTest {
 	}
 
 	@Test
-	public void mkdir_noSuchParent(){
-		FakeDirectory root = new FakeDirectory("root");
-		sa.setRoot(root);
+	public void ls_getListFromPath() {
+		sa.mkdir("/Folder1");
+		sa.mkdir("/Folder1/Folder2");
 
-		assertTrue(!sa.mkdir("/parentDir/childDir"));
+//		not finished!
+
+
 	}
 
 
