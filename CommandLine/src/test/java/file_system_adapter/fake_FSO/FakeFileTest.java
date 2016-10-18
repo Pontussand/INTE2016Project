@@ -42,7 +42,7 @@ public class FakeFileTest {
 	public void append(){
 		FakeFile file = new FakeFile("name", "This is a");
 		file.append(" file.");
-		assertEquals("This is a file.", file.getContents());
+		assertEquals("This is a file.", file.getContent());
 	}
 
 }
