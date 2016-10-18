@@ -47,8 +47,6 @@ public class FakeFileSystemAdapterTest {
 
 	@Test
 	public void mkdir_oneRootDir() {
-//		FakeDirectory root = new FakeDirectory("root");
-//		fakeAdapter.setRoot(root);
 
 		assertTrue(fakeAdapter.mkdir("/testDir"));
 
@@ -60,8 +58,6 @@ public class FakeFileSystemAdapterTest {
 
 	@Test
 	public void mkdir_twoRootDir() {
-//		FakeDirectory root = new FakeDirectory("root");
-//		fakeAdapter.setRoot(root);
 
 		assertTrue(fakeAdapter.mkdir("/testDir1"));
 		assertTrue(fakeAdapter.mkdir("/testDir2"));
@@ -75,8 +71,6 @@ public class FakeFileSystemAdapterTest {
 
 	@Test
 	public void mkdir_oneChildDir(){
-//		FakeDirectory root = new FakeDirectory("root");
-//		fakeAdapter.setRoot(root);
 
 		FakeDirectory parentSDir = new FakeDirectory("parentDir");
 		root.addFSO(parentSDir);
