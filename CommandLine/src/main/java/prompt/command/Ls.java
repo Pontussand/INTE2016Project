@@ -1,6 +1,5 @@
 package prompt.command;
 
-import command.*;
 import prompt.util.Path;
 
 import file_system_adapter.FileSystemAdapter;

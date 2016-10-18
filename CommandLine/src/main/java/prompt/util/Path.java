@@ -8,6 +8,10 @@ public class Path {
 		this.path = path;
 	}
 
+	public void append(String input) {
+		this.path += input;
+	}
+
 	public String getParentPath(){
 		return getParentPath(path);
 	}
