@@ -34,8 +34,16 @@ public class CdTest {
 		FakeDirectory sub = new FakeDirectory("subfolder");
 		root.addFSO(sub);
 
-		cd.doCommand(currentPath, "subfolder");
+		String ret = cd.doCommand(currentPath, "subfolder");
+		assertEquals("", ret);
 		assertEquals("/subfolder", currentPath.getPath());
+	}
+
+	@Test
+	public void doCommand_goToNonExistantSubFolder(){
+		String ret = cd.doCommand(currentPath, "subfolder");
+		assertEquals(Cd.NO_SUCH_DIR_MSG, ret);
+		assertEquals("/", currentPath.getPath());
 	}
 
 
