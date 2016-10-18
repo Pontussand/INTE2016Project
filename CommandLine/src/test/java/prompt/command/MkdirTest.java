@@ -40,12 +40,14 @@ public class MkdirTest {
 		assertEquals(1, rootContent.length);
 
 		assertEquals("", result);
-
-
-//		assertEquals(new FakeDirectory(folderName), rootContent[0].getName());
 	}
 
+	@Test
+	public void doCommand_newDirAllreadyExisting() {
+		String existingFolder = "java";
+		assertEquals("", (mkdir.doCommand(currentDir, existingFolder)));
 
-
-
+		String newFolder = "java";
+		assertEquals("Error message", mkdir.doCommand(currentDir, newFolder));
+	}
 }

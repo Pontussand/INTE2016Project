@@ -13,7 +13,6 @@ public class Mkdir extends Command {
 		String path = currentDir.getPath();
 
 		path += "/" + input;
-		System.out.println(path);
 
 		if (adapter.mkdir(path)) {
 			return "";
