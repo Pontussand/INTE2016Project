@@ -16,7 +16,6 @@ public class MkdirTest {
 	private FakeFileSystemAdapter fakeAdapter;
 	private FakeDirectory root;
 	private Path currentDir;
-	private String input;
 
 	@Before
 	public void before() {
@@ -26,28 +25,27 @@ public class MkdirTest {
 		fakeAdapter.setRoot(root);
 		mkdir.setAdapter(fakeAdapter);
 		currentDir = new Path("");
-
-		input = "";
 	}
 
 	@Test
 	public void doCommand_newDir() {
 		String folderName = "new folder";
+		FakeDirectory expectedDir = new FakeDirectory(folderName);
+
 		String result = mkdir.doCommand(currentDir, folderName);
 		assertEquals("", result);
 
 		FakeFSO[] rootContent = root.getContent();
 		assertEquals(1, rootContent.length);
-
-		assertEquals("", result);
+		assertEquals(expectedDir, rootContent[0]);
 	}
 
 	@Test
-	public void doCommand_newDirAllreadyExisting() {
+	public void doCommand_newDirAlreadyExisting() {
 		String existingFolder = "java";
 		assertEquals("", (mkdir.doCommand(currentDir, existingFolder)));
 
 		String newFolder = "java";
-		assertEquals("Error message", mkdir.doCommand(currentDir, newFolder));
+		assertEquals(Mkdir.ERROR_MSG, mkdir.doCommand(currentDir, newFolder));
 	}
 }
