@@ -1,5 +1,6 @@
-package command;
+package prompt.command;
 
+import command.*;
 import file_system_adapter.FakeFileSystemAdapter;
 import file_system_adapter.fake_FSO.FakeDirectory;
 import file_system_adapter.fake_FSO.FakeFSO;
@@ -11,13 +12,13 @@ import static org.junit.Assert.assertEquals;
 
 public class LsTest {
 
-	private Ls ls;
+	private command.Ls ls;
 	private FakeFileSystemAdapter fakeAdapter;
 	private FakeDirectory root;
 
 	@Before
 	public void before() {
-		ls = new Ls();
+		ls = new command.Ls();
 		fakeAdapter = new FakeFileSystemAdapter();
 		root = new FakeDirectory("root");
 		fakeAdapter.setRoot(root);

@@ -6,7 +6,6 @@ public class Ls extends Command {
 
     public String doCommand(String currentDir, String input) {
         FileSystemAdapter adapter = super.getAdapter();
-        System.out.println(adapter);
 
         String output = "";
 
@@ -16,12 +15,6 @@ public class Ls extends Command {
             output += name + "\n";
         }
 
-        System.out.println(output);
-
         return output;
     }
-
-
-
-
 }
