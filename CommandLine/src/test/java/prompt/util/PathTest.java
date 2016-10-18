@@ -1,4 +1,4 @@
-package prompt.command.util;
+package prompt.util;
 
 import org.junit.Test;
 import prompt.util.Path;
