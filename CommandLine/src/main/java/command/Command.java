@@ -8,7 +8,7 @@ public abstract class Command {
 
     private static FileSystemAdapter adapter;
 
-    public static void setAdapter(FileSystemAdapter adapter) {
+    protected static void setAdapter(FileSystemAdapter adapter) {
         adapter = adapter;
     }
 

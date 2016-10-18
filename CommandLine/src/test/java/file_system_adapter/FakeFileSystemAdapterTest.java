@@ -7,50 +7,47 @@ import org.junit.*;
 import static org.junit.Assert.*;
 
 public class FakeFileSystemAdapterTest {
-	FakeFileSystemAdapter sa;
+	FakeFileSystemAdapter fakeAdapter;
 	FakeDirectory root;
 
 	@Before
 	public void before() {
-		sa = new FakeFileSystemAdapter();
+		fakeAdapter = new FakeFileSystemAdapter();
 		root = new FakeDirectory("root");
-		sa.setRoot(root);
+		fakeAdapter.setRoot(root);
 	}
 
 	@Test
 	public void getFSOName_fromRootDir(){
 		String expected = "Dir";
-		String actual = sa.getFSOName("/Dir");
+		String actual = fakeAdapter.getFSOName("/Dir");
 		assertEquals(expected, actual);
 	}
 
 	@Test
 	public void getFSOName_fromSubDir(){
 		String expected = "Dir";
-		String actual = sa.getFSOName("/folder1/folder2/Dir");
+		String actual = fakeAdapter.getFSOName("/folder1/folder2/Dir");
 		assertEquals(expected, actual);
 	}
 
 	@Test
 	public void getParentDirPath_rootDir(){
 		String expected = "";
-		String actual = sa.getParentDirPath("/Dir");
+		String actual = fakeAdapter.getParentDirPath("/Dir");
 		assertEquals(expected, actual);
 	}
 
 	@Test
 	public void getParentDirPath_fromSubDir(){
 		String expected = "/folder1/folder2";
-		String actual = sa.getParentDirPath("/folder1/folder2/Dir");
+		String actual = fakeAdapter.getParentDirPath("/folder1/folder2/Dir");
 		assertEquals(expected, actual);
 	}
 
 	@Test
 	public void mkdir_oneRootDir() {
-//		FakeDirectory root = new FakeDirectory("root");
-//		sa.setRoot(root);
-
-		assertTrue(sa.mkdir("/testDir"));
+		assertTrue(fakeAdapter.mkdir("/testDir"));
 
 		FakeFSO[] contents = root.getContent();
 		assertEquals(contents.length, 1);
@@ -60,11 +57,8 @@ public class FakeFileSystemAdapterTest {
 
 	@Test
 	public void mkdir_twoRootDir() {
-//		FakeDirectory root = new FakeDirectory("root");
-//		sa.setRoot(root);
-
-		assertTrue(sa.mkdir("/testDir1"));
-		assertTrue(sa.mkdir("/testDir2"));
+		assertTrue(fakeAdapter.mkdir("/testDir1"));
+		assertTrue(fakeAdapter.mkdir("/testDir2"));
 
 		FakeFSO[] contents = root.getContent();
 		assertEquals(contents.length, 2);
@@ -75,11 +69,8 @@ public class FakeFileSystemAdapterTest {
 
 	@Test
 	public void mkdir_oneChildDir(){
-//		FakeDirectory root = new FakeDirectory("root");
-//		sa.setRoot(root);
-
-		assertTrue(sa.mkdir("/parentDir"));
-		assertTrue(sa.mkdir("/parentDir/childDir"));
+		assertTrue(fakeAdapter.mkdir("/parentDir"));
+		assertTrue(fakeAdapter.mkdir("/parentDir/childDir"));
 
 		FakeFSO[] contents = root.getContent();
 		assertEquals(contents.length, 2);
@@ -90,10 +81,11 @@ public class FakeFileSystemAdapterTest {
 
 	@Test
 	public void ls_getListFromPath() {
-		sa.mkdir("/Folder1");
-		sa.mkdir("/Folder1/Folder2");
+		fakeAdapter.mkdir("/Folder1");
+		fakeAdapter.mkdir("/Folder1/Folder2");
+		fakeAdapter.mkdir("/Folder1/Folder3");
 
-//		not finished!
+
 
 
 	}
