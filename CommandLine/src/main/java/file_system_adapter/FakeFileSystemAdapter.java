@@ -1,11 +1,11 @@
 package file_system_adapter;
 
+import prompt.util.Path;
 import file_system_adapter.fake_FSO.FakeDirectory;
 import file_system_adapter.fake_FSO.FakeFSO;
 import file_system_adapter.fake_FSO.FakeFile;
 
 public class FakeFileSystemAdapter implements FileSystemAdapter {
-	public static final String DIR_SEPERATOR = "/";
 	private FakeDirectory root = new FakeDirectory("root");
 
 
@@ -45,11 +45,11 @@ public class FakeFileSystemAdapter implements FileSystemAdapter {
 
 	@Override
 	public boolean mkdir(String path) {
-		String folderName = getFSOName(path);
+		String folderName = Path.getFSOName(path);
 		boolean validPath = !folderName.equals("");
 
 		if (validPath) {
-			String parentDirPath = getParentDirPath(path);
+			String parentDirPath = Path.getParentPath(path);
 			FakeDirectory parentDir = (FakeDirectory) root.pathSearch(parentDirPath);
 
 			if(parentDir == null) {
@@ -93,19 +93,6 @@ public class FakeFileSystemAdapter implements FileSystemAdapter {
 	@Override
 	public boolean deleteDirectory(String path) {
 		return false;
-	}
-
-	protected String getParentDirPath(String path) {
-		int stop = path.lastIndexOf(DIR_SEPERATOR);
-		if (stop == -1)
-			return "";
-		return path.substring(0, stop);
-	}
-
-	protected String getFSOName(String path) {
-		int start = path.lastIndexOf(DIR_SEPERATOR) + 1;
-		int stop = path.length();
-		return path.substring(start, stop);
 	}
 
 	/**

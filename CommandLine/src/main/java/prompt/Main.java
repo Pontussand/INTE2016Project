@@ -1,6 +1,6 @@
-package command;
+package prompt;
 
-//import command.fsobject.Directory;
+//import prompt.command.fsobject.Directory;
 
 public class Main {
 	public static void main(String[] args) {

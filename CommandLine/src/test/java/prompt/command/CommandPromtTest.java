@@ -1,6 +1,6 @@
-package command;
+package prompt.command;
 
-import command.CommandPrompt;
+import prompt.CommandPrompt;
 import org.junit.Before;
 import org.junit.Test;
 

@@ -1,12 +1,13 @@
-package command;
+package prompt;
+
+import prompt.util.Path;
 
 import java.util.Scanner;
 
 public class CommandPrompt {
 	public Scanner scan = new Scanner(System.in);
-	public Filemanager fm = new Filemanager();
 	public String[] last20Commands = new String[20];
-	private String currentDir = "/";
+	private Path currentDir = new Path((Path.DIR_SEPERATOR));
 
 	private void run() {
 		boolean loop = true;
@@ -39,9 +40,9 @@ public class CommandPrompt {
 
 		case "ls":
 			return result;
-		//command for findParentDir
+		//prompt.command for findParentDir
 		case "touch":
-		//command for findParentDir
+		//prompt.command for findParentDir
 		case "fpad":
 			return result;
 		case "mkdir":

@@ -1,8 +1,7 @@
-package command;
+package prompt.command;
 
 import file_system_adapter.FileSystemAdapter;
-
-import java.io.File;
+import prompt.util.Path;
 
 public abstract class Command {
 
@@ -16,6 +15,6 @@ public abstract class Command {
         return adapter;
     }
 
-    public abstract String doCommand(String currentDir, String input);
+    public abstract String doCommand(Path currentDir, String input);
 
 }
