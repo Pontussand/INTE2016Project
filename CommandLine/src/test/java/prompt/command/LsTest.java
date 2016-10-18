@@ -55,8 +55,8 @@ public class LsTest {
 		currentDir.append("/Testfolder1");
 
 		assertEquals(expected, ls.doCommand(currentDir, input));
-
-
 	}
+
+
 
 }

@@ -2,28 +2,28 @@ package file_system_adapter.fake_FSO;
 
 
 public class FakeFile extends FakeFSO {
-	private String contents;
+	private String content;
 
-	public FakeFile(String name, String contents) {
+	public FakeFile(String name, String content) {
 		super(name);
 
-		if (contents == null) {
-			contents = "";
+		if (content == null) {
+			content = "";
 		}
 
-		this.contents = contents;
+		this.content = content;
 	}
 
-	public String getContents() {
-		return this.contents;
+	public String getContent() {
+		return this.content;
 	}
 
-	public void setContents(String contents) {
-		this.contents = contents;
+	public void setContent(String content) {
+		this.content = content;
 	}
 
 	public void append(String toAdd){
-		contents += toAdd;
+		content += toAdd;
 	}
 
 	@Override
@@ -31,7 +31,7 @@ public class FakeFile extends FakeFSO {
 		if (other instanceof FakeFile) {
 			FakeFile o = (FakeFile) other;
 			return o.getName().equals(getName()) &&
-					o.contents.equals(contents);
+					o.content.equals(content);
 		}
 		return false;
 	}

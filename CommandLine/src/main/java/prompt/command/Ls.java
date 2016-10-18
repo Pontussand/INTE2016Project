@@ -11,7 +11,9 @@ public class Ls extends Command {
 
         String output = "";
 
-        String[] fsoNames = adapter.ls(currentDir.getPath());
+        String path = currentDir.getPath();
+
+        String[] fsoNames = adapter.ls(path);
 
         for (String name : fsoNames) {
             output += name + "\n";

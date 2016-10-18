@@ -3,8 +3,6 @@ package file_system_adapter.fake_FSO;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.lang.reflect.Array;
-
 import static org.junit.Assert.*;
 
 
@@ -113,7 +111,7 @@ public class FakeDirectoryTest {
         anotherDir.addFSO(new FakeFile("text.txt", "Once upon a time..."));
 
         FakeFile fakeFile = (FakeFile) fakeRoot.pathSearch("/texter/text.txt");
-        String fakeFileString = fakeFile.getContents();
+        String fakeFileString = fakeFile.getContent();
 
         assertEquals(fakeFileString, "Once upon a time...");
     }
