@@ -10,7 +10,7 @@ public class FakeFileSystemAdapter implements FileSystemAdapter {
 
 
     @Override
-    public String ls(String path) {
+    public String[] ls(String path) {
         FakeFSO fakeFSO = root.pathSearch(path);
 
         if (fakeFSO == null || fakeFSO instanceof FakeFile) {
@@ -20,10 +20,11 @@ public class FakeFileSystemAdapter implements FileSystemAdapter {
         else if (fakeFSO instanceof FakeDirectory) {
             FakeFSO[] fsoArray = ((FakeDirectory) fakeFSO).getContent();
 
-            String listOfContent = "";
+            String[] listOfContent = new String[fsoArray.length];
 
-            for (FakeFSO fake : fsoArray) {
-                listOfContent += fake.getName() + "\"";
+            for (int i = 0; i < fsoArray.length; i ++) {
+                listOfContent[i] = fsoArray[i].getName();
+
             }
 
             return listOfContent;
