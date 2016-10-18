@@ -1,0 +1,5 @@
+
+#1.
+doCommand(Path currentDir, String input). Vissa kommandon tar in en sträng med input, tex "mkdir bajsmapp".
+Andra kommandon som tex ls tar ingen input, och input måste vara null innan doCommand anropas.
+En tredje kategori är cd som beter sig olika beroende på vilken input man sätter. Det måste också hanteras innan doCommand anropas.
