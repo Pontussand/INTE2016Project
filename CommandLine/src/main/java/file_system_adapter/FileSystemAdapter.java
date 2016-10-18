@@ -1,11 +1,13 @@
 package file_system_adapter;
 
+import prompt.util.Path;
+
 import java.io.File;
 import java.util.ArrayList;
 
 public interface FileSystemAdapter {
 
-    String ls(String path);
+    String[] ls(String path);
 
 	boolean isFile(String path);
 

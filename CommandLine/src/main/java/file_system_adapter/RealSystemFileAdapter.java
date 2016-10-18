@@ -1,6 +1,8 @@
 package file_system_adapter;
 
 
+import prompt.util.Path;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -12,7 +14,7 @@ public class RealSystemFileAdapter implements FileSystemAdapter {
 	private File root = new File("root");
 
 	@Override
-	public String ls(String path) {
+	public String[] ls(String path) {
 		return null;
 	}
 

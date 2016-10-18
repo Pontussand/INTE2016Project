@@ -22,7 +22,7 @@ sourceSets {
 
     test {
         java {
-            srcDir 'command.test/java'
+            srcDir 'prompt.command.test/java'
         }
     }
 }

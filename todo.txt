@@ -1,0 +1,11 @@
+General
+Saker vi kommer på som måste göras men inte kan göras just nu, men som inte får glömmas bort. Go!
+Skriv avsändare om något behöver förtydligas.
+
+
+
+#1. I'm working on it:_______.
+doCommand(Path currentDir, String input). Vissa kommandon tar in en sträng med input, tex "mkdir bajsmapp".
+Andra kommandon som tex ls tar ingen input, och input måste vara null innan doCommand anropas.
+En tredje kategori är cd som beter sig olika beroende på vilken input man sätter. Det måste också hanteras innan doCommand anropas.
+/Annika
