@@ -90,19 +90,18 @@ public class FakeFileSystemAdapterTest {
 
 	@Test
 	public void ls_getListFromPath() {
-		fakeAdapter.mkdir("/Folder1");
-		fakeAdapter.mkdir("/Folder1/Folder2");
-		fakeAdapter.mkdir("/Folder1/Folder3");
+		FakeDirectory folder1 = new FakeDirectory("Folder1");
+		FakeDirectory folder2 = new FakeDirectory("Folder2");
+		FakeDirectory folder3 = new FakeDirectory("Folder3");
+		folder1.addFSO(folder2);
+		folder1.addFSO(folder3);
+		root.addFSO(folder1);
 
 		String[] expected = new String[2];
 		expected[0] = "Folder2";
 		expected[1] = "Folder3";
 
 		assertArrayEquals(expected, fakeAdapter.ls("/Folder1"));
-
-//		not finished!
-
-
 	}
 
 
