@@ -71,7 +71,8 @@ public class RealSystemFileAdapter implements FileSystemAdapter {
 	}
 
 	@Override
-	public boolean deleteFile(String path) {
+	public boolean deleteFSO(String path) {
+
 		return false;
 	}
 
@@ -80,10 +81,6 @@ public class RealSystemFileAdapter implements FileSystemAdapter {
 		return false;
 	}
 
-	@Override
-	public boolean deleteDirectory(String path) {
-		return false;
-	}
 
 	public static String rootDirectory() {
 		return File.listRoots()[0].getAbsolutePath();

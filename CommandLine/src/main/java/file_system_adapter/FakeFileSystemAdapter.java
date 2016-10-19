@@ -3,6 +3,7 @@ package file_system_adapter;
 import file_system_adapter.fake_FSO.FakeDirectory;
 import file_system_adapter.fake_FSO.FakeFSO;
 import file_system_adapter.fake_FSO.FakeFile;
+import prompt.util.Path;
 
 public class FakeFileSystemAdapter implements FileSystemAdapter {
     public static final String DIR_SEPERATOR = "/";
@@ -85,8 +86,14 @@ public class FakeFileSystemAdapter implements FileSystemAdapter {
     }
 
     @Override
-    public boolean deleteFile(String path) {
-        return false;
+    public boolean deleteFSO(String path) {
+        if(true) {
+            FakeDirectory parent = (FakeDirectory) root.pathSearch(Path.getParentPath(path));
+            parent.removeFSOFromContent(Path.getFSOName(path));
+            return true;
+        }else {
+            return false;
+        }
     }
 
     @Override
@@ -94,10 +101,6 @@ public class FakeFileSystemAdapter implements FileSystemAdapter {
         return false;
     }
 
-    @Override
-    public boolean deleteDirectory(String path) {
-        return false;
-    }
 
     protected String getParentDirPath(String path) {
         int stop = path.lastIndexOf(DIR_SEPERATOR);
