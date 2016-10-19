@@ -4,6 +4,7 @@ import file_system_adapter.FileSystemAdapter;
 import prompt.util.Path;
 
 public class Cd extends Command {
+
 	public static final String NO_SUCH_DIR_MSG = "Could not find that directory :'(";
 
 	public String doCommand(Path currentPath, String input) {
@@ -26,4 +27,6 @@ public class Cd extends Command {
 		}
 		return "";
 	}
+
+
 }

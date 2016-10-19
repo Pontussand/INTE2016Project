@@ -1,11 +1,11 @@
 package prompt.command;
 
-import file_system_adapter.fake_FSO.FakeDirectory;
 import prompt.util.Path;
 
 import file_system_adapter.FileSystemAdapter;
 
 public class Mkdir extends Command {
+
 	public static final String ERROR_MSG = "Could not create directory. ;_;";
 
 	public String doCommand(Path currentDir, String input) {
