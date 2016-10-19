@@ -3,6 +3,7 @@ package file_system_adapter;
 import file_system_adapter.fake_FSO.FakeDirectory;
 import file_system_adapter.fake_FSO.FakeFSO;
 import file_system_adapter.fake_FSO.FakeFile;
+import prompt.util.Path;
 
 public class FakeFileSystemAdapter implements FileSystemAdapter {
 	public static final String DIR_SEPERATOR = "/";
@@ -30,37 +31,29 @@ public class FakeFileSystemAdapter implements FileSystemAdapter {
 	}
 
 	@Override
-	public String getRoot() {
-		return "";
-	}
-
-	@Override
 	public boolean fsoExist(String path) {
-		return false;
+		return root.pathSearch(path) != null;
 	}
 
 	@Override
 	public boolean isFile(String path) {
-		return false;
+        FakeFSO fakefso = root.pathSearch(path);
+		return  fakefso != null && fakefso instanceof FakeFile;
 	}
 
 	@Override
 	public boolean isDir(String path) {
-		FakeFSO fso = root.pathSearch(path);
-		if (fso == null || !(fso instanceof FakeDirectory)) {
-			return false;
-		} else {
-			return true;
-		}
+        FakeFSO fakefso = root.pathSearch(path);
+        return  fakefso != null && fakefso instanceof FakeDirectory;
 	}
 
 	@Override
 	public boolean mkdir(String path) {
-		String folderName = getFSOName(path);
+		String folderName = Path.getFSOName(path);
 		boolean validPath = !folderName.equals("");
 
 		if (validPath) {
-			String parentDirPath = getParentDirPath(path);
+			String parentDirPath = Path.getParentPath(path);
 			FakeDirectory parentDir = (FakeDirectory) root.pathSearch(parentDirPath);
 			return parentDir.addFSO(new FakeDirectory(folderName));
 		}
@@ -75,17 +68,17 @@ public class FakeFileSystemAdapter implements FileSystemAdapter {
 
     @Override
     public boolean createFile(String filePath) {
-        String fileName = getFSOName(filePath);
+        String fileName = Path.getFSOName(filePath);
 
         if (!fileName.equals("")) {
-            String parentDirPath = getParentDirPath(filePath);
+            String parentDirPath = Path.getParentPath(filePath);
 
             if (parentDirPath.equals("")) {
                 return root.addFSO(new FakeFile(fileName, ""));
 
+
             } else {
                 FakeDirectory parentDir = (FakeDirectory) root.pathSearch(parentDirPath);
-
 //                inväntar implementation av Cd för att säkerställa att detta också funkar:
                 return parentDir.addFSO(new FakeFile(fileName, ""));
             }
@@ -115,38 +108,20 @@ public class FakeFileSystemAdapter implements FileSystemAdapter {
 		return false;
 	}
 
-	@Override
-	public boolean deleteFile(String path) {
-		return false;
-	}
-
-	@Override
-	public boolean createDirectory(String path) {
-		return false;
-	}
-
-	@Override
-	public boolean deleteDirectory(String path) {
-		return false;
-	}
-
-	protected String getParentDirPath(String path) {
-		int stop = path.lastIndexOf(DIR_SEPERATOR);
-		if (stop == -1)
-			return "";
-		return path.substring(0, stop);
-	}
-
-	protected String getFSOName(String path) {
-		int start = path.lastIndexOf(DIR_SEPERATOR) + 1;
-		int stop = path.length();
-		return path.substring(start, stop);
-	}
-
 	/**
 	 * intended for testing only
 	 */
 	public void setRoot(FakeDirectory root) {
 		this.root = root;
 	}
+    @Override
+    public boolean deleteFSO(String path) {
+        if(true) {
+            FakeDirectory parent = (FakeDirectory) root.pathSearch(Path.getParentPath(path));
+            parent.removeFSOFromContent(Path.getFSOName(path));
+            return true;
+        }else {
+            return false;
+        }
+    }
 }

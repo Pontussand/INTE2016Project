@@ -30,12 +30,7 @@ public class RealSystemFileAdapter implements FileSystemAdapter {
 	public boolean isDir(String path) {
 		return false;
 	}
-
-	@Override
-	public String getRoot(){
-		return File.listRoots()[0].getAbsolutePath();
-	}
-
+	
 
 //	@Override
 //	public boolean mkdir(String newDir) {
@@ -71,17 +66,8 @@ public class RealSystemFileAdapter implements FileSystemAdapter {
 	}
 
 	@Override
-	public boolean deleteFile(String path) {
-		return false;
-	}
+	public boolean deleteFSO(String path) {
 
-	@Override
-	public boolean createDirectory(String path) {
-		return false;
-	}
-
-	@Override
-	public boolean deleteDirectory(String path) {
 		return false;
 	}
 

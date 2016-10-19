@@ -75,6 +75,10 @@ public class FakeDirectory extends FakeFSO {
 		return path.substring(sep2);
 	}
 
+	public void removeFSOFromContent(String name){
+		content.remove(name);
+	}
+
 	@Override
 	public boolean equals(Object other) {
 		if (other instanceof FakeDirectory) {
