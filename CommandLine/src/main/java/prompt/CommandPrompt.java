@@ -25,6 +25,7 @@ public class CommandPrompt {
 
 	public CommandPrompt(FileSystemAdapter adapter) {
 		this.adapter = adapter;
+		Command.setAdapter(this.adapter);
 		initialize();
 	}
 
