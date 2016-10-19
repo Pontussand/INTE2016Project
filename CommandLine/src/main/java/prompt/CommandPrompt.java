@@ -35,6 +35,7 @@ public class CommandPrompt {
 		commands.put("cd", new Cd());
 		commands.put("mkdir", new Mkdir());
 		commands.put("touch", new Touch());
+		commands.put("append", new Append());
 
 		currentDir = new Path(adapter.getRoot());
 	}

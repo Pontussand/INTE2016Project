@@ -75,41 +75,29 @@ public class FakeFileSystemAdapter implements FileSystemAdapter {
 
     @Override
     public boolean createFile(String filePath) {
-
         String fileName = getFSOName(filePath);
-        System.out.println(fileName);
 
         if (!fileName.equals("")) {
-
             String parentDirPath = getParentDirPath(filePath);
 
-            System.out.println("parentDirPath " + parentDirPath);
-
-            if (parentDirPath.equals("/")) {
-                System.out.println("working in root");
-
+            if (parentDirPath.equals("")) {
                 return root.addFSO(new FakeFile(fileName, ""));
 
             } else {
-                FakeFile parentDir = (FakeFile) root.pathSearch(parentDirPath);
+                FakeDirectory parentDir = (FakeDirectory) root.pathSearch(parentDirPath);
 
+//                inväntar implementation av Cd för att säkerställa att detta också funkar:
 
-
-//                System.out.println(parentDir.addFSO(new FakeFile("textfile.txt", "")));
-
-                return true;
-
-
-
+                return parentDir.addFSO(new FakeFile(fileName, ""));
             }
-
         }
-
         return false;
     }
 
 	@Override
 	public boolean appendToFile(String filePath, String content) {
+
+        
 		return false;
 	}
 
