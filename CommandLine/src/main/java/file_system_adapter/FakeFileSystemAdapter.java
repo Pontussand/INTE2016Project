@@ -110,7 +110,7 @@ public class FakeFileSystemAdapter implements FileSystemAdapter {
     /**
      * intended for testing only
      */
-    protected void setRoot(FakeDirectory root) {
+    public void setRoot(FakeDirectory root) {
         this.root = root;
     }
 
