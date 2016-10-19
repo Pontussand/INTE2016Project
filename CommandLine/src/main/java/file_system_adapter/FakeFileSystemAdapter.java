@@ -58,7 +58,9 @@ public class FakeFileSystemAdapter implements FileSystemAdapter {
 
         if (validPath) {
             String parentDirPath = getParentDirPath(path);
+
             FakeDirectory parentDir = (FakeDirectory) root.pathSearch(parentDirPath);
+
             return parentDir.addFSO(new FakeDirectory(path));
         }
         return false;
@@ -71,6 +73,36 @@ public class FakeFileSystemAdapter implements FileSystemAdapter {
 
     @Override
     public boolean createFile(String filePath) {
+        
+        String fileName = getFSOName(filePath);
+        System.out.println(fileName);
+
+        if (!fileName.equals("")) {
+
+            String parentDirPath = getParentDirPath(filePath);
+
+            System.out.println("parentDirPath " + parentDirPath);
+
+            if (parentDirPath.equals("/")) {
+                System.out.println("working in root");
+
+                return root.addFSO(new FakeFile(fileName, ""));
+
+            } else {
+                FakeFile parentDir = (FakeFile) root.pathSearch(parentDirPath);
+
+
+
+//                System.out.println(parentDir.addFSO(new FakeFile("textfile.txt", "")));
+
+                return true;
+
+
+
+            }
+
+        }
+
         return false;
     }
 
@@ -100,6 +132,7 @@ public class FakeFileSystemAdapter implements FileSystemAdapter {
     }
 
     protected String getParentDirPath(String path) {
+        System.out.println(path);
         int stop = path.lastIndexOf(DIR_SEPERATOR);
         if (stop == -1)
             return "";
