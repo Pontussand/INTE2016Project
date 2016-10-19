@@ -50,11 +50,24 @@ public class FakeFileSystemAdapter implements FileSystemAdapter {
 	@Override
 	public boolean mkdir(String path) {
 		String folderName = Path.getFSOName(path);
-		boolean validPath = !folderName.equals("");
+		FakeDirectory parentDir;
+		boolean validPath = !folderName.equals("/");
 
 		if (validPath) {
 			String parentDirPath = Path.getParentPath(path);
-			FakeDirectory parentDir = (FakeDirectory) root.pathSearch(parentDirPath);
+			System.out.println(parentDirPath + " is parentDirPath");
+			if (parentDirPath.equals("")) {
+				System.out.println("working in root");
+
+				parentDir = (FakeDirectory) root.pathSearch(parentDirPath);
+
+			} else {
+
+				parentDir = (FakeDirectory) root.pathSearch(parentDirPath);
+
+			}
+
+			System.out.println("folderName passed to FDirr " + folderName);
 			return parentDir.addFSO(new FakeDirectory(folderName));
 		}
 		return false;
@@ -127,7 +140,7 @@ public class FakeFileSystemAdapter implements FileSystemAdapter {
 
 	@Override
 	public String getRootDirectory() {
-		return "";
+		return "/";
 
 	}
 }

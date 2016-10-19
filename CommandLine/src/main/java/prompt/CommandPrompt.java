@@ -13,7 +13,6 @@ import java.util.Scanner;
 
 public class CommandPrompt {
 	private Scanner scan = new Scanner(System.in);
-	private Filemanager fm = new Filemanager();
 	private String[] last20Commands = new String[20];
 	private FileSystemAdapter adapter;
 	private Path currentDir = new Path("");
@@ -63,7 +62,6 @@ public class CommandPrompt {
 	public String command(String commandInput) {
 		String commandPart = commandInput;
 		String target = "";
-		String result = commandInput;
 
 		if(commandInput.contains(" ")){
 			commandPart = commandInput.split(" ")[0];
@@ -79,8 +77,8 @@ public class CommandPrompt {
 	public static void main(String[] args) {
 		System.out.println("Command Prompt starting...");       // Just so we know it's running
 
-//		FakeFileSystemAdapter adapter = new FakeFileSystemAdapter();
-		RealSystemFileAdapter adapter = new RealSystemFileAdapter();
+		FakeFileSystemAdapter adapter = new FakeFileSystemAdapter();
+//		RealSystemFileAdapter adapter = new RealSystemFileAdapter();
 
 		CommandPrompt test = new CommandPrompt(adapter);
 		test.run();

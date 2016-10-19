@@ -43,6 +43,7 @@ public class FakeDirectory extends FakeFSO {
 		String childName = getChildName(path);
 		FakeFSO child = content.get(childName);
 		String passOnPath = getPassOnPath(path);
+		System.out.println(passOnPath);
 		boolean endOfPath = passOnPath.equals("");
 
 		if (child != null && child instanceof FakeDirectory) {
@@ -62,6 +63,8 @@ public class FakeDirectory extends FakeFSO {
 		if (end == -1) {
 			end = path.length();
 		}
+//		System.out.println("path.substring(start, end) " + path.substring(start, end));
+
 		return path.substring(start, end);
 	}
 

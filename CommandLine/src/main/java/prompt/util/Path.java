@@ -23,7 +23,7 @@ public class Path {
 	public static String getParentPath(String path) {
 		int stop = path.lastIndexOf(DIR_SEPERATOR);
 		if (stop == -1)
-			return "";
+			return "/";
 		return path.substring(0, stop);
 	}
 
