@@ -31,37 +31,29 @@ public class FakeFileSystemAdapter implements FileSystemAdapter {
 	}
 
 	@Override
-	public String getRoot() {
-		return "";
-	}
-
-	@Override
 	public boolean fsoExist(String path) {
-		return false;
+		return root.pathSearch(path) != null;
 	}
 
 	@Override
 	public boolean isFile(String path) {
-		return false;
+        FakeFSO fakefso = root.pathSearch(path);
+		return  fakefso != null && fakefso instanceof FakeFile;
 	}
 
 	@Override
 	public boolean isDir(String path) {
-		FakeFSO fso = root.pathSearch(path);
-		if (fso == null || !(fso instanceof FakeDirectory)) {
-			return false;
-		} else {
-			return true;
-		}
+        FakeFSO fakefso = root.pathSearch(path);
+        return  fakefso != null && fakefso instanceof FakeDirectory;
 	}
 
 	@Override
 	public boolean mkdir(String path) {
-		String folderName = getFSOName(path);
+		String folderName = Path.getFSOName(path);
 		boolean validPath = !folderName.equals("");
 
 		if (validPath) {
-			String parentDirPath = getParentDirPath(path);
+			String parentDirPath = Path.getParentPath(path);
 			FakeDirectory parentDir = (FakeDirectory) root.pathSearch(parentDirPath);
 			return parentDir.addFSO(new FakeDirectory(folderName));
 		}
@@ -76,10 +68,10 @@ public class FakeFileSystemAdapter implements FileSystemAdapter {
 
     @Override
     public boolean createFile(String filePath) {
-        String fileName = getFSOName(filePath);
+        String fileName = Path.getFSOName(filePath);
 
         if (!fileName.equals("")) {
-            String parentDirPath = getParentDirPath(filePath);
+            String parentDirPath = Path.getParentPath(filePath);
 
             if (parentDirPath.equals("")) {
                 return root.addFSO(new FakeFile(fileName, ""));
@@ -104,24 +96,6 @@ public class FakeFileSystemAdapter implements FileSystemAdapter {
 	@Override
 	public boolean writeToFile(String filePath, String content) {
 		return false;
-	}
-
-	@Override
-	public boolean createDirectory(String path) {
-		return false;
-	}
-
-	protected String getParentDirPath(String path) {
-		int stop = path.lastIndexOf(DIR_SEPERATOR);
-		if (stop == -1)
-			return "";
-		return path.substring(0, stop);
-	}
-
-	protected String getFSOName(String path) {
-		int start = path.lastIndexOf(DIR_SEPERATOR) + 1;
-		int stop = path.length();
-		return path.substring(start, stop);
 	}
 
 	/**

@@ -30,12 +30,7 @@ public class RealSystemFileAdapter implements FileSystemAdapter {
 	public boolean isDir(String path) {
 		return false;
 	}
-
-	@Override
-	public String getRoot(){
-		return File.listRoots()[0].getAbsolutePath();
-	}
-
+	
 
 //	@Override
 //	public boolean mkdir(String newDir) {
@@ -75,12 +70,6 @@ public class RealSystemFileAdapter implements FileSystemAdapter {
 
 		return false;
 	}
-
-	@Override
-	public boolean createDirectory(String path) {
-		return false;
-	}
-
 
 	public static String rootDirectory() {
 		return File.listRoots()[0].getAbsolutePath();

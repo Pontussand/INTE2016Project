@@ -25,8 +25,5 @@ public interface FileSystemAdapter {
 
     boolean deleteFSO(String path);
 
-    boolean createDirectory(String path);
-
-    String getRoot();
 }
 
