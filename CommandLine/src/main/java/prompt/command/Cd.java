@@ -11,16 +11,16 @@ public class Cd extends Command {
 		boolean cdFromRootDir = input.startsWith(Path.DIR_SEPERATOR);
 		FileSystemAdapter adapter = super.getAdapter();
 
-		if(!cdFromRootDir){
-			String appended = currentPath.getPath() + input;
-			if(adapter.isDir(appended)){
-				currentPath.setPath(appended);
+		if(cdFromRootDir){
+			if(adapter.isDir(input)) {
+				currentPath.setPath(input);
 			}else{
 				return NO_SUCH_DIR_MSG;
 			}
 		}else{
-			if(adapter.isDir(input)) {
-				currentPath.setPath(input);
+			String appended = currentPath.getPath() + input;
+			if(adapter.isDir(appended)){
+				currentPath.setPath(appended);
 			}else{
 				return NO_SUCH_DIR_MSG;
 			}
