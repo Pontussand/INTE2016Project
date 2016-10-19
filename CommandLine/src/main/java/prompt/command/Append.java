@@ -12,9 +12,12 @@ public class Append extends Command {
 		boolean cdFromRootDir = input.startsWith(Path.DIR_SEPERATOR);
 		FileSystemAdapter adapter = super.getAdapter();
 
-		String fileWithPath = currentPath.getPath() + "/" + input;
+		String fileName = input.split(" ")[0];
+		String content = input.substring(input.indexOf(" ") +1);
 
-		if (adapter.appendToFile(fileWithPath, input)) {
+		String fileWithPath = currentPath.getPath() + "/" + fileName;
+
+		if (adapter.appendToFile(fileWithPath, content)) {
 			return "";
 		} else {
 			return UNABLE_TO_APPEND;

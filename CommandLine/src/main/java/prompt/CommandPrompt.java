@@ -47,8 +47,7 @@ public class CommandPrompt {
 	private void run() {
 		boolean loop = true;
 		while(true) {
-			command(scan.nextLine());
-//			System.out.println(command(scan.nextLine()));
+			System.out.println(command(scan.nextLine()));
 
 		}
 	}
@@ -69,13 +68,13 @@ public class CommandPrompt {
 		if(commandInput.contains(" ")){
 			commandPart = commandInput.split(" ")[0];
 			target = commandInput.substring(commandInput.indexOf(" ") +1);
+
+
 //			result = commandPart + " fil: " + target;
 		}
 
 		addCommandToList(commandPart);
 		Command command = commands.get(commandPart);
-
-		System.out.println(command.doCommand(currentDir, target));
 
 		return command.doCommand(currentDir, target);
 	}
