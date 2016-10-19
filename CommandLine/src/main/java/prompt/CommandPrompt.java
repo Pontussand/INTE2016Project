@@ -34,6 +34,9 @@ public class CommandPrompt {
 		commands.put("ls", new Ls());
 		commands.put("cd", new Cd());
 		commands.put("mkdir", new Mkdir());
+		commands.put("touch", new Touch());
+		commands.put("append", new Append());
+
 		currentDir = new Path(adapter.getRoot());
 	}
 
@@ -45,6 +48,8 @@ public class CommandPrompt {
 		boolean loop = true;
 		while(true) {
 			command(scan.nextLine());
+//			System.out.println(command(scan.nextLine()));
+
 		}
 	}
 	private void addCommandToList(String commandUsed){
@@ -65,16 +70,14 @@ public class CommandPrompt {
 			commandPart = commandInput.split(" ")[0];
 			target = commandInput.substring(commandInput.indexOf(" ") +1);
 //			result = commandPart + " fil: " + target;
-
 		}
+
 		addCommandToList(commandPart);
-
 		Command command = commands.get(commandPart);
-
 
 		System.out.println(command.doCommand(currentDir, target));
 
-		return "";
+		return command.doCommand(currentDir, target);
 	}
 
 	public static void main(String[] args) {

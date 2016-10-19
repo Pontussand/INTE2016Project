@@ -26,7 +26,7 @@ public class CdTest {
 		Command.setAdapter(fakeAdapter);
 
 		//root
-		currentPath = new Path(Path.DIR_SEPERATOR);
+		currentPath = new Path("");
 	}
 
 	@Test
@@ -41,11 +41,41 @@ public class CdTest {
 
 	@Test
 	public void doCommand_goToNonExistantSubFolder(){
-		String ret = cd.doCommand(currentPath, "subfolder");
+		String ret = cd.doCommand(currentPath, "Should not exist");
 		assertEquals(Cd.NO_SUCH_DIR_MSG, ret);
-		assertEquals("/", currentPath.getPath());
+		assertEquals("", currentPath.getPath());
 	}
 
+	@Test
+	public void doCommand_goFromRoot(){
+		FakeDirectory sub1 = new FakeDirectory("sub1");
+		FakeDirectory sub2 = new FakeDirectory("sub2");
+		root.addFSO(sub1);
+		root.addFSO(sub2);
 
+		currentPath.setPath("/sub1");
+		assertEquals("", cd.doCommand(currentPath, "/sub2"));
+		assertEquals("/sub2", currentPath.getPath());
+	}
+
+	@Test
+	public void doCommand_goBackOneDir(){
+		FakeDirectory sub = new FakeDirectory("sub");
+		root.addFSO(sub);
+
+		currentPath.setPath("/sub");
+		assertEquals("", cd.doCommand(currentPath, ".."));
+		assertEquals("", currentPath.getPath());
+	}
+
+	@Test
+	public void doCommand_goToRoot(){
+		FakeDirectory sub = new FakeDirectory("sub");
+		root.addFSO(sub);
+
+		currentPath.setPath("/sub");
+		assertEquals("", cd.doCommand(currentPath, ""));
+		assertEquals("", currentPath.getPath());
+	}
 
 }
