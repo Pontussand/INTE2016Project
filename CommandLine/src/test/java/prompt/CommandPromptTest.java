@@ -1,5 +1,6 @@
 package prompt;
 
+import file_system_adapter.FakeFileSystemAdapter;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -15,10 +16,12 @@ public class CommandPromptTest {
 	private static String expected20commands = "lsfdptouchmkdirlsfdptouchmkdirlsfdptouchmkdirlsfdptouchmkdirlsfdptouchmkdir";
 
 	CommandPrompt cp;
+	FakeFileSystemAdapter adapter;
 
 	@Before
 	public void commandprompt(){
-		cp = new CommandPrompt();
+		adapter = new FakeFileSystemAdapter();
+		cp = new CommandPrompt(adapter);
 	}
 
 	@Before

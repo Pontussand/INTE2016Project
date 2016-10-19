@@ -2,6 +2,7 @@ package file_system_adapter;
 
 import file_system_adapter.fake_FSO.FakeDirectory;
 import file_system_adapter.fake_FSO.FakeFSO;
+import file_system_adapter.fake_FSO.FakeFile;
 import org.junit.*;
 
 import static org.junit.Assert.*;
@@ -18,28 +19,60 @@ public class FakeFileSystemAdapterTest {
 	}
 
 	@Test
-	public void getFSOName_fromRootDir(){
+	public void isDir_rootDir() {
+		root.addFSO(new FakeDirectory("Directory"));
+		assertTrue(fakeAdapter.isDir("/Directory"));
+	}
+
+	@Test
+	public void isDir_SubFolderDir() {
+		FakeDirectory folder1 = new FakeDirectory("Folder1");
+		FakeDirectory dir = new FakeDirectory("Directory");
+
+		folder1.addFSO(dir);
+		root.addFSO(folder1);
+		assertTrue(fakeAdapter.isDir("/Folder1/Directory"));
+	}
+
+	@Test
+	public void isDir_rootFile() {
+		root.addFSO(new FakeFile("Directory", ""));
+		assertTrue(!fakeAdapter.isDir("/Directory"));
+	}
+
+	@Test
+	public void isDir_SubFolderFile() {
+		FakeDirectory folder1 = new FakeDirectory("Folder1");
+		FakeFile file = new FakeFile("Directory", "");
+
+		folder1.addFSO(file);
+		root.addFSO(folder1);
+		assertTrue(!fakeAdapter.isDir("/Folder1/Directory"));
+	}
+
+	@Test
+	public void getFSOName_fromRootDir() {
 		String expected = "Dir";
 		String actual = fakeAdapter.getFSOName("/Dir");
 		assertEquals(expected, actual);
 	}
 
 	@Test
-	public void getFSOName_fromSubDir(){
+	public void getFSOName_fromSubDir() {
 		String expected = "Dir";
 		String actual = fakeAdapter.getFSOName("/folder1/folder2/Dir");
 		assertEquals(expected, actual);
 	}
 
 	@Test
-	public void getParentDirPath_rootDir(){
+	public void getParentDirPath_rootDir() {
 		String expected = "";
 		String actual = fakeAdapter.getParentDirPath("/Dir");
 		assertEquals(expected, actual);
 	}
 
 	@Test
-	public void getParentDirPath_fromSubDir(){
+	public void getParentDirPath_fromSubDir() {
 		String expected = "/folder1/folder2";
 		String actual = fakeAdapter.getParentDirPath("/folder1/folder2/Dir");
 		assertEquals(expected, actual);
@@ -68,7 +101,7 @@ public class FakeFileSystemAdapterTest {
 	}
 
 	@Test
-	public void mkdir_oneChildDir(){
+	public void mkdir_oneChildDir() {
 		assertTrue(fakeAdapter.mkdir("/parentDir"));
 		assertTrue(fakeAdapter.mkdir("/parentDir/childDir"));
 
@@ -84,8 +117,6 @@ public class FakeFileSystemAdapterTest {
 		fakeAdapter.mkdir("/Folder1");
 		fakeAdapter.mkdir("/Folder1/Folder2");
 		fakeAdapter.mkdir("/Folder1/Folder3");
-
-
 
 
 	}
