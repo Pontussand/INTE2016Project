@@ -32,6 +32,11 @@ public class FakeFileSystemAdapter implements FileSystemAdapter {
     }
 
     @Override
+    public String getRoot(){
+        return "";
+    }
+
+    @Override
     public boolean fsoExist(String path) {
         return false;
     }

@@ -31,6 +31,11 @@ public class RealSystemFileAdapter implements FileSystemAdapter {
 		return false;
 	}
 
+	@Override
+	public String getRoot(){
+		return File.listRoots()[0].getAbsolutePath();
+	}
+
 
 //	@Override
 //	public boolean mkdir(String newDir) {

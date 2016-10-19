@@ -6,6 +6,7 @@ import file_system_adapter.FileSystemAdapter;
 import prompt.command.Mkdir;
 import prompt.util.Path;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -32,7 +33,7 @@ public class CommandPrompt {
 		commands.put("ls", new Ls());
 		commands.put("cd", new Cd());
 		commands.put("mkdir", new Mkdir());
-
+		currentDir = new Path(adapter.getRoot());
 	}
 
 

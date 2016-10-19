@@ -28,5 +28,7 @@ public interface FileSystemAdapter {
     boolean createDirectory(String path);
 
     boolean deleteDirectory(String path);
+
+    String getRoot();
 }
 
