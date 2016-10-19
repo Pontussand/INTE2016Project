@@ -85,7 +85,7 @@ public class FakeFileSystemAdapter implements FileSystemAdapter {
 
             } else {
                 FakeDirectory parentDir = (FakeDirectory) root.pathSearch(parentDirPath);
-                
+
 //                inväntar implementation av Cd för att säkerställa att detta också funkar:
 
                 return parentDir.addFSO(new FakeFile(fileName, ""));
@@ -96,6 +96,8 @@ public class FakeFileSystemAdapter implements FileSystemAdapter {
 
 	@Override
 	public boolean appendToFile(String filePath, String content) {
+
+        
 		return false;
 	}
 
