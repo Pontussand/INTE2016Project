@@ -1,12 +1,12 @@
 package prompt;
 
 import file_system_adapter.FakeFileSystemAdapter;
+import file_system_adapter.RealSystemFileAdapter;
 import prompt.command.*;
 import file_system_adapter.FileSystemAdapter;
 import prompt.command.Mkdir;
 import prompt.util.Path;
 
-import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -18,14 +18,16 @@ public class CommandPrompt {
 	private FileSystemAdapter adapter;
 	private Path currentDir = new Path("");
 
-//	private Path curentDir = adapter.getRoot();
-
 	private Map<String, Command> commands = new HashMap<>();
 
 
 	public CommandPrompt(FileSystemAdapter adapter) {
 		this.adapter = adapter;
 		Command.setAdapter(this.adapter);
+
+		System.out.println(currentDir.getPath());
+
+		currentDir.setPath(this.adapter.getRootDirectory());
 		initialize();
 	}
 
@@ -66,9 +68,6 @@ public class CommandPrompt {
 		if(commandInput.contains(" ")){
 			commandPart = commandInput.split(" ")[0];
 			target = commandInput.substring(commandInput.indexOf(" ") +1);
-
-
-//			result = commandPart + " fil: " + target;
 		}
 
 		addCommandToList(commandPart);
@@ -80,7 +79,9 @@ public class CommandPrompt {
 	public static void main(String[] args) {
 		System.out.println("Command Prompt starting...");       // Just so we know it's running
 
-		FakeFileSystemAdapter adapter = new FakeFileSystemAdapter();
+//		FakeFileSystemAdapter adapter = new FakeFileSystemAdapter();
+		RealSystemFileAdapter adapter = new RealSystemFileAdapter();
+
 		CommandPrompt test = new CommandPrompt(adapter);
 		test.run();
 		System.out.println("Command Prompt exiting!");

@@ -12,6 +12,7 @@ public class Mkdir extends Command {
 		FileSystemAdapter adapter = super.getAdapter();
 
 		String path = currentDir.getPath();
+		System.out.println("RealPath " + path);
 
 		path += "/" + input;
 

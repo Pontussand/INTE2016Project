@@ -124,4 +124,10 @@ public class FakeFileSystemAdapter implements FileSystemAdapter {
             return false;
         }
     }
+
+	@Override
+	public String getRootDirectory() {
+		return "";
+
+	}
 }

@@ -34,7 +34,7 @@ public class Path {
 	}
 
 	public String getPath(){
-		return  path;
+		return path;
 	}
 
 	public void setPath(String path){
