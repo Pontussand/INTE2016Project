@@ -11,6 +11,8 @@ public class Mkdir extends Command {
 	public String doCommand(Path currentDir, String input) {
 		FileSystemAdapter adapter = super.getAdapter();
 
+		System.out.println("Hejsan");
+
 		String path = currentDir.getPath();
 
 		path += "/" + input;

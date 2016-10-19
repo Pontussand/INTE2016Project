@@ -71,7 +71,10 @@ public class CommandPrompt {
 
 		Command command = commands.get(commandPart);
 
-		return command.doCommand(currentDir, target);
+
+		System.out.println(command.doCommand(currentDir, target));
+
+		return "";
 	}
 
 	public static void main(String[] args) {
