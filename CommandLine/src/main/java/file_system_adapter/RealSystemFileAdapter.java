@@ -9,10 +9,32 @@ import java.util.ArrayList;
 public class RealSystemFileAdapter implements FileSystemAdapter {
 
 
-	private File root = new File("root");
+	private String root = new File(System.getProperty("user.dir")).getAbsolutePath();
 
 	@Override
 	public String[] ls(String path) {
+
+		String[] content;
+
+		Path dir = Paths.get(path);
+		try (DirectoryStream<Path> stream = Files.newDirectoryStream(dir)) {
+			ArrayList<Path> tempContent = new ArrayList<>();
+			for (Path file: stream) {
+				tempContent.add(file);
+				System.out.println(file.getFileName());
+			}
+
+			content = new String[tempContent.size()];
+			for (int i = 0; i < tempContent.size(); i++) {
+				Path file = tempContent.get(i);
+				content[i] = file.getFileName().toString();
+			}
+			return content;
+
+		} catch (IOException | DirectoryIteratorException x) {
+			System.err.println(x);
+		}
+
 		return null;
 	}
 
