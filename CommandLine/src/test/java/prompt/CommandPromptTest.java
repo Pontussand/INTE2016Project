@@ -29,5 +29,9 @@ public class CommandPromptTest {
 		}
 	}
 
+	@Test
+	public void Command_invalidCommand() {
+		assertEquals("love is an invalid command", cp.command("love"));
+	}
 
 }
