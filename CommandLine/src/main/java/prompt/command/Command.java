@@ -17,5 +17,25 @@ public abstract class Command {
 
     public abstract String doCommand(PathContainer currentDir, String input);
 
+    public boolean validFSOName(String name) {
+        return(!name.contains(" ")
+                &&!name.contains("<")
+                &&!name.contains(">")
+                &&!name.contains(":")
+                &&!name.contains("\"") //quote
+                &&!name.contains("/")
+                &&!name.contains("|")
+                &&!name.contains("?")
+                &&!name.contains("*")
+                &&!name.contains("\\") //backslash
+                && (name.length() < 256));
+    }
+
+    public boolean validFileName(String fileName) {
+        return(validFSOName(fileName)
+                &&fileName.endsWith(".txt"));
+    }
+
+
 }
 
