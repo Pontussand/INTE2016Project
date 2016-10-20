@@ -3,9 +3,7 @@ package file_system_adapter;
 import file_system_adapter.fake_FSO.FakeDirectory;
 import file_system_adapter.fake_FSO.FakeFSO;
 import file_system_adapter.fake_FSO.FakeFile;
-import prompt.util.Path;
-
-import java.io.File;
+import prompt.util.PathContainer;
 
 public class FakeFileSystemAdapter implements FileSystemAdapter {
 	public static final String DIR_SEPERATOR = "/";
@@ -51,11 +49,11 @@ public class FakeFileSystemAdapter implements FileSystemAdapter {
 
 	@Override
 	public boolean mkdir(String path) {
-		String folderName = Path.getFSOName(path);
+		String folderName = PathContainer.getFSOName(path);
 		boolean validPath = !folderName.equals("");
 
 		if (validPath) {
-			String parentDirPath = Path.getParentPath(path);
+			String parentDirPath = PathContainer.getParentPath(path);
 			FakeDirectory parentDir = (FakeDirectory) root.pathSearch(parentDirPath);
 			return parentDir.addFSO(new FakeDirectory(folderName));
 		}
@@ -70,10 +68,10 @@ public class FakeFileSystemAdapter implements FileSystemAdapter {
 
     @Override
     public boolean createFile(String filePath) {
-        String fileName = Path.getFSOName(filePath);
+        String fileName = PathContainer.getFSOName(filePath);
 
         if (!fileName.equals("")) {
-            String parentDirPath = Path.getParentPath(filePath);
+            String parentDirPath = PathContainer.getParentPath(filePath);
 
             if (parentDirPath.equals("")) {
                 return root.addFSO(new FakeFile(fileName, ""));
@@ -122,8 +120,8 @@ public class FakeFileSystemAdapter implements FileSystemAdapter {
     @Override
     public boolean deleteFSO(String path) {
         if(true) {
-            FakeDirectory parent = (FakeDirectory) root.pathSearch(Path.getParentPath(path));
-            parent.removeFSOFromContent(Path.getFSOName(path));
+            FakeDirectory parent = (FakeDirectory) root.pathSearch(PathContainer.getParentPath(path));
+            parent.removeFSOFromContent(PathContainer.getFSOName(path));
             return true;
         }else {
             return false;

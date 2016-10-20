@@ -1,30 +1,30 @@
 package prompt.command;
 
 import file_system_adapter.FileSystemAdapter;
-import prompt.util.Path;
+import prompt.util.PathContainer;
 
 public class Cd extends Command {
 
 	public static final String NO_SUCH_DIR_MSG = "Could not find that directory :'(";
 
-	public String doCommand(Path currentPath, String input) {
-		boolean cdFromRootDir = input.startsWith(Path.DIR_SEPERATOR);
+	public String doCommand(PathContainer currentPathContainer, String input) {
+		boolean cdFromRootDir = input.startsWith(PathContainer.DIR_SEPERATOR);
 		FileSystemAdapter adapter = super.getAdapter();
 
 		if (cdFromRootDir) {
 			if (adapter.isDir(input)) {
-				currentPath.setPath(input);
+				currentPathContainer.setPath(input);
 			} else {
 				return NO_SUCH_DIR_MSG;
 			}
 		} else {
-			String appended = currentPath.getPath() + Path.DIR_SEPERATOR + input;
+			String appended = currentPathContainer.getPath() + PathContainer.DIR_SEPERATOR + input;
 			if (adapter.isDir(appended)) {
-				currentPath.setPath(appended);
+				currentPathContainer.setPath(appended);
 			} else if (input.equals("..")) {
-				currentPath.setPath(currentPath.getParentPath());
+				currentPathContainer.setPath(currentPathContainer.getParentPath());
 			} else if (input.equals("")){
-				currentPath.setPath("");
+				currentPathContainer.setPath("");
 			} else {
 				return NO_SUCH_DIR_MSG;
 			}

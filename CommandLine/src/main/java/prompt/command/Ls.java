@@ -1,12 +1,12 @@
 package prompt.command;
 
-import prompt.util.Path;
+import prompt.util.PathContainer;
 
 import file_system_adapter.FileSystemAdapter;
 
 public class Ls extends Command {
 
-    public String doCommand(Path currentDir, String input) {
+    public String doCommand(PathContainer currentDir, String input) {
         FileSystemAdapter adapter = super.getAdapter();
 
         String output = "";

@@ -4,7 +4,7 @@ import file_system_adapter.FakeFileSystemAdapter;
 import file_system_adapter.fake_FSO.FakeDirectory;
 import org.junit.Before;
 import org.junit.Test;
-import prompt.util.Path;
+import prompt.util.PathContainer;
 
 import static org.junit.Assert.assertEquals;
 
@@ -14,7 +14,7 @@ public class CdTest {
 	private FakeFileSystemAdapter fakeAdapter;
 	private FakeDirectory root;
 
-	private Path currentPath;
+	private PathContainer currentPathContainer;
 
 	@Before
 	public void before() {
@@ -26,7 +26,7 @@ public class CdTest {
 		Command.setAdapter(fakeAdapter);
 
 		//root
-		currentPath = new Path("");
+		currentPathContainer = new PathContainer("");
 	}
 
 	@Test
@@ -34,16 +34,16 @@ public class CdTest {
 		FakeDirectory sub = new FakeDirectory("subfolder");
 		root.addFSO(sub);
 
-		String ret = cd.doCommand(currentPath, "subfolder");
+		String ret = cd.doCommand(currentPathContainer, "subfolder");
 		assertEquals("", ret);
-		assertEquals("/subfolder", currentPath.getPath());
+		assertEquals("/subfolder", currentPathContainer.getPath());
 	}
 
 	@Test
 	public void doCommand_goToNonExistantSubFolder(){
-		String ret = cd.doCommand(currentPath, "Should not exist");
+		String ret = cd.doCommand(currentPathContainer, "Should not exist");
 		assertEquals(Cd.NO_SUCH_DIR_MSG, ret);
-		assertEquals("", currentPath.getPath());
+		assertEquals("", currentPathContainer.getPath());
 	}
 
 	@Test
@@ -53,9 +53,9 @@ public class CdTest {
 		root.addFSO(sub1);
 		root.addFSO(sub2);
 
-		currentPath.setPath("/sub1");
-		assertEquals("", cd.doCommand(currentPath, "/sub2"));
-		assertEquals("/sub2", currentPath.getPath());
+		currentPathContainer.setPath("/sub1");
+		assertEquals("", cd.doCommand(currentPathContainer, "/sub2"));
+		assertEquals("/sub2", currentPathContainer.getPath());
 	}
 
 	@Test
@@ -63,9 +63,9 @@ public class CdTest {
 		FakeDirectory sub = new FakeDirectory("sub");
 		root.addFSO(sub);
 
-		currentPath.setPath("/sub");
-		assertEquals("", cd.doCommand(currentPath, ".."));
-		assertEquals("", currentPath.getPath());
+		currentPathContainer.setPath("/sub");
+		assertEquals("", cd.doCommand(currentPathContainer, ".."));
+		assertEquals("", currentPathContainer.getPath());
 	}
 
 	@Test
@@ -73,9 +73,9 @@ public class CdTest {
 		FakeDirectory sub = new FakeDirectory("sub");
 		root.addFSO(sub);
 
-		currentPath.setPath("/sub");
-		assertEquals("", cd.doCommand(currentPath, ""));
-		assertEquals("", currentPath.getPath());
+		currentPathContainer.setPath("/sub");
+		assertEquals("", cd.doCommand(currentPathContainer, ""));
+		assertEquals("", currentPathContainer.getPath());
 	}
 
 }

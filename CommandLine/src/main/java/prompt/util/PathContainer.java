@@ -1,10 +1,10 @@
 package prompt.util;
 
-public class Path {
+public class PathContainer {
 	private String path;
 	public static final String DIR_SEPERATOR = "/";
 
-	public Path(String path){
+	public PathContainer(String path){
 		this.path = path;
 	}
 

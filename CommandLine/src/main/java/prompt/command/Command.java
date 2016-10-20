@@ -1,7 +1,7 @@
 package prompt.command;
 
 import file_system_adapter.FileSystemAdapter;
-import prompt.util.Path;
+import prompt.util.PathContainer;
 
 public abstract class Command {
 
@@ -15,7 +15,7 @@ public abstract class Command {
         return adapter;
     }
 
-    public abstract String doCommand(Path currentDir, String input);
+    public abstract String doCommand(PathContainer currentDir, String input);
 
 }
 

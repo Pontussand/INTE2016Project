@@ -4,7 +4,7 @@ import file_system_adapter.FakeFileSystemAdapter;
 import file_system_adapter.fake_FSO.FakeDirectory;
 import org.junit.Before;
 import org.junit.Test;
-import prompt.util.Path;
+import prompt.util.PathContainer;
 
 import static org.junit.Assert.assertEquals;
 
@@ -14,7 +14,7 @@ public class LsTest {
 	private Ls ls;
 	private FakeFileSystemAdapter fakeAdapter;
 	private FakeDirectory root;
-	private Path currentDir;
+	private PathContainer currentDir;
 	private String input;
 
 	@Before
@@ -24,7 +24,7 @@ public class LsTest {
 		root = new FakeDirectory("root");
 		fakeAdapter.setRoot(root);
 		ls.setAdapter(fakeAdapter);
-		currentDir = new Path("/Folder1");
+		currentDir = new PathContainer("/Folder1");
 		input = null;
 	}
 

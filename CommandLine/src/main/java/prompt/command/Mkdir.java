@@ -1,6 +1,6 @@
 package prompt.command;
 
-import prompt.util.Path;
+import prompt.util.PathContainer;
 
 import file_system_adapter.FileSystemAdapter;
 
@@ -8,10 +8,10 @@ public class Mkdir extends Command {
 
 	public static final String ERROR_MSG = "Could not create directory. ;_;";
 
-	public String doCommand(Path currentDir, String input) {
+	public String doCommand(PathContainer currentDir, String input) {
 		FileSystemAdapter adapter = super.getAdapter();
 
-		String dirName = Path.getFSOName(input);
+		String dirName = PathContainer.getFSOName(input);
 //		System.out.println("dirName to create " + dirName);
 
 		String path = currentDir.getPath();
