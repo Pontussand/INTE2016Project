@@ -9,3 +9,6 @@ doCommand(Path currentDir, String input). Vissa kommandon tar in en sträng med 
 Andra kommandon som tex ls tar ingen input, och input måste vara null innan doCommand anropas.
 En tredje kategori är cd som beter sig olika beroende på vilken input man sätter. Det måste också hanteras innan doCommand anropas.
 /Annika
+
+#2.
+Om en mapp eller fil har ett namn med whitespaces i, tex "new folder" så tolkar prompten det som flera kommandon. Ska i lösa det eller begränsa oss till enbart filer med sammansatt namn? /Annika

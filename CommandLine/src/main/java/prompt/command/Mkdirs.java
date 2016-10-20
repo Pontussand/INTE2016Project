@@ -4,29 +4,26 @@ import prompt.util.Path;
 
 import file_system_adapter.FileSystemAdapter;
 
-public class Mkdir extends Command {
+public class Mkdirs extends Command {
 
 	public static final String ERROR_MSG = "Could not create directory. ;_;";
 
 	public String doCommand(Path currentDir, String input) {
 		FileSystemAdapter adapter = super.getAdapter();
 
-		String dirName = Path.getFSOName(input);
-//		System.out.println("dirName to create " + dirName);
-
 		String path = currentDir.getPath();
 
 		if (currentDir.equals("/")) {
-			path += dirName;
+			path += input;
 //			System.out.println("inside root, " + path);
 
 		} else {
-			path += "/" + dirName;
+			path += "/" + input;
 //			System.out.println("outside root, " + path);
 
 		}
 
-		if (adapter.mkdir(path)) {
+		if (adapter.mkdirs(path)) {
 			return "";
 		} else {
 			return ERROR_MSG;

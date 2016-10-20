@@ -13,7 +13,6 @@ public class RealSystemFileAdapter implements FileSystemAdapter {
 
 	@Override
 	public String[] ls(String path) {
-
 		String[] content;
 
 		Path dir = Paths.get(path);
@@ -21,7 +20,6 @@ public class RealSystemFileAdapter implements FileSystemAdapter {
 			ArrayList<Path> tempContent = new ArrayList<>();
 			for (Path file: stream) {
 				tempContent.add(file);
-				System.out.println(file.getFileName());
 			}
 
 			content = new String[tempContent.size()];
@@ -40,36 +38,33 @@ public class RealSystemFileAdapter implements FileSystemAdapter {
 
 	@Override
 	public boolean fsoExist(String path) {
-		return false;
+//		not tested
+		Path file = new File(path).toPath();
+		return Files.exists(file);
 	}
 
 	@Override
 	public boolean isFile(String path) {
-		return false;
+//		not tested
+		Path file = new File(path).toPath();
+		return Files.isRegularFile(file);
 	}
 
 	@Override
 	public boolean isDir(String path) {
-		return false;
+		Path file = new File(path).toPath();
+		return Files.isDirectory(file);
 	}
-	
-
-//	@Override
-//	public boolean mkdir(String newDir) {
-//		try {
-//			Files.createDirectory(newDir.toPath());
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
 
 	@Override
-	public boolean mkdir(String inputPath) {
-		return new File(inputPath).mkdirs();
+	public boolean mkdir(String path) {
+		return new File(path).mkdir();
 	}
 
 	@Override
 	public boolean mkdirs(String path) {
-		return false;
+		System.out.println(path);
+		return new File(path).mkdirs();
 	}
 
 	@Override

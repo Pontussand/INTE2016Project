@@ -34,6 +34,7 @@ public class CommandPrompt {
 		commands.put("ls", new Ls());
 		commands.put("cd", new Cd());
 		commands.put("mkdir", new Mkdir());
+		commands.put("mkdirs", new Mkdirs());
 		commands.put("touch", new Touch());
 		commands.put("append", new Append());
 
@@ -75,8 +76,8 @@ public class CommandPrompt {
 	public static void main(String[] args) {
 		System.out.println("Command Prompt starting...");
 
-		RealSystemFileAdapter adapter = new RealSystemFileAdapter();
-//		FakeFileSystemAdapter adapter = new FakeFileSystemAdapter();
+//		RealSystemFileAdapter adapter = new RealSystemFileAdapter();
+		FakeFileSystemAdapter adapter = new FakeFileSystemAdapter();
 		CommandPrompt test = new CommandPrompt(adapter);
 		test.run();
 		System.out.println("Command Prompt exiting!");
