@@ -23,11 +23,7 @@ public class FakeFile extends FakeFSO {
 	}
 
 	public void append(String toAdd) {
-		if (content.equals("")) {
-			this.content += toAdd;
-		} else {
-			this.content += "\n" + toAdd;
-		}
+		this.content += toAdd;
 	}
 
 	@Override

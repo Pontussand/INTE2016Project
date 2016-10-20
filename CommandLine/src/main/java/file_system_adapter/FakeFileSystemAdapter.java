@@ -95,6 +95,9 @@ public class FakeFileSystemAdapter implements FileSystemAdapter {
         if (fakeFile == null) {
             return false;
         } else {
+	        if (!fakeFile.getContent().equals("")) {
+		        content = "\n" + content;
+	        }
             System.out.println("before:");
             System.out.println(fakeFile.getContent());
             fakeFile.append(content);
