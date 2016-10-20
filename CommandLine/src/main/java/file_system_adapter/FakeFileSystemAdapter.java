@@ -143,11 +143,11 @@ public class FakeFileSystemAdapter implements FileSystemAdapter {
 
 	@Override
 	public boolean deleteFSO(String path) {
-		if (true) {
+		if (isDir(path) || isFile(path)) {
 			FakeDirectory parent = (FakeDirectory) root.pathSearch(PathContainer.getParentPath(path));
 			parent.removeFSOFromContent(PathContainer.getFSOName(path));
 			return true;
-		} else {
+		}else{
 			return false;
 		}
 	}
