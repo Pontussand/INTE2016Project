@@ -3,7 +3,7 @@ package file_system_adapter;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
+import java.nio.file.*;
 import java.util.ArrayList;
 
 public class RealSystemFileAdapter implements FileSystemAdapter {
@@ -41,8 +41,8 @@ public class RealSystemFileAdapter implements FileSystemAdapter {
 //		}
 
 	@Override
-	public boolean mkdir(String path) {
-		return false;
+	public boolean mkdir(String inputPath) {
+		return new File(inputPath).mkdirs();
 	}
 
 	@Override
@@ -71,9 +71,10 @@ public class RealSystemFileAdapter implements FileSystemAdapter {
 		return false;
 	}
 
-	public static String rootDirectory() {
-		return File.listRoots()[0].getAbsolutePath();
-
+	@Override
+	public String rootDirectory() {
+//		return File.listRoots()[0].getAbsolutePath();
+		return new File(System.getProperty("user.dir")).getAbsolutePath();
 	}
 
     /*OLD:

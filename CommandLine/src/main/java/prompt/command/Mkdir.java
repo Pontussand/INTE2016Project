@@ -13,7 +13,15 @@ public class Mkdir extends Command {
 
 		String path = currentDir.getPath();
 
-		path += "/" + input;
+		if (currentDir.equals("/")) {
+			path += input;
+//			System.out.println("inside root, " + path);
+
+		} else {
+			path += "/" + input;
+//			System.out.println("outside root, " + path);
+
+		}
 
 		if (adapter.mkdir(path)) {
 			return "";

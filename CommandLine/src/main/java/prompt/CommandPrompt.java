@@ -1,6 +1,7 @@
 package prompt;
 
 import file_system_adapter.FakeFileSystemAdapter;
+import file_system_adapter.RealSystemFileAdapter;
 import prompt.command.*;
 import file_system_adapter.FileSystemAdapter;
 import prompt.command.Mkdir;
@@ -13,7 +14,6 @@ import java.util.Scanner;
 
 public class CommandPrompt {
 	private Scanner scan = new Scanner(System.in);
-	private Filemanager fm = new Filemanager();
 	private String[] last20Commands = new String[20];
 	private FileSystemAdapter adapter;
 	private Path currentDir = new Path("");
@@ -36,10 +36,9 @@ public class CommandPrompt {
 		commands.put("mkdir", new Mkdir());
 		commands.put("touch", new Touch());
 		commands.put("append", new Append());
+
+		currentDir.setPath(adapter.rootDirectory());
 	}
-
-
-
 
 
 	private void run() {
@@ -61,14 +60,10 @@ public class CommandPrompt {
 	public String command(String commandInput) {
 		String commandPart = commandInput;
 		String target = "";
-		String result = commandInput;
 
 		if(commandInput.contains(" ")){
 			commandPart = commandInput.split(" ")[0];
 			target = commandInput.substring(commandInput.indexOf(" ") +1);
-
-
-//			result = commandPart + " fil: " + target;
 		}
 
 		addCommandToList(commandPart);
@@ -78,8 +73,9 @@ public class CommandPrompt {
 	}
 
 	public static void main(String[] args) {
-		System.out.println("Command Prompt starting...");       // Just so we know it's running
+		System.out.println("Command Prompt starting...");
 
+//		RealSystemFileAdapter adapter = new RealSystemFileAdapter();
 		FakeFileSystemAdapter adapter = new FakeFileSystemAdapter();
 		CommandPrompt test = new CommandPrompt(adapter);
 		test.run();

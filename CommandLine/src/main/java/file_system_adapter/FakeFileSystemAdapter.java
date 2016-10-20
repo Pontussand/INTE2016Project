@@ -5,6 +5,8 @@ import file_system_adapter.fake_FSO.FakeFSO;
 import file_system_adapter.fake_FSO.FakeFile;
 import prompt.util.Path;
 
+import java.io.File;
+
 public class FakeFileSystemAdapter implements FileSystemAdapter {
 	public static final String DIR_SEPERATOR = "/";
 	private FakeDirectory root = new FakeDirectory("root");
@@ -93,10 +95,10 @@ public class FakeFileSystemAdapter implements FileSystemAdapter {
         if (fakeFile == null) {
             return false;
         } else {
-            System.out.println("before");
+            System.out.println("before:");
             System.out.println(fakeFile.getContent());
             fakeFile.append(content);
-            System.out.println("after");
+            System.out.println("after:");
             System.out.println(fakeFile.getContent());
             return true;
         }
@@ -124,4 +126,9 @@ public class FakeFileSystemAdapter implements FileSystemAdapter {
             return false;
         }
     }
+
+	@Override
+	public String rootDirectory() {
+		return "";
+	}
 }

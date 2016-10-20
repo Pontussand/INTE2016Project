@@ -25,5 +25,7 @@ public interface FileSystemAdapter {
 
     boolean deleteFSO(String path);
 
+	public String rootDirectory();
+
 }
 
