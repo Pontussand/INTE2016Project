@@ -21,25 +21,23 @@ public class CommandPrompt {
 
 	private Map<String, Command> commands = new HashMap<>();
 
-
 	public CommandPrompt(FileSystemAdapter adapter) {
 		this.adapter = adapter;
 		Command.setAdapter(this.adapter);
 		initialize();
 	}
 
-
 	private void initialize() {
-		commands.put("ls", new Ls());
+		commands.put("append", new Append());
 		commands.put("cd", new Cd());
+		commands.put("ls", new Ls());
 		commands.put("mkdir", new Mkdir());
 		commands.put("mkdirs", new Mkdirs());
+		commands.put("pwd", new Pwd());
 		commands.put("touch", new Touch());
-		commands.put("append", new Append());
 
 		currentDir.setPath(adapter.rootDirectory());
 	}
-
 
 	private void run() {
 		boolean loop = true;
