@@ -78,10 +78,9 @@ public class FakeFileSystemAdapterTest {
 		assertTrue(fakeAdapter.mkdir("/parentDir/childDir"));
 
 		FakeFSO[] contents = root.getContent();
-		assertEquals(contents.length, 2);
+		assertEquals(contents.length, 1);
 		assertTrue(contents[0] instanceof FakeDirectory);
-		assertEquals("testDir1", contents[0].getName());
-		assertEquals("testDir2", contents[1].getName());
+		assertEquals("parentDir", contents[0].getName());
 	}
 
 	@Test
