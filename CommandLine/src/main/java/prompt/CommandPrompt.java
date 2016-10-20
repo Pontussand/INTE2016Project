@@ -7,13 +7,12 @@ import file_system_adapter.FileSystemAdapter;
 import prompt.command.Mkdir;
 import prompt.util.PathContainer;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 public class CommandPrompt {
 	private Scanner scan = new Scanner(System.in);
-	private String[] last20Commands = new String[20];
+	private List<String> last20Commands = new LinkedList<String>();
+	private static int maxHistory = 20;
 	private FileSystemAdapter adapter;
 	private PathContainer currentDir = new PathContainer("");
 	private boolean loop = true;
@@ -29,13 +28,13 @@ public class CommandPrompt {
 	}
 
 	private void initialize() {
-		commands.put("append", new Append());
-		commands.put("cd", new Cd());
-		commands.put("ls", new Ls());
-		commands.put("mkdir", new Mkdir());
-		commands.put("mkdirs", new Mkdirs());
-		commands.put("pwd", new Pwd());
-		commands.put("touch", new Touch());
+		commands.put("append", new Append(this));
+		commands.put("cd", new Cd(this));
+		commands.put("ls", new Ls(this));
+		commands.put("mkdir", new Mkdir(this));
+		commands.put("mkdirs", new Mkdirs(this));
+		commands.put("pwd", new Pwd(this));
+		commands.put("touch", new Touch(this));
 
 		currentDir.setPath(adapter.rootDirectory());
 	}
@@ -46,13 +45,9 @@ public class CommandPrompt {
 
 		}
 	}
+
 	private void addCommandToList(String commandUsed){
-		if(!commandUsed.equals("!!")) {
-			for (int a = 0; a < 19; a++) {
-				last20Commands[19 - a] = last20Commands[18 - a];
-			}
-			last20Commands[0] = commandUsed;
-		}
+		this.last20Commands.add(commandUsed);
 	}
 
 	public String command(String commandInput) {

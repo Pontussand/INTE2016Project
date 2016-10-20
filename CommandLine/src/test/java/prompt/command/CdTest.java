@@ -4,6 +4,7 @@ import file_system_adapter.FakeFileSystemAdapter;
 import file_system_adapter.fake_FSO.FakeDirectory;
 import org.junit.Before;
 import org.junit.Test;
+import prompt.CommandPrompt;
 import prompt.util.PathContainer;
 
 import static org.junit.Assert.assertEquals;
@@ -18,8 +19,6 @@ public class CdTest {
 
 	@Before
 	public void before() {
-		cd = new Cd();
-
 		root = new FakeDirectory("root");
 		fakeAdapter = new FakeFileSystemAdapter();
 		fakeAdapter.setRoot(root);
@@ -27,6 +26,8 @@ public class CdTest {
 
 		//root
 		currentPathContainer = new PathContainer("");
+
+		cd = new Cd(new CommandPrompt(fakeAdapter));
 	}
 
 	@Test

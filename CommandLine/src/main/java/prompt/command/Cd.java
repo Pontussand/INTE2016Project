@@ -1,11 +1,16 @@
 package prompt.command;
 
 import file_system_adapter.FileSystemAdapter;
+import prompt.CommandPrompt;
 import prompt.util.PathContainer;
 
 public class Cd extends Command {
 
 	public static final String NO_SUCH_DIR_MSG = "Could not find that directory :'(";
+
+	public Cd(CommandPrompt cp){
+		super(cp);
+	}
 
 	public String doCommand(PathContainer currentPathContainer, String input) {
 		boolean cdFromRootDir = input.startsWith(PathContainer.DIR_SEPERATOR);

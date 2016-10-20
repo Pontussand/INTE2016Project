@@ -1,5 +1,6 @@
 package prompt.command;
 
+import prompt.CommandPrompt;
 import prompt.util.PathContainer;
 
 import file_system_adapter.FileSystemAdapter;
@@ -7,6 +8,10 @@ import file_system_adapter.FileSystemAdapter;
 public class Mkdir extends Command {
 
 	public static final String ERROR_MSG = "Could not create directory. ;_;";
+
+	public Mkdir(CommandPrompt cp){
+		super(cp);
+	}
 
 	public String doCommand(PathContainer currentDir, String input) {
 		FileSystemAdapter adapter = super.getAdapter();

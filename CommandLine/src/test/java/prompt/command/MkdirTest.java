@@ -5,6 +5,7 @@ import file_system_adapter.fake_FSO.FakeDirectory;
 import file_system_adapter.fake_FSO.FakeFSO;
 import org.junit.Before;
 import org.junit.Test;
+import prompt.CommandPrompt;
 import prompt.util.PathContainer;
 
 import static org.junit.Assert.assertEquals;
@@ -19,12 +20,13 @@ public class MkdirTest {
 
 	@Before
 	public void before() {
-		mkdir = new Mkdir();
-		fakeAdapter = new FakeFileSystemAdapter();
 		root = new FakeDirectory("");
+		fakeAdapter = new FakeFileSystemAdapter();
 		fakeAdapter.setRoot(root);
 		mkdir.setAdapter(fakeAdapter);
 		currentDir = new PathContainer("");
+
+		mkdir = new Mkdir(new CommandPrompt(fakeAdapter));
 	}
 
 	@Test
