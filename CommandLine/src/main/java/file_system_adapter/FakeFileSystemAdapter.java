@@ -5,6 +5,8 @@ import file_system_adapter.fake_FSO.FakeFSO;
 import file_system_adapter.fake_FSO.FakeFile;
 import prompt.util.PathContainer;
 
+import java.nio.file.Path;
+
 public class FakeFileSystemAdapter implements FileSystemAdapter {
 	public static final String DIR_SEPERATOR = "/";
 	private FakeDirectory root = new FakeDirectory("root");
@@ -62,6 +64,7 @@ public class FakeFileSystemAdapter implements FileSystemAdapter {
 
 	@Override
 	public boolean mkdirs(String path) {
+
 		return false;
 	}
 

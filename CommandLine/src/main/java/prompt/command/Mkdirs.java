@@ -10,17 +10,12 @@ public class Mkdirs extends Command {
 
 	public String doCommand(PathContainer currentDir, String input) {
 		FileSystemAdapter adapter = super.getAdapter();
-
 		String path = currentDir.getPath();
 
 		if (currentDir.equals("/")) {
 			path += input;
-//			System.out.println("inside root, " + path);
-
 		} else {
 			path += "/" + input;
-//			System.out.println("outside root, " + path);
-
 		}
 
 		if (adapter.mkdirs(path)) {
