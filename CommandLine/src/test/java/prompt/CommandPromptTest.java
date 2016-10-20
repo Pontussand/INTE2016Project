@@ -34,4 +34,9 @@ public class CommandPromptTest {
 		assertEquals("love is an invalid command", cp.command("love"));
 	}
 
+	@Test
+	public void Command_exit() {
+		assertEquals("CommandPrompt is shutting down", cp.command("exit"));
+	}
+
 }

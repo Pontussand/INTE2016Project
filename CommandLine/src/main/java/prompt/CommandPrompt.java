@@ -16,6 +16,7 @@ public class CommandPrompt {
 	private String[] last20Commands = new String[20];
 	private FileSystemAdapter adapter;
 	private PathContainer currentDir = new PathContainer("");
+	private boolean loop = true;
 
 //	private PathContainer curentDir = adapter.getRoot();
 
@@ -40,8 +41,7 @@ public class CommandPrompt {
 	}
 
 	private void run() {
-		boolean loop = true;
-		while(true) {
+		while(loop) {
 			System.out.println(command(scan.nextLine()));
 
 		}
@@ -64,6 +64,11 @@ public class CommandPrompt {
 			target = commandInput.substring(commandInput.indexOf(" ") +1);
 		}
 
+		if(commandPart == "exit"){
+			loop = false;
+			return "CommandPrompt is shutting down";
+		}
+
 		addCommandToList(commandPart);
 		Command command = commands.get(commandPart);
 
@@ -80,6 +85,6 @@ public class CommandPrompt {
 		FakeFileSystemAdapter adapter = new FakeFileSystemAdapter();
 		CommandPrompt test = new CommandPrompt(adapter);
 		test.run();
-		System.out.println("Command Prompt exiting!");
+
 	}
 }
