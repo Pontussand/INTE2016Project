@@ -10,20 +10,17 @@ public class Mkdir extends Command {
 
 	public String doCommand(PathContainer currentDir, String input) {
 		FileSystemAdapter adapter = super.getAdapter();
-
 		String dirName = PathContainer.getFSOName(input);
-//		System.out.println("dirName to create " + dirName);
-
 		String path = currentDir.getPath();
+
+		if (!validFSOName(input)) {
+			return ERROR_MSG;
+		}
 
 		if (currentDir.equals("/")) {
 			path += dirName;
-//			System.out.println("inside root, " + path);
-
 		} else {
 			path += "/" + dirName;
-//			System.out.println("outside root, " + path);
-
 		}
 
 		if (adapter.mkdir(path)) {
