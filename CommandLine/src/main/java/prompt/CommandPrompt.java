@@ -36,6 +36,7 @@ public class CommandPrompt {
 		addCommand(new RepeatLast(this));
 		addCommand(new Touch(this));
 
+
 		currentDir.setPath(adapter.rootDirectory());
 	}
 

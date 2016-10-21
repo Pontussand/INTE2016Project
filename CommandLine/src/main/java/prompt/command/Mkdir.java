@@ -17,6 +17,7 @@ public class Mkdir extends Command {
 		return "mkdir";
 	}
 
+
 	public String doCommand(PathContainer currentDir, String input) {
 		FileSystemAdapter adapter = super.getAdapter();
 		String dirName = PathContainer.getFSOName(input);

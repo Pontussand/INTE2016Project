@@ -15,11 +15,9 @@ package prompt.command;
 public class AppendTest {
 
 	private Append append;
-	private Touch touch;
 	private FakeFileSystemAdapter fakeAdapter;
 	private FakeDirectory root;
 	private PathContainer currentDir;
-	private CommandPrompt commandPrompt;
 	private String expected = "before:\nHello World\nafter:\nHello World\n";
 
 	@Before
@@ -29,9 +27,7 @@ public class AppendTest {
 		fakeAdapter = new FakeFileSystemAdapter();
 		fakeAdapter.setRoot(root);
 		currentDir = new PathContainer("");
-		append = new Append(commandPrompt);
-		touch = new Touch(commandPrompt);
-		append = new Append(commandPrompt = new CommandPrompt(fakeAdapter));
+		append = new Append(new CommandPrompt(fakeAdapter));
 		FakeFile file = new FakeFile("textfile.txt", "Hello World");
 		root.addFSO(file);
 	}

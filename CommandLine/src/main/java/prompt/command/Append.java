@@ -9,6 +9,7 @@ public class Append extends Command {
 
 	public static final String UNABLE_TO_APPEND = "Could not write to file :'(";
 
+
 	public Append(CommandPrompt cp){
 		super(cp);
 	}
