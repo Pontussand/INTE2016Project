@@ -45,5 +45,10 @@ public class CommandPromptTest {
 		assertEquals("Could not write to file :'(", cp.command("append nonExistingFile content"));
 	}
 
+	@Test
+	public void command_mkdir_responding() {
+		assertEquals("", cp.command("mkdir FolderName"));
+	}
+
 
 }
