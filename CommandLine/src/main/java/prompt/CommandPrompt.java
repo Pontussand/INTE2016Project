@@ -38,6 +38,10 @@ public class CommandPrompt {
 		currentDir.setPath(adapter.rootDirectory());
 	}
 
+	public void setCurrentDir(String path){
+		currentDir.setPath(path);
+	}
+
 	private void run() {
 		while (loop) {
 			System.out.println(command(scan.nextLine()));

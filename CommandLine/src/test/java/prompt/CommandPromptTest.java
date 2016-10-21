@@ -13,7 +13,6 @@ public class CommandPromptTest {
 
 	private CommandPrompt prompt;
 	private FakeFileSystemAdapter fakeAdapter;
-	private PathContainer currentDir;
 	private FakeDirectory root;
 
 	@Before
@@ -22,7 +21,8 @@ public class CommandPromptTest {
 		fakeAdapter = new FakeFileSystemAdapter();
 		fakeAdapter.setRoot(root);
 		prompt = new CommandPrompt(fakeAdapter);
-		currentDir = new PathContainer("/Folder");
+		fakeAdapter.mkdir("Folder");
+
 		commandHistory.clear();
 	}
 
@@ -57,7 +57,7 @@ public class CommandPromptTest {
 	public void command_ls_responding() {
 		root.addFSO(new FakeDirectory("Testfolder1"));
 		root.addFSO(new FakeDirectory("Testfolder2"));
-		assertEquals("Testfolder1\nTestfolder2\n", prompt.command("ls"));
+		assertEquals("Folder\nTestfolder1\nTestfolder2\n", prompt.command("ls"));
 	}
 
 	@Test
@@ -70,14 +70,11 @@ public class CommandPromptTest {
 		assertEquals("", prompt.command("mkdirs Folder1/Folder2"));
 	}
 
-//HJÄLP: se till att den innan assertEquals är i mappen "Folder"
-/*	@Test
+	@Test
 	public void command_pwd_responding() {
-		FakeDirectory sub = new FakeDirectory("Folder");
-		root.addFSO(sub);
-
-		assertEquals("/Folder", prompt.command("pwd"));
-	}*/
+		prompt.setCurrentDir("Folder");
+		assertEquals("Folder", prompt.command("pwd"));
+	}
 
 	@Test
 	public void command_touch_responding() {
