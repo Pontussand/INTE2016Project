@@ -4,7 +4,7 @@ public class PathContainer {
 	private String path;
 	public static final String DIR_SEPERATOR = "/";
 
-	public PathContainer(String path){
+	public PathContainer(String path) {
 		this.path = path;
 	}
 
@@ -12,11 +12,11 @@ public class PathContainer {
 		this.path += input;
 	}
 
-	public String getParentPath(){
+	public String getParentPath() {
 		return getParentPath(path);
 	}
 
-	public String getFSOName(){
+	public String getFSOName() {
 		return getFSOName(path);
 	}
 
@@ -33,11 +33,11 @@ public class PathContainer {
 		return path.substring(start, stop);
 	}
 
-	public String getPath(){
-		return  path;
+	public String getPath() {
+		return path;
 	}
 
-	public void setPath(String path){
+	public void setPath(String path) {
 		this.path = path;
 	}
 }

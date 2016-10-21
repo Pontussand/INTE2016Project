@@ -13,8 +13,11 @@ import static org.junit.Assert.assertEquals;
 public class LsTest {
 
 	private Ls ls;
+	private Mkdir mkdir;
+	private Touch touch;
+	private CommandPrompt commandPrompt;
 	private FakeFileSystemAdapter fakeAdapter;
-	private FakeDirectory root;
+	private FakeDirectory root, fakeDir1, fakeDir2;
 	private PathContainer currentDir;
 	private String input;
 
@@ -23,40 +26,48 @@ public class LsTest {
 		root = new FakeDirectory("root");
 		fakeAdapter = new FakeFileSystemAdapter();
 		fakeAdapter.setRoot(root);
+		currentDir = new PathContainer("");
+		input = "";
+
+		commandPrompt = new CommandPrompt(fakeAdapter);
+		ls = new Ls(commandPrompt);
 		ls.setAdapter(fakeAdapter);
-		currentDir = new PathContainer("/Folder1");
-		input = null;
+		mkdir = new Mkdir(commandPrompt);
+		mkdir.setAdapter(fakeAdapter);
+		touch = new Touch(commandPrompt);
+		touch.setAdapter(fakeAdapter);
 
-		ls = new Ls(new CommandPrompt(fakeAdapter));
+		fakeDir1 = new FakeDirectory("FirstFolder");
+
+		fakeDir2 = new FakeDirectory("SecondFolder");
+		fakeDir2.addFSO(new FakeDirectory("TestFolder1"));
+		fakeDir2.addFSO(new FakeDirectory("TestFolder2"));
+
+		fakeDir1.addFSO(fakeDir2);
+
+		root.addFSO(fakeDir1);
 	}
+//
+//	@Test
+//	public void command_listingInRoot() {
+//		String expected = "FirstFolder\n";
+//		assertEquals(expected, commandPrompt.command("ls"));
+//	}
+//
+//	@Test
+//	public void doCommand_listingInRoot() {
+//		String expected = "FirstFolder\n";
+//		assertEquals(expected, ls.doCommand(currentDir, input));
+//	}
+
+
+
 
 	@Test
-	public void doCommand_correctString() {
-		FakeDirectory fakeDir = new FakeDirectory("Folder1");
-		fakeDir.addFSO(new FakeDirectory("Testfolder1"));
-		fakeDir.addFSO(new FakeDirectory("Testfolder2"));
-
-		root.addFSO(fakeDir);
-		String expected = "Testfolder1\nTestfolder2\n";
-
-		assertEquals(expected, ls.doCommand(currentDir, input));
-	}
-
-	@Test
-	public void doCommand_correctStringFromAltPath() {
-		FakeDirectory fakeDir = new FakeDirectory("Folder1");
-		FakeDirectory fakeDir2 = new FakeDirectory("Testfolder1");
-		FakeDirectory fakeDir3 = new FakeDirectory("folder");
-
-		fakeDir2.addFSO(fakeDir3);
-		fakeDir.addFSO(fakeDir2);
-		root.addFSO(fakeDir);
-
-		String expected = "folder\n";
-
-		currentDir.append("/Testfolder1");
-
-		assertEquals(expected, ls.doCommand(currentDir, input));
+	public void doCommand_listingInFolder() {
+		String expected = "TestFolder1\nTestFolder2\n";
+		assertEquals(expected, ls.doCommand(currentDir, "FirstFolder/SecondFolder"));
+		assertEquals(expected, commandPrompt.command("ls FirstFolder/SecondFolder"));
 	}
 
 

@@ -16,7 +16,7 @@ public class Touch extends Command {
 	public String doCommand(PathContainer currentPathContainer, String input) {
 //		boolean cdFromRootDir = input.startsWith(PathContainer.DIR_SEPERATOR);
 
-		if (!validFSOName(input)) {
+		if (!validFileName(input)) {
 			return UNABLE_TO_CREATE;
 		} else {
 			FileSystemAdapter adapter = super.getAdapter();

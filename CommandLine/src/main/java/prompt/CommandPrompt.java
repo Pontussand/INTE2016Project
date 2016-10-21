@@ -73,6 +73,7 @@ public class CommandPrompt {
 		if (command == null) {
 			return commandPart + " is an invalid command";
 		}
+
 		return command.doCommand(currentDir, target);
 	}
 

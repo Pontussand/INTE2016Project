@@ -10,14 +10,24 @@ import java.util.ArrayList;
 
 public class FakeFileSystemAdapter implements FileSystemAdapter {
 	public static final String DIR_SEPERATOR = "/";
+	public static final String NULL_ERROR_MESSAGE = "Directory does not exist";
+	public static final String FILE_ERROR_MESSAGE = "Address leads to a textfile";
+
+
+
 	private FakeDirectory root = new FakeDirectory("root");
 
 
 	@Override
 	public String[] ls(String path) {
 		FakeFSO fakeFSO = root.pathSearch(path);
+		String[] errorMessage = new String[1];
 
-		if (fakeFSO == null || fakeFSO instanceof FakeFile) {
+		if (fakeFSO == null) {
+			errorMessage[0] = NULL_ERROR_MESSAGE;
+
+		} else if (fakeFSO instanceof FakeFile) {
+			errorMessage[0] = FILE_ERROR_MESSAGE;
 
 		} else if (fakeFSO instanceof FakeDirectory) {
 			FakeFSO[] fsoArray = ((FakeDirectory) fakeFSO).getContent();
@@ -102,7 +112,6 @@ public class FakeFileSystemAdapter implements FileSystemAdapter {
 
 			} else {
 				FakeDirectory parentDir = (FakeDirectory) root.pathSearch(parentDirPath);
-//                inväntar implementation av Cd för att säkerställa att detta också funkar:
 				return parentDir.addFSO(new FakeFile(fileName, ""));
 			}
 		}
@@ -119,11 +128,7 @@ public class FakeFileSystemAdapter implements FileSystemAdapter {
 			if (!fakeFile.getContent().equals("")) {
 				content = "\n" + content;
 			}
-			System.out.println("before:");
-			System.out.println(fakeFile.getContent());
 			fakeFile.append(content);
-			System.out.println("after:");
-			System.out.println(fakeFile.getContent());
 			return true;
 		}
 //not finished
