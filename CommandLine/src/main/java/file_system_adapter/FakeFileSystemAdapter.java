@@ -131,6 +131,12 @@ public class FakeFileSystemAdapter implements FileSystemAdapter {
 
 	@Override
 	public boolean writeToFile(String filePath, String content) {
+		FakeFSO fso = root.pathSearch(filePath);
+		if (fso != null && fso instanceof FakeFile){
+			FakeFile file = (FakeFile) fso;
+			file.setContent(content);
+			return true;
+		}
 		return false;
 	}
 
@@ -147,7 +153,7 @@ public class FakeFileSystemAdapter implements FileSystemAdapter {
 			FakeDirectory parent = (FakeDirectory) root.pathSearch(PathContainer.getParentPath(path));
 			parent.removeFSOFromContent(PathContainer.getFSOName(path));
 			return true;
-		}else{
+		} else {
 			return false;
 		}
 	}

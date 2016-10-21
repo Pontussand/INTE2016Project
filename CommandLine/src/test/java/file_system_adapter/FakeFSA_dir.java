@@ -3,13 +3,16 @@ package file_system_adapter;
 import file_system_adapter.fake_FSO.FakeDirectory;
 import file_system_adapter.fake_FSO.FakeFSO;
 import file_system_adapter.fake_FSO.FakeFile;
-import org.junit.*;
+import org.junit.Before;
+import org.junit.Test;
 
 import java.util.ArrayList;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
-public class FakeFileSystemAdapterTest {
+public class FakeFSA_dir {
+
 	FakeFileSystemAdapter fakeAdapter;
 	FakeDirectory root;
 
@@ -18,6 +21,49 @@ public class FakeFileSystemAdapterTest {
 		fakeAdapter = new FakeFileSystemAdapter();
 		root = new FakeDirectory("root");
 		fakeAdapter.setRoot(root);
+	}
+
+	@Test
+	public void getMkdirsDirs_oneSubFolder(){
+		String dirToAdd = "/folder1/folder2";
+
+		ArrayList<String> expected = new ArrayList<>();
+		expected.add("/folder1/folder2");
+		expected.add("/folder1");
+
+		ArrayList<String> actual = fakeAdapter.getMkdirsDirs(dirToAdd);
+		assertEquals(expected, actual);
+	}
+
+	@Test
+	public void mkdirs_oneDir(){
+		fakeAdapter.mkdirs("/folder");
+		FakeFSO expected = new FakeDirectory("folder");
+		FakeFSO actual = root.getContent()[0];
+		assertEquals(expected, actual);
+	}
+
+	@Test
+	public void mkdirs_twoSubDirs(){
+		fakeAdapter.mkdirs("/folder1/folder2");
+		FakeFSO expected = new FakeDirectory("folder2");
+
+		FakeDirectory folder1 = (FakeDirectory) root.getContent()[0];
+		FakeFSO actual = folder1.getContent()[0];
+
+		assertEquals(expected, actual);
+	}
+
+	@Test
+	public void mkdirs_threeSubDirs(){
+		fakeAdapter.mkdirs("/folder1/folder2/folder3");
+		FakeFSO expected = new FakeDirectory("folder3");
+
+		FakeDirectory folder1 = (FakeDirectory) root.getContent()[0];
+		FakeDirectory folder2 = (FakeDirectory) folder1.getContent()[0];
+		FakeFSO actual = folder2.getContent()[0];
+
+		assertEquals(expected, actual);
 	}
 
 	@Test
@@ -84,61 +130,5 @@ public class FakeFileSystemAdapterTest {
 		assertTrue(contents[0] instanceof FakeDirectory);
 		assertEquals("parentDir", contents[0].getName());
 	}
-
-	//TODO: implement more ls tests
-	@Test
-	public void ls_getListFromRootDir() {
-		root.addFSO(new FakeDirectory("Folder1"));
-		root.addFSO(new FakeDirectory("Folder2"));
-
-		String[] expected = {"Folder1", "Folder2"};
-		String[] actual = fakeAdapter.ls("");
-
-		assertArrayEquals(expected, actual);
-	}
-
-	@Test
-	public void getMkdirsDirs_oneSubFolder(){
-		String dirToAdd = "/folder1/folder2";
-
-		ArrayList<String> expected = new ArrayList<>();
-		expected.add("/folder1/folder2");
-		expected.add("/folder1");
-
-		ArrayList<String> actual = fakeAdapter.getMkdirsDirs(dirToAdd);
-		assertEquals(expected, actual);
-	}
-
-	@Test
-	public void mkdirs_oneDir(){
-		fakeAdapter.mkdirs("/folder");
-		FakeFSO expected = new FakeDirectory("folder");
-		FakeFSO actual = root.getContent()[0];
-		assertEquals(expected, actual);
-	}
-
-	@Test
-	public void mkdirs_twoSubDirs(){
-		fakeAdapter.mkdirs("/folder1/folder2");
-		FakeFSO expected = new FakeDirectory("folder2");
-
-		FakeDirectory folder1 = (FakeDirectory) root.getContent()[0];
-		FakeFSO actual = folder1.getContent()[0];
-
-		assertEquals(expected, actual);
-	}
-
-	@Test
-	public void mkdirs_threeSubDirs(){
-		fakeAdapter.mkdirs("/folder1/folder2/folder3");
-		FakeFSO expected = new FakeDirectory("folder3");
-
-		FakeDirectory folder1 = (FakeDirectory) root.getContent()[0];
-		FakeDirectory folder2 = (FakeDirectory) folder1.getContent()[0];
-		FakeFSO actual = folder2.getContent()[0];
-
-		assertEquals(expected, actual);
-	}
-
 
 }
