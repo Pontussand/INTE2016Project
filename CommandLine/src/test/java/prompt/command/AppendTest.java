@@ -20,7 +20,7 @@ public class AppendTest {
 	private FakeDirectory root;
 	private PathContainer currentDir;
 	private CommandPrompt commandPrompt;
-	private static final String UNABLE_TO_APPEND = "Could not write to file :'(";
+	private String expected = "before:\nHello World\nafter:\nHello World\n";
 
 	@Before
 	public void before() {
@@ -28,37 +28,34 @@ public class AppendTest {
 		root = new FakeDirectory("");
 		fakeAdapter = new FakeFileSystemAdapter();
 		fakeAdapter.setRoot(root);
-
-		commandPrompt = new CommandPrompt(fakeAdapter);
-
 		currentDir = new PathContainer("");
 		append = new Append(commandPrompt);
-		append.setAdapter(fakeAdapter);
 		touch = new Touch(commandPrompt);
-		touch.setAdapter(fakeAdapter);
-
-		commandPrompt.command("touch textfile.txt");
+		append = new Append(commandPrompt = new CommandPrompt(fakeAdapter));
+		FakeFile file = new FakeFile("textfile.txt", "Hello World");
+		root.addFSO(file);
 	}
 
 	@Test
-	public void ommand_firstAppend() {
-		assertEquals("", commandPrompt.command("append textfile.txt Hello,"));
+	public void doCommand_firstAppend() {
+		expected += "Hello,";
+		assertEquals(expected, append.doCommand(currentDir, "textfile.txt Hello,"));
 	}
 
 	@Test
-	public void command_appendToExisting() {
-		commandPrompt.command("append textfile.txt Hello,");
-		assertEquals("", commandPrompt.command("append textfile.txt I'm Dolly!"));
+	public void doCommand_appendToExisting() {
+		expected += "I'm Dolly!";
+		assertEquals(expected, append.doCommand(currentDir, "textfile.txt I'm Dolly!"));
 	}
 
 	@Test
-	public void command_append_fail() {
-		assertEquals(UNABLE_TO_APPEND, commandPrompt.command("append yoyo"));
+	public void doCommand_appendFail() {
+		assertEquals(Append.UNABLE_TO_APPEND, append.doCommand(currentDir, "yoyo"));
 	}
 
 	@Test
-	public void command_append_nonExistingFile() {
-		assertEquals(UNABLE_TO_APPEND, commandPrompt.command("append myFile.txt Blablabla"));
+	public void doCommand_nonExistingFile() {
+		assertEquals(Append.UNABLE_TO_APPEND, append.doCommand(currentDir, "myFile.txt Blablabla"));
 	}
 
 }
