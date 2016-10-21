@@ -62,7 +62,7 @@ public class CommandPrompt {
 			target = commandInput.substring(commandInput.indexOf(" ") +1);
 		}
 
-		if(commandPart == "exit"){
+		if(commandInput.equals("exit")){
 			loop = false;
 			return "CommandPrompt is shutting down";
 		}
@@ -79,8 +79,8 @@ public class CommandPrompt {
 	public static void main(String[] args) {
 		System.out.println("Command Prompt starting...");
 
-//		RealSystemFileAdapter adapter = new RealSystemFileAdapter();
-		FakeFileSystemAdapter adapter = new FakeFileSystemAdapter();
+		RealSystemFileAdapter adapter = new RealSystemFileAdapter();
+//		FakeFileSystemAdapter adapter = new FakeFileSystemAdapter();
 		CommandPrompt test = new CommandPrompt(adapter);
 		test.run();
 

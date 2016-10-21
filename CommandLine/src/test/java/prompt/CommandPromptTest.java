@@ -30,12 +30,12 @@ public class CommandPromptTest {
 	}
 
 	@Test
-	public void dommand_invalidCommand() {
+	public void command_invalidCommand() {
 		assertEquals("love is an invalid command", cp.command("love"));
 	}
 
 	@Test
-	public void dommand_exit() {
+	public void command_exit() {
 		assertEquals("CommandPrompt is shutting down", cp.command("exit"));
 	}
 
