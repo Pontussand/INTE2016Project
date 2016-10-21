@@ -19,16 +19,6 @@ public class CommandPromptTest {
 		cp = new CommandPrompt(adapter);
 	}
 
-	@Before
-	public void Perform20Commands(){
-		for(int a = 0; a <5; a++) {
-			cp.command("mkdir hej");
-			cp.command("touch bla");
-			cp.command("fdp tja");
-			cp.command("ls tja");
-		}
-	}
-
 	@Test
 	public void command_invalidCommand() {
 		assertEquals("love is an invalid command", cp.command("love"));
@@ -37,6 +27,11 @@ public class CommandPromptTest {
 	@Test
 	public void command_exit() {
 		assertEquals("CommandPrompt is shutting down", cp.command("exit"));
+	}
+
+	@Test
+	public void command_history_responding() {
+		assertEquals("0 history", cp.command("history"));
 	}
 
 
