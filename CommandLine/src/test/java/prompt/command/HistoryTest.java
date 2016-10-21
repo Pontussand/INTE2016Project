@@ -12,8 +12,10 @@ import static org.junit.Assert.assertEquals;
 public class HistoryTest {
 
     private CommandPrompt cp;
+    private History history;
     private FakeFileSystemAdapter fakeAdapter;
     private FakeDirectory root;
+    private PathContainer currentDir;
 
     @Before
     public void before() {
@@ -21,26 +23,26 @@ public class HistoryTest {
         fakeAdapter = new FakeFileSystemAdapter();
         fakeAdapter.setRoot(root);
         Command.setAdapter(fakeAdapter);
-        cp = new CommandPrompt(fakeAdapter);
-
-
+        currentDir = new PathContainer("\\folder");
+        history = new History(cp = new CommandPrompt(fakeAdapter));
     }
 
     @Test
     public void empty() {
-        assertEquals("0 history", cp.command("history"));
+        assertEquals("0 history", history.doCommand(currentDir, "history"));
     }
+
     @Test
     public void ls() {
         cp.command("ls");
-        assertEquals("0 ls\n1 history", cp.command("history"));
+        assertEquals("0 ls\n1 history", history.doCommand(currentDir,"history"));
     }
 
     @Test
     public void ls2() {
         cp.command("ls");
         cp.command("ls");
-        assertEquals("0 ls\n1 ls\n2 history", cp.command("history"));
+        assertEquals("0 ls\n1 ls\n2 history", history.doCommand(currentDir, "history"));
     }
 
     @Test
@@ -64,7 +66,7 @@ public class HistoryTest {
                 "7 pwd\n" +
                 "8 touch file\n" +
                 "9 history"
-                , cp.command("history"));
+                , history.doCommand(currentDir, "history")); // 10 commands executed
         assertEquals("0 mkdir folder\n" +
                 "1 mkdirs folder\\folder2\n" +
                 "2 pwd\n" +
@@ -75,7 +77,7 @@ public class HistoryTest {
                 "7 touch file\n" +
                 "8 history\n" +
                 "9 history"
-                , cp.command("history"));
+                , history.doCommand(currentDir, "history")); // 11 commands executed
     }
 }
 
