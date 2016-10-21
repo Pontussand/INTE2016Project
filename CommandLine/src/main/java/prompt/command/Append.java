@@ -9,8 +9,13 @@ public class Append extends Command {
 
 	public static final String UNABLE_TO_APPEND = "Could not write to file :'(";
 
+
 	public Append(CommandPrompt cp){
 		super(cp);
+	}
+
+	public String getName(){
+		return "append";
 	}
 
 	public String doCommand(PathContainer currentPathContainer, String input) {
@@ -21,9 +26,10 @@ public class Append extends Command {
 		String content = input.substring(input.indexOf(" ") +1);
 
 		String fileWithPath = currentPathContainer.getPath() + "/" + fileName;
+		String result = adapter.appendToFile(fileWithPath, content);
 
-		if (adapter.appendToFile(fileWithPath, content)) {
-			return "";
+		if (result != null) {
+			return result;
 		} else {
 			return UNABLE_TO_APPEND;
 		}

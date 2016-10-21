@@ -13,6 +13,10 @@ public class Touch extends Command {
 		super(cp);
 	}
 
+	public String getName(){
+		return "touch";
+	}
+
 	public String doCommand(PathContainer currentPathContainer, String input) {
 //		boolean cdFromRootDir = input.startsWith(PathContainer.DIR_SEPERATOR);
 

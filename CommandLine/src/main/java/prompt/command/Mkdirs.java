@@ -13,6 +13,10 @@ public class Mkdirs extends Command {
 		super(cp);
 	}
 
+	public String getName(){
+		return "mkdirs";
+	}
+
 	public String doCommand(PathContainer currentDir, String input) {
 		FileSystemAdapter adapter = super.getAdapter();
 		String path = currentDir.getPath();

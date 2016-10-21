@@ -4,15 +4,24 @@ import file_system_adapter.FileSystemAdapter;
 import prompt.CommandPrompt;
 import prompt.util.PathContainer;
 
+import java.util.LinkedList;
+import java.util.List;
+
 public abstract class Command {
 
     private static FileSystemAdapter adapter;
+    static public List<String> commandHistory = new LinkedList<String>();
+    public static int maxHistory = 10;
+
 
     protected CommandPrompt ownerCommandPrompt = null;
 
     public Command(CommandPrompt cp){
         this.ownerCommandPrompt = cp;
     }
+
+    public abstract String getName();
+
 
     public static void setAdapter(FileSystemAdapter input) {
         adapter = input;
@@ -22,7 +31,25 @@ public abstract class Command {
         return adapter;
     }
 
-    public abstract String doCommand(PathContainer currentDir, String input);
+    protected boolean shouldBeAddedToHistory(){
+        return true;
+    }
+
+    public void addToHistory(String commandUsed) {
+        this.commandHistory.add(commandUsed);
+        if (this.commandHistory.size()>maxHistory) {
+            commandHistory.remove(0);
+        }
+    }
+
+    public String execute(PathContainer currentDir, String target, String input){
+        if(shouldBeAddedToHistory()){
+            addToHistory(input);
+        }
+        return  doCommand(currentDir, target);
+    }
+
+    protected abstract String doCommand(PathContainer currentDir, String input);
 
     public static boolean validFSOName(String name) {
         return(!name.contains(" ")

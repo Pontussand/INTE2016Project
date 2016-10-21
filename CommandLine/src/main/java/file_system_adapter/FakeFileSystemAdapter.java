@@ -63,13 +63,14 @@ public class FakeFileSystemAdapter implements FileSystemAdapter {
 	@Override
 	public boolean mkdir(String path) {
 		String folderName = PathContainer.getFSOName(path);
-		boolean validPath = !folderName.equals("");
+		String parentDirPath = PathContainer.getParentPath(path);
 
-		if (validPath) {
-			String parentDirPath = PathContainer.getParentPath(path);
-			FakeDirectory parentDir = (FakeDirectory) root.pathSearch(parentDirPath);
+		FakeFSO parent = root.pathSearch(parentDirPath);
+		if (parent != null && parent instanceof FakeDirectory) {
+			FakeDirectory parentDir = (FakeDirectory) parent;
 			return parentDir.addFSO(new FakeDirectory(folderName));
 		}
+
 		return false;
 	}
 
@@ -105,13 +106,10 @@ public class FakeFileSystemAdapter implements FileSystemAdapter {
 
 		if (!fileName.equals("")) {
 			String parentDirPath = PathContainer.getParentPath(filePath);
+			FakeFSO parentFSO = root.pathSearch(parentDirPath);
 
-			if (parentDirPath.equals("")) {
-				return root.addFSO(new FakeFile(fileName, ""));
-
-
-			} else {
-				FakeDirectory parentDir = (FakeDirectory) root.pathSearch(parentDirPath);
+			if (parentFSO != null && parentFSO instanceof FakeDirectory) {
+				FakeDirectory parentDir = (FakeDirectory) parentFSO;
 				return parentDir.addFSO(new FakeFile(fileName, ""));
 			}
 		}
@@ -119,17 +117,19 @@ public class FakeFileSystemAdapter implements FileSystemAdapter {
 	}
 
 	@Override
-	public boolean appendToFile(String filePath, String content) {
+	public String appendToFile(String filePath, String content) {
 		FakeFile fakeFile = (FakeFile) root.pathSearch(filePath);
 
 		if (fakeFile == null) {
-			return false;
+			return null;
 		} else {
 			if (!fakeFile.getContent().equals("")) {
 				content = "\n" + content;
 			}
+			String result = "before:\n"+fakeFile.getContent()+ "\nafter:\n";
 			fakeFile.append(content);
-			return true;
+			result += fakeFile.getContent();
+			return result;
 		}
 //not finished
 	}
@@ -137,7 +137,7 @@ public class FakeFileSystemAdapter implements FileSystemAdapter {
 	@Override
 	public boolean writeToFile(String filePath, String content) {
 		FakeFSO fso = root.pathSearch(filePath);
-		if (fso != null && fso instanceof FakeFile){
+		if (fso != null && fso instanceof FakeFile) {
 			FakeFile file = (FakeFile) fso;
 			file.setContent(content);
 			return true;

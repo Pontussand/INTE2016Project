@@ -11,8 +11,6 @@ import java.util.*;
 
 public class CommandPrompt {
 	private Scanner scan = new Scanner(System.in);
-	public List<String> commandHistory = new LinkedList<String>();
-	private static int maxHistory = 10;
 	private FileSystemAdapter adapter;
 	private PathContainer currentDir = new PathContainer("");
 	private boolean loop = true;
@@ -28,28 +26,31 @@ public class CommandPrompt {
 	}
 
 	private void initialize() {
-		commands.put("append", new Append(this));
-		commands.put("cd", new Cd(this));
-		commands.put("ls", new Ls(this));
-		commands.put("history", new History(this));
-		commands.put("mkdir", new Mkdir(this));
-		commands.put("mkdirs", new Mkdirs(this));
-		commands.put("pwd", new Pwd(this));
-		commands.put("touch", new Touch(this));
+		addCommand(new Append(this));
+		addCommand(new Cd(this));
+		addCommand(new Ls(this));
+		addCommand(new History(this));
+		addCommand(new Mkdir(this));
+		addCommand(new Mkdirs(this));
+		addCommand(new Pwd(this));
+		addCommand(new RepeatLast(this));
+		addCommand(new Touch(this));
+
 
 		currentDir.setPath(adapter.rootDirectory());
+	}
+
+	private void addCommand(Command c){
+		commands.put(c.getName(), c);
+	}
+
+	public void setCurrentDir(String path){
+		currentDir.setPath(path);
 	}
 
 	private void run() {
 		while (loop) {
 			System.out.println(command(scan.nextLine()));
-		}
-	}
-
-	private void addCommandToList(String commandUsed) {
-		this.commandHistory.add(commandUsed);
-		if (this.commandHistory.size()>maxHistory) {
-			commandHistory.remove(0);
 		}
 	}
 
@@ -67,14 +68,13 @@ public class CommandPrompt {
 			return "CommandPrompt is shutting down";
 		}
 
-		addCommandToList(commandInput);
 		Command command = commands.get(commandPart);
 
 		if (command == null) {
 			return commandPart + " is an invalid command";
 		}
 
-		return command.doCommand(currentDir, target);
+		return command.execute(currentDir, target, commandInput);
 	}
 
 	public static void main(String[] args) {

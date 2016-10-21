@@ -25,12 +25,11 @@ public class PwdTest {
         pwd.setAdapter(fakeAdapter);
         currentDir = new PathContainer("/Folder1/Folder2/Folder3");
         input = null;
-
         pwd = new Pwd(new CommandPrompt(fakeAdapter));
     }
 
     @Test
     public void doCommand_contact() {
-        assertEquals("/Folder1/Folder2/Folder3", pwd.doCommand(currentDir,"test"));
+        assertEquals("/Folder1/Folder2/Folder3", pwd.doCommand(currentDir,""));
     }
 }
