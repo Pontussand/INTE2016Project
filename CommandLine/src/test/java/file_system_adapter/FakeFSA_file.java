@@ -53,4 +53,6 @@ public class FakeFSA_file {
 		String content = "content";
 		assertTrue(!fakeAdapter.writeToFile("dir", content));
 	}
+
+	//TODO: add tests for createFile()
 }

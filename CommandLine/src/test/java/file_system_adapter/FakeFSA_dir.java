@@ -121,14 +121,33 @@ public class FakeFSA_dir {
 	}
 
 	@Test
+	public void mkdir_duplicateDir() {
+		assertTrue(fakeAdapter.mkdir("/testDir1"));
+		assertTrue(!fakeAdapter.mkdir("/testDir1"));
+	}
+
+	@Test
 	public void mkdir_oneChildDir() {
-		assertTrue(fakeAdapter.mkdir("/parentDir"));
+		FakeDirectory parentDir = new FakeDirectory("parentDir");
+		root.addFSO(parentDir);
+
 		assertTrue(fakeAdapter.mkdir("/parentDir/childDir"));
 
-		FakeFSO[] contents = root.getContent();
-		assertEquals(contents.length, 1);
-		assertTrue(contents[0] instanceof FakeDirectory);
-		assertEquals("parentDir", contents[0].getName());
+		FakeFSO[] children = parentDir.getContent();
+		assertEquals(children.length, 1);
+		assertTrue(children[0] instanceof FakeDirectory);
+		assertEquals("childDir", children[0].getName());
+	}
+
+	@Test
+	public void mkdir_parentNotExist() {
+		assertTrue(!fakeAdapter.mkdir("/aFile/newDir"));
+	}
+
+	@Test
+	public void mkdir_parentIsAFile() {
+		root.addFSO(new FakeFile("aFile", ""));
+		assertTrue(!fakeAdapter.mkdir("/aFile/newDir"));
 	}
 
 }

@@ -17,9 +17,7 @@ public class FakeFileSystemAdapter implements FileSystemAdapter {
 	public String[] ls(String path) {
 		FakeFSO fakeFSO = root.pathSearch(path);
 
-		if (fakeFSO == null || fakeFSO instanceof FakeFile) {
-
-		} else if (fakeFSO instanceof FakeDirectory) {
+		if (fakeFSO instanceof FakeDirectory) {
 			FakeFSO[] fsoArray = ((FakeDirectory) fakeFSO).getContent();
 			String[] listOfContent = new String[fsoArray.length];
 
@@ -53,13 +51,14 @@ public class FakeFileSystemAdapter implements FileSystemAdapter {
 	@Override
 	public boolean mkdir(String path) {
 		String folderName = PathContainer.getFSOName(path);
-		boolean validPath = !folderName.equals("");
+		String parentDirPath = PathContainer.getParentPath(path);
 
-		if (validPath) {
-			String parentDirPath = PathContainer.getParentPath(path);
-			FakeDirectory parentDir = (FakeDirectory) root.pathSearch(parentDirPath);
+		FakeFSO parent = root.pathSearch(parentDirPath);
+		if (parent != null && parent instanceof FakeDirectory) {
+			FakeDirectory parentDir = (FakeDirectory) parent;
 			return parentDir.addFSO(new FakeDirectory(folderName));
 		}
+
 		return false;
 	}
 
@@ -95,14 +94,10 @@ public class FakeFileSystemAdapter implements FileSystemAdapter {
 
 		if (!fileName.equals("")) {
 			String parentDirPath = PathContainer.getParentPath(filePath);
+			FakeFSO parentFSO = root.pathSearch(parentDirPath);
 
-			if (parentDirPath.equals("")) {
-				return root.addFSO(new FakeFile(fileName, ""));
-
-
-			} else {
-				FakeDirectory parentDir = (FakeDirectory) root.pathSearch(parentDirPath);
-//                inväntar implementation av Cd för att säkerställa att detta också funkar:
+			if (parentFSO != null && parentFSO instanceof FakeDirectory) {
+				FakeDirectory parentDir = (FakeDirectory) parentFSO;
 				return parentDir.addFSO(new FakeFile(fileName, ""));
 			}
 		}
@@ -132,7 +127,7 @@ public class FakeFileSystemAdapter implements FileSystemAdapter {
 	@Override
 	public boolean writeToFile(String filePath, String content) {
 		FakeFSO fso = root.pathSearch(filePath);
-		if (fso != null && fso instanceof FakeFile){
+		if (fso != null && fso instanceof FakeFile) {
 			FakeFile file = (FakeFile) fso;
 			file.setContent(content);
 			return true;
