@@ -52,6 +52,27 @@ public class MkdirTest {
 
 	@Test
 	public void doCommand_invalidName() {
-		assertEquals(Mkdir.ERROR_MSG, mkdir.doCommand(currentDir, "New Folder"));
+		assertEquals(Mkdir.ERROR_MSG, mkdir.doCommand(currentDir, ""));
+		assertEquals(Mkdir.ERROR_MSG, mkdir.doCommand(currentDir, ""));
+		assertEquals(Mkdir.ERROR_MSG, mkdir.doCommand(currentDir, "<"));
+		assertEquals(Mkdir.ERROR_MSG, mkdir.doCommand(currentDir, ">"));
+		assertEquals(Mkdir.ERROR_MSG, mkdir.doCommand(currentDir, ":"));
+		assertEquals(Mkdir.ERROR_MSG, mkdir.doCommand(currentDir, "\""));
+		assertEquals(Mkdir.ERROR_MSG, mkdir.doCommand(currentDir, "/"));
+		assertEquals(Mkdir.ERROR_MSG, mkdir.doCommand(currentDir, "|"));
+		assertEquals(Mkdir.ERROR_MSG, mkdir.doCommand(currentDir, "?"));
+		assertEquals(Mkdir.ERROR_MSG, mkdir.doCommand(currentDir, "*"));
+		assertEquals(Mkdir.ERROR_MSG, mkdir.doCommand(currentDir, "\\"));
+		assertEquals(Mkdir.ERROR_MSG, mkdir.doCommand(currentDir, "<"));
+		assertEquals(Mkdir.ERROR_MSG, mkdir.doCommand(currentDir, amountCharacterString(256)));
+		assertEquals(256, amountCharacterString(256).length());
+	}
+
+	private String amountCharacterString(int amount){
+		String ret = "";
+		for(int i = 0; i < amount; i++){
+			ret += "a";
+		}
+		return ret;
 	}
 }

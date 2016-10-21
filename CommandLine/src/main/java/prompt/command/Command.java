@@ -35,7 +35,8 @@ public abstract class Command {
     protected abstract String doCommand(PathContainer currentDir, String input);
 
     public static boolean validFSOName(String name) {
-        return(!name.contains(" ")
+        return(!name.equals("")
+		&&!name.contains(" ")
                 &&!name.contains("<")
                 &&!name.contains(">")
                 &&!name.contains(":")
