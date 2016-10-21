@@ -27,7 +27,7 @@ public class LsTest {
 		currentDir = new PathContainer("/Folder1");
 		input = null;
 
-		ls = new Ls(new CommandPrompt(fakeAdapter));
+		ls = new Ls();
 	}
 
 	@Test

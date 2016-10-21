@@ -9,10 +9,6 @@ public class Append extends Command {
 
 	public static final String UNABLE_TO_APPEND = "Could not write to file :'(";
 
-	public Append(CommandPrompt cp){
-		super(cp);
-	}
-
 	public String doCommand(PathContainer currentPathContainer, String input) {
 		boolean cdFromRootDir = input.startsWith(PathContainer.DIR_SEPERATOR);
 		FileSystemAdapter adapter = super.getAdapter();

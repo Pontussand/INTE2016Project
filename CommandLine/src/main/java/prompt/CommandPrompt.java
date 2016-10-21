@@ -26,14 +26,14 @@ public class CommandPrompt {
 	}
 
 	private void initialize() {
-		commands.put("append", new Append(this));
-		commands.put("cd", new Cd(this));
-		commands.put("ls", new Ls(this));
-		commands.put("history", new History(this));
-		commands.put("mkdir", new Mkdir(this));
-		commands.put("mkdirs", new Mkdirs(this));
-		commands.put("pwd", new Pwd(this));
-		commands.put("touch", new Touch(this));
+		commands.put("append", new Append());
+		commands.put("cd", new Cd());
+		commands.put("ls", new Ls());
+		commands.put("history", new History());
+		commands.put("mkdir", new Mkdir());
+		commands.put("mkdirs", new Mkdirs());
+		commands.put("pwd", new Pwd());
+		commands.put("touch", new Touch());
 
 		currentDir.setPath(adapter.rootDirectory());
 	}

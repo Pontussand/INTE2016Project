@@ -13,12 +13,6 @@ public abstract class Command {
     static public List<String> commandHistory = new LinkedList<String>();
     public static int maxHistory = 10;
 
-    protected CommandPrompt ownerCommandPrompt = null;
-
-    public Command(CommandPrompt cp){
-        this.ownerCommandPrompt = cp;
-    }
-
     public static void setAdapter(FileSystemAdapter input) {
         adapter = input;
     }

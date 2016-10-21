@@ -7,10 +7,6 @@ import file_system_adapter.FileSystemAdapter;
 
 public class Ls extends Command {
 
-    public Ls(CommandPrompt cp){
-        super(cp);
-    }
-
     public String doCommand(PathContainer currentDir, String input) {
         FileSystemAdapter adapter = super.getAdapter();
 

@@ -29,9 +29,8 @@ public class AppendTest {
 		fakeAdapter = new FakeFileSystemAdapter();
 		fakeAdapter.setRoot(root);
 		currentDir = new PathContainer("");
-		append = new Append(commandPrompt);
-		touch = new Touch(commandPrompt);
-		append = new Append(commandPrompt = new CommandPrompt(fakeAdapter));
+		append = new Append();
+		touch = new Touch();
 		FakeFile file = new FakeFile("textfile.txt", "Hello World");
 		root.addFSO(file);
 	}

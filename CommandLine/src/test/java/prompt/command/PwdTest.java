@@ -25,7 +25,7 @@ public class PwdTest {
         pwd.setAdapter(fakeAdapter);
         currentDir = new PathContainer("/Folder1/Folder2/Folder3");
         input = null;
-        pwd = new Pwd(new CommandPrompt(fakeAdapter));
+        pwd = new Pwd();
     }
 
     @Test

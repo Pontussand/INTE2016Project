@@ -26,7 +26,7 @@ public class MkdirTest {
 		mkdir.setAdapter(fakeAdapter);
 		currentDir = new PathContainer("");
 
-		mkdir = new Mkdir(new CommandPrompt(fakeAdapter));
+		mkdir = new Mkdir();
 	}
 
 	@Test
