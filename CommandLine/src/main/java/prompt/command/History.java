@@ -5,6 +5,14 @@ import prompt.util.PathContainer;
 
 public class History extends Command {
 
+    public History(CommandPrompt prompt) {
+        super(prompt);
+    }
+
+    public String getName(){
+        return "history";
+    }
+
     public String doCommand(PathContainer currentDir, String input) {
         String result = "";
         int i = 0;

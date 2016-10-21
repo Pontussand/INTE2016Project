@@ -27,7 +27,7 @@ public class CdTest {
 		//root
 		currentPathContainer = new PathContainer("");
 
-		cd = new Cd();
+		cd = new Cd(new CommandPrompt(fakeAdapter));
 	}
 
 	@Test

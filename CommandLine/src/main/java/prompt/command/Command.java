@@ -13,6 +13,16 @@ public abstract class Command {
     static public List<String> commandHistory = new LinkedList<String>();
     public static int maxHistory = 10;
 
+
+    protected CommandPrompt ownerCommandPrompt = null;
+
+    public Command(CommandPrompt cp){
+        this.ownerCommandPrompt = cp;
+    }
+
+    public abstract String getName();
+
+
     public static void setAdapter(FileSystemAdapter input) {
         adapter = input;
     }
@@ -20,6 +30,11 @@ public abstract class Command {
     public static FileSystemAdapter getAdapter() {
         return adapter;
     }
+
+    protected boolean shouldBeAddedToHistory(){
+        return true;
+    }
+
     public void addToHistory(String commandUsed) {
         this.commandHistory.add(commandUsed);
         if (this.commandHistory.size()>maxHistory) {
@@ -28,7 +43,9 @@ public abstract class Command {
     }
 
     public String execute(PathContainer currentDir, String target, String input){
-        addToHistory(input);
+        if(shouldBeAddedToHistory()){
+            addToHistory(input);
+        }
         return  doCommand(currentDir, target);
     }
 

@@ -26,7 +26,7 @@ public class HistoryTest {
         fakeAdapter.setRoot(root);
         Command.setAdapter(fakeAdapter);
         currentDir = new PathContainer("");
-        history = new History();
+        history = new History(prompt = new CommandPrompt(fakeAdapter));
         commandHistory.clear();
     }
 

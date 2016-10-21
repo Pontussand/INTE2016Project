@@ -10,14 +10,26 @@ import java.util.ArrayList;
 
 public class FakeFileSystemAdapter implements FileSystemAdapter {
 	public static final String DIR_SEPERATOR = "/";
+	public static final String NULL_ERROR_MESSAGE = "Directory does not exist";
+	public static final String FILE_ERROR_MESSAGE = "Address leads to a textfile";
+
+
+
 	private FakeDirectory root = new FakeDirectory("root");
 
 
 	@Override
 	public String[] ls(String path) {
 		FakeFSO fakeFSO = root.pathSearch(path);
+		String[] errorMessage = new String[1];
 
-		if (fakeFSO instanceof FakeDirectory) {
+		if (fakeFSO == null) {
+			errorMessage[0] = NULL_ERROR_MESSAGE;
+
+		} else if (fakeFSO instanceof FakeFile) {
+			errorMessage[0] = FILE_ERROR_MESSAGE;
+
+		} else if (fakeFSO instanceof FakeDirectory) {
 			FakeFSO[] fsoArray = ((FakeDirectory) fakeFSO).getContent();
 			String[] listOfContent = new String[fsoArray.length];
 

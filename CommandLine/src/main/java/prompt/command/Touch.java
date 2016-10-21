@@ -9,6 +9,14 @@ public class Touch extends Command {
 
 	public static final String UNABLE_TO_CREATE = "Could not create file :'(";
 
+	public Touch(CommandPrompt cp){
+		super(cp);
+	}
+
+	public String getName(){
+		return "touch";
+	}
+
 	public String doCommand(PathContainer currentPathContainer, String input) {
 //		boolean cdFromRootDir = input.startsWith(PathContainer.DIR_SEPERATOR);
 

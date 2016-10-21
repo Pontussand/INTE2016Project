@@ -9,6 +9,14 @@ public class Mkdirs extends Command {
 
 	public static final String ERROR_MSG = "Could not create directory. ;_;";
 
+	public Mkdirs(CommandPrompt cp){
+		super(cp);
+	}
+
+	public String getName(){
+		return "mkdirs";
+	}
+
 	public String doCommand(PathContainer currentDir, String input) {
 		FileSystemAdapter adapter = super.getAdapter();
 		String path = currentDir.getPath();

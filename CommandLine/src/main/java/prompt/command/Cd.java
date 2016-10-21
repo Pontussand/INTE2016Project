@@ -8,6 +8,14 @@ public class Cd extends Command {
 
 	public static final String NO_SUCH_DIR_MSG = "Could not find that directory :'(";
 
+	public Cd(CommandPrompt cp){
+		super(cp);
+	}
+
+	public String getName(){
+		return "cd";
+	}
+
 	public String doCommand(PathContainer currentPathContainer, String input) {
 		boolean cdFromRootDir = input.startsWith(PathContainer.DIR_SEPERATOR);
 		FileSystemAdapter adapter = super.getAdapter();
