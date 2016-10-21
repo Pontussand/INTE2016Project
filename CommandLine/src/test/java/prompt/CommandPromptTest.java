@@ -34,5 +34,21 @@ public class CommandPromptTest {
 		assertEquals("0 history", cp.command("history"));
 	}
 
+	@Test
+	public void command_append_responding() {
+
+/**		lite svårt att få respons av Append på ett "enkelt" sätt
+*		för att Append ska funka så måste jag ju sätta upp en existerande fil med Touch först
+*		och försöka skriva till den.
+ *		*/
+
+		assertEquals("Could not write to file :'(", cp.command("append nonExistingFile content"));
+	}
+
+	@Test
+	public void command_mkdir_responding() {
+		assertEquals("", cp.command("mkdir FolderName"));
+	}
+
 
 }
