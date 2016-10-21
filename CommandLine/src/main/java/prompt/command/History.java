@@ -9,6 +9,10 @@ public class History extends Command {
         super(prompt);
     }
 
+    public String getName(){
+        return "history";
+    }
+
     public String doCommand(PathContainer currentDir, String input) {
         String result = "";
         int i = 0;

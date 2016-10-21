@@ -13,6 +13,10 @@ public class Append extends Command {
 		super(cp);
 	}
 
+	public String getName(){
+		return "append";
+	}
+
 	public String doCommand(PathContainer currentPathContainer, String input) {
 		boolean cdFromRootDir = input.startsWith(PathContainer.DIR_SEPERATOR);
 		FileSystemAdapter adapter = super.getAdapter();

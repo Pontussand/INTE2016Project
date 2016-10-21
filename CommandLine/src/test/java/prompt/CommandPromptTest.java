@@ -77,6 +77,12 @@ public class CommandPromptTest {
 	}
 
 	@Test
+	public void command_repeatLast_responding() {
+		commandHistory.add("history");
+		assertEquals("0 history\n1 history", prompt.command("!!"));
+	}
+
+	@Test
 	public void command_touch_responding() {
 		assertEquals("Could not create file :'(", prompt.command("touch File"));
 	}

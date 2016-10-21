@@ -9,6 +9,10 @@ public class Pwd extends Command {
         super(cp);
     }
 
+    public String getName(){
+        return "pwd";
+    }
+
     public String doCommand(PathContainer currentDir, String input) {
        String output = currentDir.getPath();
 
