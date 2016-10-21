@@ -41,14 +41,14 @@ public class CommandPrompt {
 	}
 
 	private void run() {
-		while(loop) {
+		while (loop) {
 			System.out.println(command(scan.nextLine()));
 		}
 	}
 
-	private void addCommandToList(String commandUsed){
+	private void addCommandToList(String commandUsed) {
 		this.commandHistory.add(commandUsed);
-		if(this.commandHistory.size()>maxHistory){
+		if (this.commandHistory.size()>maxHistory) {
 			commandHistory.remove(0);
 		}
 	}
@@ -57,12 +57,12 @@ public class CommandPrompt {
 		String commandPart = commandInput;
 		String target = "";
 
-		if(commandInput.contains(" ")){
+		if (commandInput.contains(" ")) {
 			commandPart = commandInput.split(" ")[0];
 			target = commandInput.substring(commandInput.indexOf(" ") +1);
 		}
 
-		if(commandInput.equals("exit")){
+		if (commandInput.equals("exit")) {
 			loop = false;
 			return "CommandPrompt is shutting down";
 		}
@@ -70,7 +70,7 @@ public class CommandPrompt {
 		addCommandToList(commandInput);
 		Command command = commands.get(commandPart);
 
-		if(command == null){
+		if (command == null) {
 			return commandPart + " is an invalid command";
 		}
 		return command.doCommand(currentDir, target);
