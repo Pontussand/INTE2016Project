@@ -33,9 +33,9 @@ public class CommandPrompt {
 		addCommand(new Mkdir(this));
 		addCommand(new Mkdirs(this));
 		addCommand(new Pwd(this));
+		addCommand(new RepeatFromHistory(this));
 		addCommand(new RepeatLast(this));
 		addCommand(new Touch(this));
-
 
 		currentDir.setPath(adapter.rootDirectory());
 	}
