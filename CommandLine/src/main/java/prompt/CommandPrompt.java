@@ -11,8 +11,6 @@ import java.util.*;
 
 public class CommandPrompt {
 	private Scanner scan = new Scanner(System.in);
-	public List<String> commandHistory = new LinkedList<String>();
-	private static int maxHistory = 10;
 	private FileSystemAdapter adapter;
 	private PathContainer currentDir = new PathContainer("");
 	private boolean loop = true;
@@ -46,13 +44,6 @@ public class CommandPrompt {
 		}
 	}
 
-	private void addCommandToList(String commandUsed) {
-		this.commandHistory.add(commandUsed);
-		if (this.commandHistory.size()>maxHistory) {
-			commandHistory.remove(0);
-		}
-	}
-
 	public String command(String commandInput) {
 		String commandPart = commandInput;
 		String target = "";
@@ -67,13 +58,13 @@ public class CommandPrompt {
 			return "CommandPrompt is shutting down";
 		}
 
-		addCommandToList(commandInput);
 		Command command = commands.get(commandPart);
 
 		if (command == null) {
 			return commandPart + " is an invalid command";
 		}
-		return command.doCommand(currentDir, target);
+
+		return command.execute(currentDir, target, commandInput);
 	}
 
 	public static void main(String[] args) {
