@@ -33,4 +33,32 @@ public class PathContainerTest {
 		String actual = PathContainer.getParentPath("/folder1/folder2/Dir");
 		assertEquals(expected, actual);
 	}
+
+	@Test
+	public void getFullPath_fromRootToAbsolutePath(){
+		String expected = "/folder1";
+		String actual = PathContainer.getFullPath("", "/folder1");
+		assertEquals(expected, actual);
+	}
+
+	@Test
+	public void getFullPath_fromRootToRelativePath(){
+		String expected = "/folder1";
+		String actual = PathContainer.getFullPath("", "folder1");
+		assertEquals(expected, actual);
+	}
+
+	@Test
+	public void getFullPath_fromSubdirToAbsolutePath(){
+		String expected = "/subdir/folder1";
+		String actual = PathContainer.getFullPath("/subdir", "/subdir/folder1");
+		assertEquals(expected, actual);
+	}
+
+	@Test
+	public void getFullPath_fromSubdirToRelativePath(){
+		String expected = "/subdir/folder1";
+		String actual = PathContainer.getFullPath("/subdir", "folder1");
+		assertEquals(expected, actual);
+	}
 }

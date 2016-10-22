@@ -33,6 +33,18 @@ public class PathContainer {
 		return path.substring(start, stop);
 	}
 
+	public static String getFullPath(String currentPath, String newPath) {
+		String result = currentPath;
+		boolean fullPath = newPath.startsWith(DIR_SEPERATOR);
+
+		if (fullPath) {
+			result = newPath;
+		} else {
+			result += DIR_SEPERATOR + newPath;
+		}
+		return result;
+	}
+
 	public String getPath() {
 		return path;
 	}

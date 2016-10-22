@@ -19,22 +19,17 @@ public class Ls extends Command {
 
     public String doCommand(PathContainer currentDir, String input) {
         FileSystemAdapter adapter = super.getAdapter();
+        String currDir = currentDir.getPath();
+        String fullPath;
         String output = "";
-        String path;
 
-        if (adapter instanceof FakeFileSystemAdapter) {
-            input = "/" + input;
-        }
-
-        if (input.length() > 0 && adapter.isDir(input)) {
-            PathContainer newPathContainer = new PathContainer(input);
-            path = newPathContainer.getPath();
-
+        if (input != null && input.length() > 0) {
+            fullPath = PathContainer.getFullPath(currDir, input);
         } else {
-            path = currentDir.getPath();
+            fullPath = currDir;
         }
 
-        String[] fsoNames = adapter.ls(path);
+        String[] fsoNames = adapter.ls(fullPath);
         for (String name : fsoNames) {
             output += name + "\n";
         }
