@@ -9,7 +9,7 @@ public class Cat extends Command{
     public Cat(CommandPrompt cp){
         super(cp);
     }
-    
+
     public String getName(){
         return "cat";
     }
