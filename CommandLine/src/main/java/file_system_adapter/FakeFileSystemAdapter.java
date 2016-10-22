@@ -167,4 +167,15 @@ public class FakeFileSystemAdapter implements FileSystemAdapter {
 	public String rootDirectory() {
 		return "";
 	}
+
+	@Override
+	public String readFromFile(String filePath){
+		FakeFSO fso = root.pathSearch(filePath);
+		if (fso != null && fso instanceof FakeFile) {
+			FakeFile file = (FakeFile) fso;
+			String content = file.getContent();
+			return content;
+		}
+		return "";
+	}
 }

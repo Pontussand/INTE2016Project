@@ -94,6 +94,11 @@ public class RealSystemFileAdapter implements FileSystemAdapter {
 		return new File(System.getProperty("user.dir")).getAbsolutePath();
 	}
 
+	@Override
+	public String readFromFile(String filePath){
+		return "";
+	}
+
     /*OLD:
     @Override
     public ArrayList<String> ls(File path) {
