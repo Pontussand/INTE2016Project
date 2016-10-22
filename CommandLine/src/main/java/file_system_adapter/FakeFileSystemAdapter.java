@@ -23,13 +23,7 @@ public class FakeFileSystemAdapter implements FileSystemAdapter {
 		FakeFSO fakeFSO = root.pathSearch(path);
 		String[] errorMessage = new String[1];
 
-		if (fakeFSO == null) {
-			errorMessage[0] = NULL_ERROR_MESSAGE;
-
-		} else if (fakeFSO instanceof FakeFile) {
-			errorMessage[0] = FILE_ERROR_MESSAGE;
-
-		} else if (fakeFSO instanceof FakeDirectory) {
+		if (fakeFSO instanceof FakeDirectory) {
 			FakeFSO[] fsoArray = ((FakeDirectory) fakeFSO).getContent();
 			String[] listOfContent = new String[fsoArray.length];
 
@@ -40,7 +34,7 @@ public class FakeFileSystemAdapter implements FileSystemAdapter {
 			return listOfContent;
 		}
 
-		return null;
+		return checkFSOForLs(fakeFSO);
 	}
 
 	@Override
