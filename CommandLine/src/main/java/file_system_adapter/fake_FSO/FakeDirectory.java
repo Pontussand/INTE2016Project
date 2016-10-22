@@ -25,6 +25,32 @@ public class FakeDirectory extends FakeFSO {
 		return children.toArray(ret);
 	}
 
+	public FakeFSO[] getDirs(){
+		List<FakeFSO> children = new ArrayList<>(content.values());
+		Collections.sort(children);
+		List<FakeFSO> dirs = new ArrayList<>();
+		for(int i = 0; i < children.size(); i++){
+			if(children.get(i) instanceof FakeDirectory){
+				dirs.add(children.get(i));
+			}
+		}
+		FakeFSO[] dirArray = new FakeFSO[dirs.size()];
+		return dirs.toArray(dirArray);
+	}
+
+	public FakeFSO[] getFiles(){
+		List<FakeFSO> children = new ArrayList<>(content.values());
+		Collections.sort(children);
+		List<FakeFSO> files = new ArrayList<>();
+		for(int i = 0; i < children.size(); i++){
+			if(children.get(i) instanceof FakeFile){
+				files.add(children.get(i));
+			}
+		}
+		FakeFSO[] dirArray = new FakeFSO[files.size()];
+		return files.toArray(dirArray);
+	}
+
 	/**
 	 * @param fso fake File System Object
 	 * @return true if the FSO was added
