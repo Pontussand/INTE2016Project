@@ -15,6 +15,11 @@ public class Cat extends Command{
     }
 
     public String doCommand(PathContainer currentPathContainer, String input){
-        return "";
+        FileSystemAdapter adapter = super.getAdapter();
+        if(input.contains(" ")){
+            input = input.split(" ")[0];
+        }
+        String path = currentPathContainer.getPath() + "/" + input;
+        return adapter.readFromFile(path);
     }
 }

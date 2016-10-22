@@ -176,6 +176,6 @@ public class FakeFileSystemAdapter implements FileSystemAdapter {
 			String content = file.getContent();
 			return content;
 		}
-		return "";
+		return null;
 	}
 }
