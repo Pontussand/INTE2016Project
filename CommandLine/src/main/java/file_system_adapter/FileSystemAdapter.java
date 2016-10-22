@@ -7,6 +7,10 @@ public interface FileSystemAdapter {
 
     String[] ls(String path);
 
+	String[] lsDir(String path);
+
+	String[] lsFile(String path);
+
 	boolean fsoExist(String path);
 
 	boolean isFile(String path);

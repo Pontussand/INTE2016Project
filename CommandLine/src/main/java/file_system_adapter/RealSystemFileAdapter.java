@@ -37,6 +37,16 @@ public class RealSystemFileAdapter implements FileSystemAdapter {
 	}
 
 	@Override
+	public String[] lsDir(String path){
+		return null;
+	}
+
+	@Override
+	public String[] lsFile(String path){
+		return null;
+	}
+
+	@Override
 	public boolean fsoExist(String path) {
 //		not tested
 		Path file = new File(path).toPath();

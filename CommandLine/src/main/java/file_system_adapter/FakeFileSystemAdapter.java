@@ -44,6 +44,72 @@ public class FakeFileSystemAdapter implements FileSystemAdapter {
 	}
 
 	@Override
+	public String[] lsDir(String path) {
+		FakeFSO fakeFSO = root.pathSearch(path);
+		String[] errorMessage = new String[1];
+
+		if (fakeFSO == null) {
+			errorMessage[0] = NULL_ERROR_MESSAGE;
+
+		} else if (fakeFSO instanceof FakeFile) {
+			errorMessage[0] = FILE_ERROR_MESSAGE;
+
+		} else if (fakeFSO instanceof FakeDirectory) {
+			FakeFSO[] fsoArray = ((FakeDirectory) fakeFSO).getContent();
+			String[] listOfContent = new String[fsoArray.length];
+
+			int a = 0;
+			for (int i = 0; i < fsoArray.length; i++) {
+				if(fsoArray[i] instanceof FakeDirectory) {
+					listOfContent[a] = fsoArray[i].getName();
+					a++;
+				}
+			}
+			for(int i = 0; i <fsoArray.length; i++){
+				if(fsoArray[i] instanceof FakeFile) {
+					listOfContent[a] = fsoArray[i].getName();
+					a++;
+				}
+			}
+			return listOfContent;
+		}
+		return null;
+	}
+
+	@Override
+	public String[] lsFile(String path) {
+		FakeFSO fakeFSO = root.pathSearch(path);
+		String[] errorMessage = new String[1];
+
+		if (fakeFSO == null) {
+			errorMessage[0] = NULL_ERROR_MESSAGE;
+
+		} else if (fakeFSO instanceof FakeFile) {
+			errorMessage[0] = FILE_ERROR_MESSAGE;
+
+		} else if (fakeFSO instanceof FakeDirectory) {
+			FakeFSO[] fsoArray = ((FakeDirectory) fakeFSO).getContent();
+			String[] listOfContent = new String[fsoArray.length];
+
+			int a = 0;
+			for (int i = 0; i < fsoArray.length; i++) {
+				if(fsoArray[i] instanceof FakeFile) {
+					listOfContent[a] = fsoArray[i].getName();
+					a++;
+				}
+			}
+			for(int i = 0; i <fsoArray.length; i++){
+				if(fsoArray[i] instanceof FakeDirectory) {
+					listOfContent[a] = fsoArray[i].getName();
+					a++;
+				}
+			}
+			return listOfContent;
+		}
+		return null;
+	}
+
+	@Override
 	public boolean fsoExist(String path) {
 		return root.pathSearch(path) != null;
 	}
