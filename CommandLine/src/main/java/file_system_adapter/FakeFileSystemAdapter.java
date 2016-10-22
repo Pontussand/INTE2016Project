@@ -51,9 +51,11 @@ public class FakeFileSystemAdapter implements FileSystemAdapter {
 			FakeFSO[] fsoArray = ((FakeDirectory) fakeFSO).getContent();
 			String[] listOfContent = new String[fsoArray.length];
 
+			int a = 0;
 			for (int i = 0; i < fsoArray.length; i++) {
 				if(fsoArray[i] instanceof FakeDirectory) {
-					listOfContent[i] = fsoArray[i].getName();
+					listOfContent[a] = fsoArray[i].getName();
+					a++;
 				}
 			}
 			return listOfContent;
@@ -68,10 +70,12 @@ public class FakeFileSystemAdapter implements FileSystemAdapter {
 		if (fakeFSO instanceof FakeDirectory) {
 			FakeFSO[] fsoArray = ((FakeDirectory) fakeFSO).getContent();
 			String[] listOfContent = new String[fsoArray.length];
-			
+
+			int a = 0;
 			for (int i = 0; i < fsoArray.length; i++) {
 				if(fsoArray[i] instanceof FakeFile) {
-					listOfContent[i] = fsoArray[i].getName();
+					listOfContent[a] = fsoArray[i].getName();
+					a++;
 				}
 			}
 			return listOfContent;
