@@ -13,33 +13,21 @@ public class RealSystemFileAdapter implements FileSystemAdapter {
 
 	@Override
 	public String[] ls(String path) {
-		String[] content;
-
 		Path dir = Paths.get(path);
 		try (DirectoryStream<Path> stream = Files.newDirectoryStream(dir)) {
 			ArrayList<Path> tempContent = new ArrayList<>();
 			for (Path file: stream) {
 				tempContent.add(file);
 			}
-
-			content = new String[tempContent.size()];
-			for (int i = 0; i < tempContent.size(); i++) {
-				Path file = tempContent.get(i);
-				content[i] = file.getFileName().toString();
-			}
-			return content;
-
+			return createArrayForLs(tempContent);
 		} catch (IOException | DirectoryIteratorException x) {
 			System.err.println(x);
 		}
-
 		return null;
 	}
 
 	@Override
 	public String[] lsDir(String path){
-		String[] content;
-
 		Path dir = Paths.get(path);
 		try (DirectoryStream<Path> stream = Files.newDirectoryStream(dir)) {
 			ArrayList<Path> tempContent = new ArrayList<>();
@@ -48,25 +36,15 @@ public class RealSystemFileAdapter implements FileSystemAdapter {
 					tempContent.add(file);
 				}
 			}
-
-			content = new String[tempContent.size()];
-			for (int i = 0; i < tempContent.size(); i++) {
-				Path file = tempContent.get(i);
-				content[i] = file.getFileName().toString();
-			}
-			return content;
-
+			return createArrayForLs(tempContent);
 		} catch (IOException | DirectoryIteratorException x) {
 			System.err.println(x);
 		}
-
 		return null;
 	}
 
 	@Override
 	public String[] lsFile(String path){
-		String[] content;
-
 		Path dir = Paths.get(path);
 		try (DirectoryStream<Path> stream = Files.newDirectoryStream(dir)) {
 			ArrayList<Path> tempContent = new ArrayList<>();
@@ -75,19 +53,21 @@ public class RealSystemFileAdapter implements FileSystemAdapter {
 					tempContent.add(file);
 				}
 			}
-
-			content = new String[tempContent.size()];
-			for (int i = 0; i < tempContent.size(); i++) {
-				Path file = tempContent.get(i);
-				content[i] = file.getFileName().toString();
-			}
-			return content;
-
+			return createArrayForLs(tempContent);
 		} catch (IOException | DirectoryIteratorException x) {
 			System.err.println(x);
 		}
-
 		return null;
+	}
+
+	private String[] createArrayForLs(ArrayList<Path> tempContent){
+		String[] content;
+		content = new String[tempContent.size()];
+		for (int i = 0; i < tempContent.size(); i++) {
+			Path file = tempContent.get(i);
+			content[i] = file.getFileName().toString();
+		}
+		return content;
 	}
 
 	@Override
