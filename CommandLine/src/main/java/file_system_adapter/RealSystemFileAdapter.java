@@ -13,37 +13,61 @@ public class RealSystemFileAdapter implements FileSystemAdapter {
 
 	@Override
 	public String[] ls(String path) {
-		String[] content;
-
 		Path dir = Paths.get(path);
 		try (DirectoryStream<Path> stream = Files.newDirectoryStream(dir)) {
 			ArrayList<Path> tempContent = new ArrayList<>();
 			for (Path file: stream) {
 				tempContent.add(file);
 			}
-
-			content = new String[tempContent.size()];
-			for (int i = 0; i < tempContent.size(); i++) {
-				Path file = tempContent.get(i);
-				content[i] = file.getFileName().toString();
-			}
-			return content;
-
+			return createArrayForLs(tempContent);
 		} catch (IOException | DirectoryIteratorException x) {
 			System.err.println(x);
 		}
-
 		return null;
 	}
 
 	@Override
-	public String[] lsDir(String path){
+	public String[] lsDir(String path) {
+		Path dir = Paths.get(path);
+		try (DirectoryStream<Path> stream = Files.newDirectoryStream(dir)) {
+			ArrayList<Path> tempContent = new ArrayList<>();
+			for (Path file: stream) {
+				if(isDir(file.toAbsolutePath().toString())) {
+					tempContent.add(file);
+				}
+			}
+			return createArrayForLs(tempContent);
+		} catch (IOException | DirectoryIteratorException x) {
+			System.err.println(x);
+		}
 		return null;
 	}
 
 	@Override
-	public String[] lsFile(String path){
+	public String[] lsFile(String path) {
+		Path dir = Paths.get(path);
+		try (DirectoryStream<Path> stream = Files.newDirectoryStream(dir)) {
+			ArrayList<Path> tempContent = new ArrayList<>();
+			for (Path file: stream) {
+				if(isFile(file.toAbsolutePath().toString())) {
+					tempContent.add(file);
+				}
+			}
+			return createArrayForLs(tempContent);
+		} catch (IOException | DirectoryIteratorException x) {
+			System.err.println(x);
+		}
 		return null;
+	}
+
+	private String[] createArrayForLs(ArrayList<Path> tempContent) {
+		String[] content;
+		content = new String[tempContent.size()];
+		for (int i = 0; i < tempContent.size(); i++) {
+			Path file = tempContent.get(i);
+			content[i] = file.getFileName().toString();
+		}
+		return content;
 	}
 
 	@Override
@@ -110,48 +134,37 @@ public class RealSystemFileAdapter implements FileSystemAdapter {
 	}
 
 	@Override
-	public String readFromFile(String filePath){
+	public String readFromFile(String filePath) {
 		return "";
 	}
 
     /*OLD:
     @Override
     public ArrayList<String> ls(File path) {
-
-//        
-
+//
         String[] files = path.list();
-
         ArrayList<String> strings = new ArrayList<>();
-
         if (files == null) {
             System.out.println("the directory doesn't exist.");
         } else if (files.length == 0) {
             System.out.println("The directory is empty");
         } else {
-
             for (String aFile : files) {
                 System.out.println(aFile);
                 strings.add(aFile);
             }
         }
-
         return strings;
     }
-
-
     @Override
     public String findProjectDir() {
         String userDir = new File(System.getProperty("user.dir")).getAbsolutePath();
         return userDir;
     }
-
     @Override
     public File findParentDir(File currentDir) {
-
         return new File(currentDir.getParent());
     }
-
     @Override
     public void mkdir(File newDir) {
         try {
@@ -161,5 +174,3 @@ public class RealSystemFileAdapter implements FileSystemAdapter {
         }
     }*/
 }
-
-

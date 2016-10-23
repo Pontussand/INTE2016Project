@@ -31,19 +31,19 @@ public abstract class Command {
         return adapter;
     }
 
-    protected boolean shouldBeAddedToHistory(){
+    protected boolean shouldBeAddedToHistory() {
         return true;
     }
 
     public void addToHistory(String commandUsed) {
         this.commandHistory.add(commandUsed);
-        if (this.commandHistory.size()>maxHistory) {
+        if (this.commandHistory.size() > maxHistory) {
             commandHistory.remove(0);
         }
     }
 
-    public String execute(PathContainer currentDir, String target, String input){
-        if(shouldBeAddedToHistory()){
+    public String execute(PathContainer currentDir, String target, String input) {
+        if (shouldBeAddedToHistory()) {
             addToHistory(input);
         }
         return  doCommand(currentDir, target);
