@@ -2,6 +2,7 @@ package prompt.command;
 
 import file_system_adapter.FakeFileSystemAdapter;
 import file_system_adapter.fake_FSO.FakeDirectory;
+import file_system_adapter.fake_FSO.FakeFile;
 import org.junit.Before;
 import org.junit.Test;
 import prompt.CommandPrompt;
@@ -42,6 +43,10 @@ public class LsTest {
 		fakeDir2 = new FakeDirectory("SecondFolder");
 		fakeDir2.addFSO(new FakeDirectory("TestFolder1"));
 		fakeDir2.addFSO(new FakeDirectory("TestFolder2"));
+		fakeDir2.addFSO(new FakeDirectory("TestFolder3"));
+		fakeDir2.addFSO(new FakeDirectory("TestFolder4"));
+		fakeDir2.addFSO(new FakeFile("TestFile1", "tom"));
+		fakeDir2.addFSO(new FakeFile("TestFile2", "tom"));
 
 		fakeDir1.addFSO(fakeDir2);
 
@@ -65,9 +70,23 @@ public class LsTest {
 
 	@Test
 	public void doCommand_listingInFolder() {
-		String expected = "TestFolder1\nTestFolder2\n";
+		String expected = "TestFile1\nTestFile2\nTestFolder1\nTestFolder2\nTestFolder3\nTestFolder4\n";
 		assertEquals(expected, ls.doCommand(currentDir, "FirstFolder/SecondFolder"));
 		assertEquals(expected, commandPrompt.command("ls FirstFolder/SecondFolder"));
+	}
+
+	@Test
+	public void doCommand_listingInFolders() {
+		String expected = "TestFolder1\nTestFolder2\nTestFolder3\nTestFolder4\n";
+		assertEquals(expected, ls.doCommand(currentDir, "FirstFolder/SecondFolder -dirs"));
+		assertEquals(expected, commandPrompt.command("ls FirstFolder/SecondFolder -dirs"));
+	}
+
+	@Test
+	public void doCommand_listingInFiles() {
+		String expected = "TestFile1\nTestFile2\n";
+		assertEquals(expected, ls.doCommand(currentDir, "FirstFolder/SecondFolder -files"));
+		assertEquals(expected, commandPrompt.command("ls FirstFolder/SecondFolder -files"));
 	}
 
 
