@@ -83,8 +83,8 @@ public class RealSystemFileAdapter implements FileSystemAdapter {
 	}
 
 	@Override
-	public String appendToFile(String filePath, String content) {
-		return null;
+	public boolean appendToFile(String filePath, String content) {
+		return false;
 	}
 
 	@Override

@@ -23,7 +23,7 @@ public interface FileSystemAdapter {
 
     boolean createFile(String filePath);
 
-	String appendToFile(String filePath, String content);
+	boolean appendToFile(String filePath, String content);
 
 	boolean writeToFile(String filePath, String content);
 

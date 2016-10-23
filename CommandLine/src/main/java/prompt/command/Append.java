@@ -26,10 +26,10 @@ public class Append extends Command {
 		String content = input.substring(input.indexOf(" ") +1);
 
 		String fileWithPath = currentPathContainer.getPath() + "/" + fileName;
-		String result = adapter.appendToFile(fileWithPath, content);
+		boolean appended = adapter.appendToFile(fileWithPath, content);
 
-		if (result != null) {
-			return result;
+		if (appended) {
+			return "";
 		} else {
 			return UNABLE_TO_APPEND;
 		}

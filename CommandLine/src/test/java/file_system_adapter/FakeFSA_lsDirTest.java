@@ -9,7 +9,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertArrayEquals;
 
-public class FSA_lsDirTest {
+public class FakeFSA_lsDirTest {
     FakeFileSystemAdapter fakeAdapter;
     FakeDirectory root;
 
