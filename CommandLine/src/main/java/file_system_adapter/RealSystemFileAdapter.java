@@ -93,6 +93,11 @@ public class RealSystemFileAdapter implements FileSystemAdapter {
 	}
 
 	@Override
+	public boolean copyFSO(String source, String destination){
+		return false;
+	}
+
+	@Override
 	public boolean deleteFSO(String path) {
 
 		return false;

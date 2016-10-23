@@ -15,6 +15,23 @@ public class FakeDirectory extends FakeFSO {
 		super(name);
 	}
 
+	/** used to make a copy of another FakeDirectory*/
+	public FakeDirectory(FakeDirectory other){
+		super(other.getName());
+
+		for(FakeFSO fso : other.getContent()){
+
+			if(fso instanceof FakeDirectory){
+				FakeDirectory fakeDir = (FakeDirectory) fso;
+				addFSO(new FakeDirectory(fakeDir));
+
+			} else if (fso instanceof FakeFile){
+				FakeFile fakeFile = (FakeFile) fso;
+				addFSO(new FakeFile(fakeFile));
+			}
+		}
+	}
+
 	/**
 	 * @return File System Objects sorted by name
 	 */

@@ -28,6 +28,7 @@ public class CommandPrompt {
 	private void initialize() {
 		addCommand(new Append(this));
 		addCommand(new Cd(this));
+		addCommand(new Cp(this));
 		addCommand(new Ls(this));
 		addCommand(new History(this));
 		addCommand(new Mkdir(this));
