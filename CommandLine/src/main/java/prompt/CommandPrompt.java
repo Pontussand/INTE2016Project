@@ -40,11 +40,11 @@ public class CommandPrompt {
 		currentDir.setPath(adapter.rootDirectory());
 	}
 
-	private void addCommand(Command c){
+	private void addCommand(Command c) {
 		commands.put(c.getName(), c);
 	}
 
-	public void setCurrentDir(String path){
+	public void setCurrentDir(String path) {
 		currentDir.setPath(path);
 	}
 

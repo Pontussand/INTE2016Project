@@ -2,6 +2,7 @@ package file_system_adapter;
 
 
 import java.io.File;
+import java.io.FilenameFilter;
 import java.io.IOException;
 import java.nio.file.*;
 import java.util.ArrayList;
@@ -37,7 +38,7 @@ public class RealSystemFileAdapter implements FileSystemAdapter {
 	}
 
 	@Override
-	public String[] lsDir(String path){
+	public String[] lsDir(String path) {
 		return null;
 	}
 

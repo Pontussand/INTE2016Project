@@ -18,6 +18,7 @@ public class Ls extends Command {
     }
 
     public String doCommand(PathContainer currentDir, String input) {
+
         FileSystemAdapter adapter = super.getAdapter();
         String currDir = currentDir.getPath();
         String fullPath;
