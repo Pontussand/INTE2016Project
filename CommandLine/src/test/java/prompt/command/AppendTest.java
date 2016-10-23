@@ -1,15 +1,14 @@
 package prompt.command;
 
-		import file_system_adapter.FakeFileSystemAdapter;
-		import file_system_adapter.fake_FSO.FakeDirectory;
-		import file_system_adapter.fake_FSO.FakeFSO;
-		import file_system_adapter.fake_FSO.FakeFile;
-		import org.junit.Before;
-		import org.junit.Test;
-		import prompt.CommandPrompt;
-		import prompt.util.PathContainer;
+import file_system_adapter.FakeFileSystemAdapter;
+import file_system_adapter.fake_FSO.FakeDirectory;
+import file_system_adapter.fake_FSO.FakeFile;
+import org.junit.Before;
+import org.junit.Test;
+import prompt.CommandPrompt;
+import prompt.util.PathContainer;
 
-		import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertEquals;
 
 
 public class AppendTest {
@@ -18,7 +17,8 @@ public class AppendTest {
 	private FakeFileSystemAdapter fakeAdapter;
 	private FakeDirectory root;
 	private PathContainer currentDir;
-	private String expected = "before:\nHello World\nafter:\nHello World\n";
+
+	private FakeFile testFile;
 
 	@Before
 	public void before() {
@@ -27,21 +27,28 @@ public class AppendTest {
 		fakeAdapter = new FakeFileSystemAdapter();
 		fakeAdapter.setRoot(root);
 		currentDir = new PathContainer("");
+
 		append = new Append(new CommandPrompt(fakeAdapter));
-		FakeFile file = new FakeFile("textfile.txt", "Hello World");
-		root.addFSO(file);
+		append.setAdapter(fakeAdapter);
+
+		testFile = new FakeFile("textfile.txt", "");
+		root.addFSO(testFile);
 	}
 
 	@Test
 	public void doCommand_firstAppend() {
-		expected += "Hello,";
-		assertEquals(expected, append.doCommand(currentDir, "textfile.txt Hello,"));
+		String expected = "Hello, World";
+		assertEquals("", append.doCommand(currentDir, "textfile.txt Hello, World"));
+		assertEquals(expected, testFile.getContent());
 	}
 
 	@Test
 	public void doCommand_appendToExisting() {
-		expected += "I'm Dolly!";
-		assertEquals(expected, append.doCommand(currentDir, "textfile.txt I'm Dolly!"));
+		testFile.setContent("I'm ");
+		String expected = "I'm \nDolly!";
+
+		assertEquals("", append.doCommand(currentDir, "textfile.txt Dolly!"));
+		assertEquals(expected, testFile.getContent());
 	}
 
 	@Test
