@@ -38,11 +38,55 @@ public class RealSystemFileAdapter implements FileSystemAdapter {
 
 	@Override
 	public String[] lsDir(String path){
+		String[] content;
+
+		Path dir = Paths.get(path);
+		try (DirectoryStream<Path> stream = Files.newDirectoryStream(dir)) {
+			ArrayList<Path> tempContent = new ArrayList<>();
+			for (Path file: stream) {
+				if(isDir(file.toAbsolutePath().toString())) {
+					tempContent.add(file);
+				}
+			}
+
+			content = new String[tempContent.size()];
+			for (int i = 0; i < tempContent.size(); i++) {
+				Path file = tempContent.get(i);
+				content[i] = file.getFileName().toString();
+			}
+			return content;
+
+		} catch (IOException | DirectoryIteratorException x) {
+			System.err.println(x);
+		}
+
 		return null;
 	}
 
 	@Override
 	public String[] lsFile(String path){
+		String[] content;
+
+		Path dir = Paths.get(path);
+		try (DirectoryStream<Path> stream = Files.newDirectoryStream(dir)) {
+			ArrayList<Path> tempContent = new ArrayList<>();
+			for (Path file: stream) {
+				if(isFile(file.toAbsolutePath().toString())) {
+					tempContent.add(file);
+				}
+			}
+
+			content = new String[tempContent.size()];
+			for (int i = 0; i < tempContent.size(); i++) {
+				Path file = tempContent.get(i);
+				content[i] = file.getFileName().toString();
+			}
+			return content;
+
+		} catch (IOException | DirectoryIteratorException x) {
+			System.err.println(x);
+		}
+
 		return null;
 	}
 
