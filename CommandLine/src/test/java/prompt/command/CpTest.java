@@ -9,6 +9,7 @@ import prompt.CommandPrompt;
 import prompt.util.PathContainer;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class CpTest {
 
@@ -39,5 +40,30 @@ public class CpTest {
 
 		assertEquals("", cp.doCommand(workingDir, "file.txt destination"));
 		assertEquals(file, destination.getContent()[0]);
+	}
+
+	@Test
+	public void doCommand_fileFromRootToNonexistentSub(){
+		FakeFile file = new FakeFile("file.txt", "");
+		root.addFSO(file);
+		assertEquals(cp.COULDNT_COPY, cp.doCommand(workingDir, "file.txt destination"));
+	}
+
+	@Test
+	public void doCommand_emptyDirFromRootToSub() {
+		FakeDirectory dir = new FakeDirectory("dir");
+		FakeDirectory destination = new FakeDirectory("destination");
+		root.addFSO(dir);
+		root.addFSO(destination);
+
+		assertEquals("", cp.doCommand(workingDir, "dir destination"));
+		assertEquals(dir, destination.getContent()[0]);
+	}
+
+	@Test
+	public void doCommand_dirFromRootToNonexistentSub(){
+		FakeDirectory dir = new FakeDirectory("dir");
+		root.addFSO(dir);
+		assertEquals(cp.COULDNT_COPY, cp.doCommand(workingDir, "dir destination"));
 	}
 }
