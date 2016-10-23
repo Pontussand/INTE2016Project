@@ -155,21 +155,19 @@ public class FakeFileSystemAdapter implements FileSystemAdapter {
 	}
 
 	@Override
-	public String appendToFile(String filePath, String content) {
-		FakeFile fakeFile = (FakeFile) root.pathSearch(filePath);
+	public boolean appendToFile(String filePath, String content) {
+		FakeFSO fakeFSO = root.pathSearch(filePath);
 
-		if (fakeFile == null) {
-			return null;
-		} else {
+		if (fakeFSO != null && fakeFSO instanceof FakeFile){
+			FakeFile fakeFile = (FakeFile) fakeFSO;
+
 			if (!fakeFile.getContent().equals("")) {
 				content = "\n" + content;
 			}
-			String result = "before:\n"+fakeFile.getContent()+ "\nafter:\n";
 			fakeFile.append(content);
-			result += fakeFile.getContent();
-			return result;
+			return true;
 		}
-//not finished
+		return false;
 	}
 
 	@Override
