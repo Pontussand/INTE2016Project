@@ -53,17 +53,17 @@ public abstract class Command {
 
     public static boolean validFSOName(String name) {
         return(!name.equals("")
-		&&!name.contains(" ")
-                &&!name.contains("<")
-                &&!name.contains(">")
-                &&!name.contains(":")
-                &&!name.contains("\"") //quote
-                &&!name.contains("/")
-                &&!name.contains("|")
-                &&!name.contains("?")
-                &&!name.contains("*")
-                &&!name.contains("\\") //backslash
-                && (name.length() < 256));
+            &&!name.contains(" ")
+            &&!name.contains("<")
+            &&!name.contains(">")
+            &&!name.contains(":")
+            &&!name.contains("\"") //quote
+            &&!name.contains("/")
+            &&!name.contains("|")
+            &&!name.contains("?")
+            &&!name.contains("*")
+            &&!name.contains("\\") //backslash
+            && (name.length() < 256));
     }
 
     public static boolean validFileName(String fileName) {
