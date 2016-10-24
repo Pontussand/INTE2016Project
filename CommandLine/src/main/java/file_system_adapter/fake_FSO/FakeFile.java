@@ -14,6 +14,11 @@ public class FakeFile extends FakeFSO {
 		this.content = content;
 	}
 
+	public FakeFile(FakeFile other){
+		super(other.getName());
+		this.content = other.content;
+	}
+
 	public String getContent() {
 		return this.content;
 	}

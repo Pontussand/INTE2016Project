@@ -14,7 +14,6 @@ public class FakeFileSystemAdapter implements FileSystemAdapter {
 	public static final String FILE_ERROR_MESSAGE = "Address leads to a textfile";
 
 
-
 	private FakeDirectory root = new FakeDirectory("root");
 
 
@@ -46,7 +45,7 @@ public class FakeFileSystemAdapter implements FileSystemAdapter {
 			String[] listOfContent = new String[fsoArray.length];
 
 			for (int i = 0; i < fsoArray.length; i++) {
-					listOfContent[i] = fsoArray[i].getName();
+				listOfContent[i] = fsoArray[i].getName();
 			}
 			return listOfContent;
 		}
@@ -62,7 +61,7 @@ public class FakeFileSystemAdapter implements FileSystemAdapter {
 			String[] listOfContent = new String[fsoArray.length];
 
 			for (int i = 0; i < fsoArray.length; i++) {
-				if(fsoArray[i] instanceof FakeFile) {
+				if (fsoArray[i] instanceof FakeFile) {
 					listOfContent[i] = fsoArray[i].getName();
 				}
 			}
@@ -76,7 +75,7 @@ public class FakeFileSystemAdapter implements FileSystemAdapter {
 			return new String[]{NULL_ERROR_MESSAGE};
 		} else if (ffs instanceof FakeFile) {
 			return new String[]{FILE_ERROR_MESSAGE};
-		}else {
+		} else {
 			return null;
 		}
 	}
@@ -158,7 +157,7 @@ public class FakeFileSystemAdapter implements FileSystemAdapter {
 	public boolean appendToFile(String filePath, String content) {
 		FakeFSO fakeFSO = root.pathSearch(filePath);
 
-		if (fakeFSO != null && fakeFSO instanceof FakeFile){
+		if (fakeFSO != null && fakeFSO instanceof FakeFile) {
 			FakeFile fakeFile = (FakeFile) fakeFSO;
 
 			if (!fakeFile.getContent().equals("")) {
@@ -189,6 +188,26 @@ public class FakeFileSystemAdapter implements FileSystemAdapter {
 	}
 
 	@Override
+	public boolean copyFSO(String sourceFSO, String destinationDir) {
+		FakeFSO src = root.pathSearch(sourceFSO);
+		FakeFSO destFSO = root.pathSearch(destinationDir);
+
+		if (src != null && destFSO != null && destFSO instanceof FakeDirectory) {
+			FakeDirectory destDir = (FakeDirectory) destFSO;
+			FakeFSO srcCopy;
+
+			if (src instanceof FakeDirectory) {
+				srcCopy = new FakeDirectory((FakeDirectory) src);
+			} else {
+				srcCopy = new FakeFile((FakeFile) src);
+			}
+
+			return destDir.addFSO(srcCopy);
+		}
+		return false;
+	}
+
+	@Override
 	public boolean deleteFSO(String path) {
 		if (isDir(path) || isFile(path)) {
 			FakeDirectory parent = (FakeDirectory) root.pathSearch(PathContainer.getParentPath(path));
@@ -205,7 +224,7 @@ public class FakeFileSystemAdapter implements FileSystemAdapter {
 	}
 
 	@Override
-	public String readFromFile(String filePath){
+	public String readFromFile(String filePath) {
 		FakeFSO fso = root.pathSearch(filePath);
 		if (fso != null && fso instanceof FakeFile) {
 			FakeFile file = (FakeFile) fso;
