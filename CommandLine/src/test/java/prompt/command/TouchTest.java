@@ -38,122 +38,122 @@ public class TouchTest {
 
     @Test
     public void doCommand_fileAlreadyExists() {
-        assertEquals("There is already a file with that name, try again", touch.doCommand(currentDir,"fil.txt"));
+        assertEquals(touch.FILE_EXISTS, touch.doCommand(currentDir,"fil.txt"));
     }
 
     @Test
     public void doCommand_wrongFileType() {
-        assertEquals("That is not a valid file name, try again", touch.doCommand(currentDir,"fil"));
+        assertEquals(touch.INVALID_FILE_NAME, touch.doCommand(currentDir,"fil"));
     }
 
     @Test
     public void doCommand_fileName_toLong() {
-        assertEquals("That is not a valid file name, try again", touch.doCommand(currentDir,nameLength(254)+".txt"));
+        assertEquals(touch.INVALID_FILE_NAME, touch.doCommand(currentDir,nameLength(254)+".txt"));
     }
 
     @Test
     public void doCommand_fileName_toShort() {
-        assertEquals("That is not a valid file name, try again", touch.doCommand(currentDir,".txt"));
+        assertEquals(touch.INVALID_FILE_NAME, touch.doCommand(currentDir,".txt"));
     }
 
     @Test
     public void doCommand_fileName_invalidCharSmaller() {
-        assertEquals("That is not a valid file name, try again", touch.doCommand(currentDir,"<fil.txt"));
+        assertEquals(touch.INVALID_FILE_NAME, touch.doCommand(currentDir,"<fil.txt"));
     }
 
     @Test
     public void doCommand_fileName_invalidCharSpace() {
-        assertEquals("That is not a valid file name, try again", touch.doCommand(currentDir,"f il.txt"));
+        assertEquals(touch.INVALID_FILE_NAME, touch.doCommand(currentDir,"f il.txt"));
     }
 
     @Test
     public void doCommand_fileName_invalidCharBigger() {
-        assertEquals("That is not a valid file name, try again", touch.doCommand(currentDir,">fil.txt"));
+        assertEquals(touch.INVALID_FILE_NAME, touch.doCommand(currentDir,">fil.txt"));
     }
 
     @Test
     public void doCommand_fileName_invalidCharColon() {
-        assertEquals("That is not a valid file name, try again", touch.doCommand(currentDir,":fil.txt"));
+        assertEquals(touch.INVALID_FILE_NAME, touch.doCommand(currentDir,":fil.txt"));
     }
 
     @Test
     public void doCommand_fileName_invalidCharQuote() {
-        assertEquals("That is not a valid file name, try again", touch.doCommand(currentDir,"\"fil.txt"));
+        assertEquals(touch.INVALID_FILE_NAME, touch.doCommand(currentDir,"\"fil.txt"));
     }
 
     @Test
     public void doCommand_fileName_invalidCharSlash() {
-        assertEquals("That is not a valid file name, try again", touch.doCommand(currentDir,"/fil.txt"));
+        assertEquals(touch.INVALID_FILE_NAME, touch.doCommand(currentDir,"/fil.txt"));
     }
 
     @Test
     public void doCommand_fileName_invalidCharBar() {
-        assertEquals("That is not a valid file name, try again", touch.doCommand(currentDir,"|fil.txt"));
+        assertEquals(touch.INVALID_FILE_NAME, touch.doCommand(currentDir,"|fil.txt"));
     }
 
     @Test
     public void doCommand_fileName_invalidCharQuestion() {
-        assertEquals("That is not a valid file name, try again", touch.doCommand(currentDir,"?fil.txt"));
+        assertEquals(touch.INVALID_FILE_NAME, touch.doCommand(currentDir,"?fil.txt"));
     }
 
     @Test
     public void doCommand_fileName_invalidCharAsterisk() {
-        assertEquals("That is not a valid file name, try again", touch.doCommand(currentDir,"*fil.txt"));
+        assertEquals(touch.INVALID_FILE_NAME, touch.doCommand(currentDir,"*fil.txt"));
     }
 
     @Test
     public void doCommand_fileName_invalidCharBackslash() {
-        assertEquals("That is not a valid file name, try again", touch.doCommand(currentDir,"\\fil.txt"));
+        assertEquals(touch.INVALID_FILE_NAME, touch.doCommand(currentDir,"\\fil.txt"));
     }
 
     @Test
     public void doCommand_path_toLong() {
-        assertEquals("That is not a valid file name, try again", touch.doCommand(currentDir,nameLength(256) + " fil.txt"));
+        assertEquals(touch.INVALID_PATH, touch.doCommand(currentDir,nameLength(256) + " fil.txt"));
     }
 
     @Test
     public void doCommand_path_invalidCharSmaller() {
-        assertEquals("That is not a valid file name, try again", touch.doCommand(currentDir,"ma<pp fil.txt"));
+        assertEquals(touch.INVALID_PATH, touch.doCommand(currentDir,"ma<pp fil.txt"));
     }
 
     @Test
     public void doCommand_path_invalidCharSpace() {
-        assertEquals("That is not a valid file name, try again", touch.doCommand(currentDir,"ma pp fil.txt"));
+        assertEquals(touch.INVALID_PATH, touch.doCommand(currentDir,"ma pp fil.txt"));
     }
 
     @Test
     public void doCommand_path_invalidCharBigger() {
-        assertEquals("That is not a valid file name, try again", touch.doCommand(currentDir,"ma>pp fil.txt"));
+        assertEquals(touch.INVALID_PATH, touch.doCommand(currentDir,"ma>pp fil.txt"));
     }
 
     @Test
     public void doCommand_path_invalidCharColon() {
-        assertEquals("That is not a valid file name, try again", touch.doCommand(currentDir,"ma:pp fil.txt"));
+        assertEquals(touch.INVALID_PATH, touch.doCommand(currentDir,"ma:pp fil.txt"));
     }
 
     @Test
     public void doCommand_path_invalidCharQuote() {
-        assertEquals("That is not a valid file name, try again", touch.doCommand(currentDir,"ma\"pp fil.txt"));
+        assertEquals(touch.INVALID_PATH, touch.doCommand(currentDir,"ma\"pp fil.txt"));
     }
 
     @Test
     public void doCommand_path_invalidCharBar() {
-        assertEquals("That is not a valid file name, try again", touch.doCommand(currentDir,"ma|pp fil.txt"));
+        assertEquals(touch.INVALID_PATH, touch.doCommand(currentDir,"ma|pp fil.txt"));
     }
 
     @Test
     public void doCommand_path_invalidCharQuestion() {
-        assertEquals("That is not a valid file name, try again", touch.doCommand(currentDir,"ma?pp fil.txt"));
+        assertEquals(touch.INVALID_PATH, touch.doCommand(currentDir,"ma?pp fil.txt"));
     }
 
     @Test
     public void doCommand_path_invalidCharAsterisk() {
-        assertEquals("That is not a valid file name, try again", touch.doCommand(currentDir,"ma*pp fil.txt"));
+        assertEquals(touch.INVALID_PATH, touch.doCommand(currentDir,"ma*pp fil.txt"));
     }
 
     @Test
     public void doCommand_path_invalidCharBackslash() {
-        assertEquals("That is not a valid file name, try again", touch.doCommand(currentDir,"ma\\\\pp fil.txt"));
+        assertEquals(touch.INVALID_PATH, touch.doCommand(currentDir,"ma\\\\pp fil.txt"));
     }
-    
+
 }
