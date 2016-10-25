@@ -13,16 +13,11 @@ public class Touch extends Command {
 	public static final String INVALID_PATH = "That is not a valid path, try again";
 
 
-	public Touch(CommandPrompt cp){
-		super(cp);
-	}
-
-	public String getName(){
-		return "touch";
+	public Touch(CommandPrompt prompt){
+		super(prompt, "touch");
 	}
 
 	public String doCommand(PathContainer currentPathContainer, String input) {
-//		boolean cdFromRootDir = input.startsWith(PathContainer.DIR_SEPERATOR);
 
 		if (!validFileName(input)) {
 			return UNABLE_TO_CREATE;

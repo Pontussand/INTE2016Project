@@ -7,22 +7,16 @@ import file_system_adapter.FileSystemAdapter;
 
 public class Mkdirs extends Command {
 
-	public static final String ERROR_MSG = "Could not create directory. ;_;";
-
-	public Mkdirs(CommandPrompt cp){
-		super(cp);
-	}
-
-	public String getName(){
-		return "mkdirs";
+	public Mkdirs(CommandPrompt prompt){
+		super(prompt, "mkdirs");
 	}
 
 	public String doCommand(PathContainer currentDir, String input) {
 		FileSystemAdapter adapter = super.getAdapter();
 		String path = currentDir.getPath();
 
-		if (currentDir.equals("/")) {
-			path += input;
+		if (input.startsWith("/")) {
+			path = input;
 		} else {
 			path += "/" + input;
 		}
@@ -30,7 +24,7 @@ public class Mkdirs extends Command {
 		if (adapter.mkdirs(path)) {
 			return "";
 		} else {
-			return ERROR_MSG;
+			return Mkdir.ERROR_MSG;
 		}
 	}
 }

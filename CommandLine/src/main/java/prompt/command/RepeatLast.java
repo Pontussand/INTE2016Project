@@ -8,11 +8,7 @@ public class RepeatLast extends Command {
     public final static String NO_PREVIOUS_COMMAND = "Sorry there are no previous commands";
 
     public RepeatLast(CommandPrompt prompt) {
-        super(prompt);
-    }
-
-    public String getName(){
-        return "!!";
+        super(prompt, "!!");
     }
 
     public String doCommand(PathContainer currentDir, String input) {

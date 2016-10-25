@@ -9,12 +9,8 @@ import file_system_adapter.FileSystemAdapter;
 
 public class Ls extends Command {
 
-    public Ls(CommandPrompt cp){
-        super(cp);
-    }
-
-    public String getName(){
-        return "ls";
+    public Ls(CommandPrompt prompt){
+        super(prompt, "ls");
     }
 
     public String doCommand(PathContainer currentDir, String input) {

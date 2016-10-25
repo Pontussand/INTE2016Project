@@ -9,11 +9,7 @@ public class RepeatFromHistory extends Command {
     public final static String OUT_OF_BOUNDS_HISTORY = "You haven't made that many commands, try again!";
 
     public RepeatFromHistory(CommandPrompt prompt) {
-        super(prompt);
-    }
-
-    public String getName(){
-        return "!";
+        super(prompt, "!");
     }
 
     public String doCommand(PathContainer currentDir, String input) {
