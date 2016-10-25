@@ -8,11 +8,7 @@ public class Cp extends Command {
 	public static final String COULDNT_COPY = "Could not copy. The destination already exist or the source doesn't.";
 
 	public Cp(CommandPrompt prompt) {
-		super(prompt);
-	}
-
-	public String getName() {
-		return "cp";
+		super(prompt, "cp");
 	}
 
 	protected String doCommand(PathContainer currentDir, String input) {

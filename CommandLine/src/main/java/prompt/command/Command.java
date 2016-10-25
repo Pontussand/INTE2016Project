@@ -10,19 +10,21 @@ import java.util.List;
 public abstract class Command {
 
     private static FileSystemAdapter adapter;
-    static public List<String> commandHistory = new LinkedList<String>();
+    public static List<String> commandHistory = new LinkedList<String>();
     public static int maxHistory = 10;
+    private String name;
 
 
-    protected CommandPrompt ownerCommandPrompt = null;
+    protected CommandPrompt ownerCommandPrompt;
 
-    public Command(CommandPrompt cp){
-        this.ownerCommandPrompt = cp;
+    public Command(CommandPrompt prompt, String name) {
+        this.ownerCommandPrompt = prompt;
+        this.name = name;
     }
 
-    public abstract String getName();
-
-
+    public String getName() {
+        return name;
+    }
     public static void setAdapter(FileSystemAdapter input) {
         adapter = input;
     }

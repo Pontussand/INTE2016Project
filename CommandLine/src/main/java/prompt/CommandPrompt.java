@@ -27,6 +27,7 @@ public class CommandPrompt {
 
 	private void initialize() {
 		addCommand(new Append(this));
+		addCommand(new Cat(this));
 		addCommand(new Cd(this));
 		addCommand(new Cp(this));
 		addCommand(new Ls(this));
