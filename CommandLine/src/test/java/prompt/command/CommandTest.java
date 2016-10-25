@@ -11,7 +11,6 @@ public class CommandTest {
         for (int a = 0; a < length - 4; a++) {
             fileName += "a";
         }
-
         return fileName + ".txt";
     }
 
@@ -71,7 +70,7 @@ public class CommandTest {
     }
 
     @Test
-    public void validFSOName_tooLong() {
+    public void validFSOName_toLong() {
         assertEquals(false, Command.validFSOName(textFileNameLength(256)));
     }
 

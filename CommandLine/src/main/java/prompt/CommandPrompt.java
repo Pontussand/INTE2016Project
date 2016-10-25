@@ -28,6 +28,7 @@ public class CommandPrompt {
 	private void initialize() {
 		addCommand(new Append(this));
 		addCommand(new Cd(this));
+		addCommand(new Cp(this));
 		addCommand(new Ls(this));
 		addCommand(new History(this));
 		addCommand(new Mkdir(this));
@@ -40,11 +41,11 @@ public class CommandPrompt {
 		currentDir.setPath(adapter.rootDirectory());
 	}
 
-	private void addCommand(Command c){
+	private void addCommand(Command c) {
 		commands.put(c.getName(), c);
 	}
 
-	public void setCurrentDir(String path){
+	public void setCurrentDir(String path) {
 		currentDir.setPath(path);
 	}
 

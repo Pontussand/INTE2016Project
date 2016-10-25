@@ -29,7 +29,7 @@ public class PwdTest {
     }
 
     @Test
-    public void doCommand_contact() {
+    public void doCommand_returnPath() {
         assertEquals("/Folder1/Folder2/Folder3", pwd.doCommand(currentDir,""));
     }
 }

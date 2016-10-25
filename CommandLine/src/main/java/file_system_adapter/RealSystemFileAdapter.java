@@ -24,7 +24,7 @@ public class RealSystemFileAdapter implements FileSystemAdapter {
 	}
 
 	@Override
-	public String[] lsDir(String path){
+	public String[] lsDir(String path) {
 		Path dir = Paths.get(path);
 		try (DirectoryStream<Path> stream = Files.newDirectoryStream(dir)) {
 			ArrayList<Path> tempContent = new ArrayList<>();
@@ -41,7 +41,7 @@ public class RealSystemFileAdapter implements FileSystemAdapter {
 	}
 
 	@Override
-	public String[] lsFile(String path){
+	public String[] lsFile(String path) {
 		Path dir = Paths.get(path);
 		try (DirectoryStream<Path> stream = Files.newDirectoryStream(dir)) {
 			ArrayList<Path> tempContent = new ArrayList<>();
@@ -57,7 +57,7 @@ public class RealSystemFileAdapter implements FileSystemAdapter {
 		return null;
 	}
 
-	private String[] createArrayForLs(ArrayList<Path> tempContent){
+	private String[] createArrayForLs(ArrayList<Path> tempContent) {
 		String[] content;
 		content = new String[tempContent.size()];
 		for (int i = 0; i < tempContent.size(); i++) {
@@ -114,6 +114,11 @@ public class RealSystemFileAdapter implements FileSystemAdapter {
 	}
 
 	@Override
+	public boolean copyFSO(String source, String destination){
+		return false;
+	}
+
+	@Override
 	public boolean deleteFSO(String path) {
 
 		return false;
@@ -126,48 +131,37 @@ public class RealSystemFileAdapter implements FileSystemAdapter {
 	}
 
 	@Override
-	public String readFromFile(String filePath){
+	public String readFromFile(String filePath) {
 		return "";
 	}
 
     /*OLD:
     @Override
     public ArrayList<String> ls(File path) {
-
-//        
-
+//
         String[] files = path.list();
-
         ArrayList<String> strings = new ArrayList<>();
-
         if (files == null) {
             System.out.println("the directory doesn't exist.");
         } else if (files.length == 0) {
             System.out.println("The directory is empty");
         } else {
-
             for (String aFile : files) {
                 System.out.println(aFile);
                 strings.add(aFile);
             }
         }
-
         return strings;
     }
-
-
     @Override
     public String findProjectDir() {
         String userDir = new File(System.getProperty("user.dir")).getAbsolutePath();
         return userDir;
     }
-
     @Override
     public File findParentDir(File currentDir) {
-
         return new File(currentDir.getParent());
     }
-
     @Override
     public void mkdir(File newDir) {
         try {
@@ -177,5 +171,3 @@ public class RealSystemFileAdapter implements FileSystemAdapter {
         }
     }*/
 }
-
-

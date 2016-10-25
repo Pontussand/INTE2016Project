@@ -31,19 +31,19 @@ public abstract class Command {
         return adapter;
     }
 
-    protected boolean shouldBeAddedToHistory(){
+    protected boolean shouldBeAddedToHistory() {
         return true;
     }
 
     public void addToHistory(String commandUsed) {
         this.commandHistory.add(commandUsed);
-        if (this.commandHistory.size()>maxHistory) {
+        if (this.commandHistory.size() > maxHistory) {
             commandHistory.remove(0);
         }
     }
 
-    public String execute(PathContainer currentDir, String target, String input){
-        if(shouldBeAddedToHistory()){
+    public String execute(PathContainer currentDir, String target, String input) {
+        if (shouldBeAddedToHistory()) {
             addToHistory(input);
         }
         return  doCommand(currentDir, target);
@@ -53,17 +53,17 @@ public abstract class Command {
 
     public static boolean validFSOName(String name) {
         return(!name.equals("")
-		&&!name.contains(" ")
-                &&!name.contains("<")
-                &&!name.contains(">")
-                &&!name.contains(":")
-                &&!name.contains("\"") //quote
-                &&!name.contains("/")
-                &&!name.contains("|")
-                &&!name.contains("?")
-                &&!name.contains("*")
-                &&!name.contains("\\") //backslash
-                && (name.length() < 256));
+            &&!name.contains(" ")
+            &&!name.contains("<")
+            &&!name.contains(">")
+            &&!name.contains(":")
+            &&!name.contains("\"") //quote
+            &&!name.contains("/")
+            &&!name.contains("|")
+            &&!name.contains("?")
+            &&!name.contains("*")
+            &&!name.contains("\\") //backslash
+            && (name.length() < 256));
     }
 
     public static boolean validFileName(String fileName) {

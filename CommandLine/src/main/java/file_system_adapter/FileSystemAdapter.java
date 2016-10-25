@@ -27,6 +27,8 @@ public interface FileSystemAdapter {
 
 	boolean writeToFile(String filePath, String content);
 
+	boolean copyFSO(String source, String destination);
+
     boolean deleteFSO(String path);
 
 	String rootDirectory();
