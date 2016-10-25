@@ -8,9 +8,6 @@ import java.util.ArrayList;
 
 public class RealSystemFileAdapter implements FileSystemAdapter {
 
-
-	private String root = new File(System.getProperty("user.dir")).getAbsolutePath();
-
 	@Override
 	public String[] ls(String path) {
 		Path dir = Paths.get(path);
