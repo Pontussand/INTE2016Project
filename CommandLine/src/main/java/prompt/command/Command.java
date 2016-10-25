@@ -10,7 +10,7 @@ import java.util.List;
 public abstract class Command {
 
     private static FileSystemAdapter adapter;
-    static public List<String> commandHistory = new LinkedList<String>();
+    public static List<String> commandHistory = new LinkedList<String>();
     public static int maxHistory = 10;
 
 
