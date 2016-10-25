@@ -8,12 +8,12 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class FakeFSA_copyFSO {
-	FakeFileSystemAdapter fakeAdapter;
+	FakeFSAdapter fakeAdapter;
 	FakeDirectory root;
 
 	@Before
 	public void before() {
-		fakeAdapter = new FakeFileSystemAdapter();
+		fakeAdapter = new FakeFSAdapter();
 		root = new FakeDirectory("");
 		fakeAdapter.setRoot(root);
 	}
@@ -25,7 +25,7 @@ public class FakeFSA_copyFSO {
 		root.addFSO(file);
 		root.addFSO(destination);
 
-		assertTrue(fakeAdapter.copyFSO("/file.txt", "/destination"));
+		assertTrue(fakeAdapter.copyFso("/file.txt", "/destination"));
 		assertEquals(file, destination.getContent()[0]);
 		assertNotSame(file, destination.getContent()[0]);
 
@@ -40,7 +40,7 @@ public class FakeFSA_copyFSO {
 		root.addFSO(dir);
 		root.addFSO(destination);
 
-		assertTrue(fakeAdapter.copyFSO("/dir", "/destination"));
+		assertTrue(fakeAdapter.copyFso("/dir", "/destination"));
 		assertEquals(dir, destination.getContent()[0]);
 	}
 
@@ -57,7 +57,7 @@ public class FakeFSA_copyFSO {
 		FakeDirectory destination = new FakeDirectory("destination");
 		root.addFSO(destination);
 
-		assertTrue(fakeAdapter.copyFSO("/dir", "/destination"));
+		assertTrue(fakeAdapter.copyFso("/dir", "/destination"));
 
 		FakeDirectory destContent = (FakeDirectory) destination.getContent()[0];
 		assertArrayEquals(expectedDirContent, destContent.getContent());
@@ -79,7 +79,7 @@ public class FakeFSA_copyFSO {
 		FakeDirectory destination = new FakeDirectory("destination");
 		root.addFSO(destination);
 
-		assertTrue(fakeAdapter.copyFSO("/sub/source", "/destination"));
+		assertTrue(fakeAdapter.copyFso("/sub/source", "/destination"));
 
 		FakeDirectory src = (FakeDirectory) destination.getContent()[0];
 		assertNotSame(source, src);

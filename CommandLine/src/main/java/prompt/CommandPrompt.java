@@ -1,9 +1,8 @@
 package prompt;
 
-import file_system_adapter.FakeFileSystemAdapter;
-import file_system_adapter.RealSystemFileAdapter;
+import file_system_adapter.FakeFSAdapter;
 import prompt.command.*;
-import file_system_adapter.FileSystemAdapter;
+import file_system_adapter.FSAdapter;
 import prompt.command.Mkdir;
 import prompt.util.PathContainer;
 
@@ -11,7 +10,7 @@ import java.util.*;
 
 public class CommandPrompt {
 	private Scanner scan = new Scanner(System.in);
-	private FileSystemAdapter adapter;
+	private FSAdapter adapter;
 	private PathContainer currentDir = new PathContainer("");
 	private boolean loop = true;
 
@@ -19,7 +18,7 @@ public class CommandPrompt {
 
 	private Map<String, Command> commands = new HashMap<>();
 
-	public CommandPrompt(FileSystemAdapter adapter) {
+	public CommandPrompt(FSAdapter adapter) {
 		this.adapter = adapter;
 		Command.setAdapter(this.adapter);
 		initialize();
@@ -82,8 +81,8 @@ public class CommandPrompt {
 	public static void main(String[] args) {
 		System.out.println("Command Prompt starting...");
 
-//		RealSystemFileAdapter adapter = new RealSystemFileAdapter();
-		FakeFileSystemAdapter adapter = new FakeFileSystemAdapter();
+//		RealFSAdapter adapter = new RealFSAdapter();
+		FakeFSAdapter adapter = new FakeFSAdapter();
 		CommandPrompt test = new CommandPrompt(adapter);
 		test.run();
 

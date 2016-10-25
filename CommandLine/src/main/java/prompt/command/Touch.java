@@ -1,7 +1,7 @@
 
 package prompt.command;
 
-import file_system_adapter.FileSystemAdapter;
+import file_system_adapter.FSAdapter;
 import prompt.CommandPrompt;
 import prompt.util.PathContainer;
 
@@ -22,7 +22,7 @@ public class Touch extends Command {
 		if (!validFileName(input)) {
 			return UNABLE_TO_CREATE;
 		} else {
-			FileSystemAdapter adapter = super.getAdapter();
+			FSAdapter adapter = super.getAdapter();
 			String fileWithPath = currentPathContainer.getPath() + "/" + input;
 
 			if (adapter.createFile(fileWithPath)) {

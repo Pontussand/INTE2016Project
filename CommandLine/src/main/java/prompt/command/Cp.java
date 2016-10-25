@@ -1,6 +1,6 @@
 package prompt.command;
 
-import file_system_adapter.FileSystemAdapter;
+import file_system_adapter.FSAdapter;
 import prompt.CommandPrompt;
 import prompt.util.PathContainer;
 
@@ -12,7 +12,7 @@ public class Cp extends Command {
 	}
 
 	protected String doCommand(PathContainer currentDir, String input) {
-		FileSystemAdapter adapter = getAdapter();
+		FSAdapter adapter = getAdapter();
 		String[] paths = input.split(" ");
 		String currDir = currentDir.getPath();
 		String source;
@@ -22,7 +22,7 @@ public class Cp extends Command {
 			source = PathContainer.getFullPath(currDir, paths[0]);
 			destination = PathContainer.getFullPath(currDir, paths[1]);
 
-			if (adapter.copyFSO(source, destination)) {
+			if (adapter.copyFso(source, destination)) {
 				return "";
 			}
 		}

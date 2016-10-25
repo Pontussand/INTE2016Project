@@ -1,6 +1,6 @@
 package prompt.command;
 
-import file_system_adapter.FakeFileSystemAdapter;
+import file_system_adapter.FakeFSAdapter;
 import file_system_adapter.fake_FSO.FakeDirectory;
 import org.junit.Before;
 import org.junit.Test;
@@ -14,7 +14,7 @@ public class HistoryTest {
 
     private CommandPrompt prompt;
     private History history;
-    private FakeFileSystemAdapter fakeAdapter;
+    private FakeFSAdapter fakeAdapter;
     private FakeDirectory root;
     private PathContainer currentDir;
     private String input = null;
@@ -22,7 +22,7 @@ public class HistoryTest {
     @Before
     public void before() {
         root = new FakeDirectory("root");
-        fakeAdapter = new FakeFileSystemAdapter();
+        fakeAdapter = new FakeFSAdapter();
         fakeAdapter.setRoot(root);
         Command.setAdapter(fakeAdapter);
         currentDir = new PathContainer("");

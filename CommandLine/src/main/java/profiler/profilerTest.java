@@ -1,6 +1,6 @@
 package profiler;
 
-import file_system_adapter.FakeFileSystemAdapter;
+import file_system_adapter.FakeFSAdapter;
 import prompt.CommandPrompt;
 
 public class profilerTest {
@@ -23,7 +23,7 @@ public class profilerTest {
     }
     
     public void run(){
-        prompt = new CommandPrompt(new FakeFileSystemAdapter());
+        prompt = new CommandPrompt(new FakeFSAdapter());
         
         for(String command : commands){
             exec(command);

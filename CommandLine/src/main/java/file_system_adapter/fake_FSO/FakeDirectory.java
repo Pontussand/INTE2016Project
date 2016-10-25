@@ -1,7 +1,7 @@
 package file_system_adapter.fake_FSO;
 
 
-import file_system_adapter.FakeFileSystemAdapter;
+import file_system_adapter.FakeFSAdapter;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -99,7 +99,7 @@ public class FakeDirectory extends FakeFSO {
 	}
 
 	private String getChildName(String path) {
-		String separator = FakeFileSystemAdapter.DIR_SEPERATOR;
+		String separator = FakeFSAdapter.DIR_SEPERATOR;
 		int start = path.indexOf(separator) + 1;
 		int end = path.indexOf(separator, start);
 		if (end == -1) {
@@ -109,7 +109,7 @@ public class FakeDirectory extends FakeFSO {
 	}
 
 	private String getPassOnPath(String path) {
-		String separator = FakeFileSystemAdapter.DIR_SEPERATOR;
+		String separator = FakeFSAdapter.DIR_SEPERATOR;
 		int sep1 = path.indexOf(separator);
 		int sep2 = path.indexOf(separator, sep1 + 1);
 		if (sep2 == -1) {

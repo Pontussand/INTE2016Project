@@ -1,7 +1,7 @@
 
 package prompt.command;
 
-import file_system_adapter.FileSystemAdapter;
+import file_system_adapter.FSAdapter;
 import prompt.CommandPrompt;
 import prompt.util.PathContainer;
 
@@ -14,7 +14,7 @@ public class Append extends Command {
 	}
 
 	public String doCommand(PathContainer currentPathContainer, String input) {
-		FileSystemAdapter adapter = super.getAdapter();
+		FSAdapter adapter = super.getAdapter();
 
 		String fileName = input.split(" ")[0];
 		String content = input.substring(input.indexOf(" ") +1);

@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.nio.file.*;
 import java.util.ArrayList;
 
-public class RealSystemFileAdapter implements FileSystemAdapter {
+public class RealFSAdapter implements FSAdapter {
 
 	@Override
 	public String[] ls(String path) {
@@ -114,7 +114,7 @@ public class RealSystemFileAdapter implements FileSystemAdapter {
 	}
 
 	@Override
-	public boolean copyFSO(String source, String destination){
+	public boolean copyFso(String source, String destination){
 		return false;
 	}
 
@@ -134,40 +134,4 @@ public class RealSystemFileAdapter implements FileSystemAdapter {
 	public String readFromFile(String filePath) {
 		return "";
 	}
-
-    /*OLD:
-    @Override
-    public ArrayList<String> ls(File path) {
-//
-        String[] files = path.list();
-        ArrayList<String> strings = new ArrayList<>();
-        if (files == null) {
-            System.out.println("the directory doesn't exist.");
-        } else if (files.length == 0) {
-            System.out.println("The directory is empty");
-        } else {
-            for (String aFile : files) {
-                System.out.println(aFile);
-                strings.add(aFile);
-            }
-        }
-        return strings;
-    }
-    @Override
-    public String findProjectDir() {
-        String userDir = new File(System.getProperty("user.dir")).getAbsolutePath();
-        return userDir;
-    }
-    @Override
-    public File findParentDir(File currentDir) {
-        return new File(currentDir.getParent());
-    }
-    @Override
-    public void mkdir(File newDir) {
-        try {
-            Files.createDirectory(newDir.toPath());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }*/
 }

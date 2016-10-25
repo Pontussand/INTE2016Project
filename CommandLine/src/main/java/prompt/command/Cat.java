@@ -1,6 +1,6 @@
 package prompt.command;
 
-import file_system_adapter.FileSystemAdapter;
+import file_system_adapter.FSAdapter;
 import prompt.CommandPrompt;
 import prompt.util.PathContainer;
 
@@ -11,7 +11,7 @@ public class Cat extends Command {
     }
 
     public String doCommand(PathContainer currentPathContainer, String input) {
-        FileSystemAdapter adapter = super.getAdapter();
+        FSAdapter adapter = super.getAdapter();
 
         String path = currentPathContainer.getPath() + "/" + input;
         return adapter.readFromFile(path);
