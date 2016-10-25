@@ -10,6 +10,7 @@ public class Touch extends Command {
 	public static final String UNABLE_TO_CREATE = "Could not create file :'(";
 	public static final String FILE_EXISTS = "There is already a file with that name, try again";
 	public static final String INVALID_FILE_NAME = "That is not a valid file name, try again";
+	public static final String INVALID_PATH = "That is not a valid path, try again";
 
 
 	public Touch(CommandPrompt cp){
