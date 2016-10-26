@@ -1,6 +1,6 @@
 package prompt.command;
 
-import file_system_adapter.FakeFileSystemAdapter;
+import file_system_adapter.FakeFSAdapter;
 import file_system_adapter.fake_FSO.FakeDirectory;
 import file_system_adapter.fake_FSO.FakeFile;
 import org.junit.Before;
@@ -19,7 +19,7 @@ public class LsTest {
 	private Mkdir mkdir;
 	private Touch touch;
 	private CommandPrompt commandPrompt;
-	private FakeFileSystemAdapter fakeAdapter;
+	private FakeFSAdapter fakeAdapter;
 	private FakeDirectory root, fakeDir1, fakeDir2;
 	private PathContainer currentDir;
 	private String input;
@@ -27,7 +27,7 @@ public class LsTest {
 	@Before
 	public void before() {
 		root = new FakeDirectory("root");
-		fakeAdapter = new FakeFileSystemAdapter();
+		fakeAdapter = new FakeFSAdapter();
 		fakeAdapter.setRoot(root);
 		currentDir = new PathContainer("");
 		input = "";

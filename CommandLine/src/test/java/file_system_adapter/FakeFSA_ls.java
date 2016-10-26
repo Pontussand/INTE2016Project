@@ -1,7 +1,6 @@
 package file_system_adapter;
 
 
-import file_system_adapter.FakeFileSystemAdapter;
 import file_system_adapter.fake_FSO.FakeDirectory;
 import org.junit.Before;
 import org.junit.Test;
@@ -10,12 +9,12 @@ import static org.junit.Assert.assertArrayEquals;
 
 public class FakeFSA_ls {
 
-	FakeFileSystemAdapter fakeAdapter;
+	FakeFSAdapter fakeAdapter;
 	FakeDirectory root;
 
 	@Before
 	public void before() {
-		fakeAdapter = new FakeFileSystemAdapter();
+		fakeAdapter = new FakeFSAdapter();
 		root = new FakeDirectory("root");
 		fakeAdapter.setRoot(root);
 	}

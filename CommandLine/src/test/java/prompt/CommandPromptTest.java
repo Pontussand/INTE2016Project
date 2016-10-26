@@ -1,10 +1,9 @@
 package prompt;
 
-import file_system_adapter.FakeFileSystemAdapter;
+import file_system_adapter.FakeFSAdapter;
 import file_system_adapter.fake_FSO.FakeDirectory;
 import org.junit.Before;
 import org.junit.Test;
-import prompt.util.PathContainer;
 
 import static org.junit.Assert.assertEquals;
 import static prompt.command.Command.commandHistory;
@@ -12,13 +11,13 @@ import static prompt.command.Command.commandHistory;
 public class CommandPromptTest {
 
 	private CommandPrompt prompt;
-	private FakeFileSystemAdapter fakeAdapter;
+	private FakeFSAdapter fakeAdapter;
 	private FakeDirectory root;
 
 	@Before
 	public void before() {
 		root = new FakeDirectory("root");
-		fakeAdapter = new FakeFileSystemAdapter();
+		fakeAdapter = new FakeFSAdapter();
 		fakeAdapter.setRoot(root);
 		prompt = new CommandPrompt(fakeAdapter);
 		fakeAdapter.mkdir("Folder");

@@ -1,6 +1,6 @@
 package prompt.command;
 
-import file_system_adapter.FileSystemAdapter;
+import file_system_adapter.FSAdapter;
 import prompt.CommandPrompt;
 import prompt.util.PathContainer;
 
@@ -9,7 +9,7 @@ import java.util.List;
 
 public abstract class Command {
 
-    private static FileSystemAdapter adapter;
+    private static FSAdapter adapter;
     public static List<String> commandHistory = new LinkedList<String>();
     public static int maxHistory = 10;
     private String name;
@@ -25,11 +25,11 @@ public abstract class Command {
     public String getName() {
         return name;
     }
-    public static void setAdapter(FileSystemAdapter input) {
+    public static void setAdapter(FSAdapter input) {
         adapter = input;
     }
 
-    public static FileSystemAdapter getAdapter() {
+    public static FSAdapter getAdapter() {
         return adapter;
     }
 

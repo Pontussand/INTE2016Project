@@ -3,7 +3,7 @@ package file_system_adapter;
 import java.io.File;
 import java.util.ArrayList;
 
-public interface FileSystemAdapter {
+public interface FSAdapter {
 
     String[] ls(String path);
 
@@ -27,7 +27,7 @@ public interface FileSystemAdapter {
 
 	boolean writeToFile(String filePath, String content);
 
-	boolean copyFSO(String source, String destination);
+	boolean copyFso(String source, String destination);
 
     boolean deleteFSO(String path);
 

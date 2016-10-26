@@ -13,12 +13,12 @@ import static org.junit.Assert.assertTrue;
 
 public class FakeFSA_dir {
 
-	FakeFileSystemAdapter fakeAdapter;
+	FakeFSAdapter fakeAdapter;
 	FakeDirectory root;
 
 	@Before
 	public void before() {
-		fakeAdapter = new FakeFileSystemAdapter();
+		fakeAdapter = new FakeFSAdapter();
 		root = new FakeDirectory("root");
 		fakeAdapter.setRoot(root);
 	}

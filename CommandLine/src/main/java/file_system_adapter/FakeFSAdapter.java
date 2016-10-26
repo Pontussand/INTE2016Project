@@ -5,10 +5,9 @@ import file_system_adapter.fake_FSO.FakeFSO;
 import file_system_adapter.fake_FSO.FakeFile;
 import prompt.util.PathContainer;
 
-import java.nio.file.Path;
 import java.util.ArrayList;
 
-public class FakeFileSystemAdapter implements FileSystemAdapter {
+public class FakeFSAdapter implements FSAdapter {
 	public static final String DIR_SEPERATOR = "/";
 	public static final String NULL_ERROR_MESSAGE = "Directory does not exist";
 	public static final String FILE_ERROR_MESSAGE = "Address leads to a textfile";
@@ -188,7 +187,7 @@ public class FakeFileSystemAdapter implements FileSystemAdapter {
 	}
 
 	@Override
-	public boolean copyFSO(String sourceFSO, String destinationDir) {
+	public boolean copyFso(String sourceFSO, String destinationDir) {
 		FakeFSO src = root.pathSearch(sourceFSO);
 		FakeFSO destFSO = root.pathSearch(destinationDir);
 

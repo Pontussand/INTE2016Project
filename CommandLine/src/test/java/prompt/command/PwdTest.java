@@ -1,6 +1,6 @@
 package prompt.command;
 
-import file_system_adapter.FakeFileSystemAdapter;
+import file_system_adapter.FakeFSAdapter;
 import file_system_adapter.fake_FSO.FakeDirectory;
 import org.junit.Before;
 import org.junit.Test;
@@ -12,7 +12,7 @@ import static org.junit.Assert.assertEquals;
 public class PwdTest {
 
     private Pwd pwd;
-    private FakeFileSystemAdapter fakeAdapter;
+    private FakeFSAdapter fakeAdapter;
     private FakeDirectory root;
     private PathContainer currentDir;
     private String input;
@@ -20,7 +20,7 @@ public class PwdTest {
     @Before
     public void before() {
         root = new FakeDirectory("root");
-        fakeAdapter = new FakeFileSystemAdapter();
+        fakeAdapter = new FakeFSAdapter();
         fakeAdapter.setRoot(root);
         pwd.setAdapter(fakeAdapter);
         currentDir = new PathContainer("/Folder1/Folder2/Folder3");

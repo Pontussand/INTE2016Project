@@ -1,8 +1,7 @@
 package prompt.command;
 
-import file_system_adapter.FakeFileSystemAdapter;
+import file_system_adapter.FakeFSAdapter;
 import file_system_adapter.fake_FSO.FakeDirectory;
-import file_system_adapter.fake_FSO.FakeFSO;
 import file_system_adapter.fake_FSO.FakeFile;
 import org.junit.Before;
 import org.junit.Test;
@@ -13,7 +12,7 @@ import static org.junit.Assert.assertEquals;
 
 public class CatTest {
     private Cat cat;
-    private FakeFileSystemAdapter fakeAdapter;
+    private FakeFSAdapter fakeAdapter;
     private FakeDirectory root;
     private PathContainer currentDir;
     private String expectedText = "abc";
@@ -22,7 +21,7 @@ public class CatTest {
     public void before() {
 
         root = new FakeDirectory("");
-        fakeAdapter = new FakeFileSystemAdapter();
+        fakeAdapter = new FakeFSAdapter();
         fakeAdapter.setRoot(root);
         currentDir = new PathContainer("");
         cat = new Cat(new CommandPrompt(fakeAdapter));

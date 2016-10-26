@@ -1,11 +1,9 @@
 package prompt.command;
 
-import file_system_adapter.FakeFileSystemAdapter;
-import file_system_adapter.RealSystemFileAdapter;
 import prompt.CommandPrompt;
 import prompt.util.PathContainer;
 
-import file_system_adapter.FileSystemAdapter;
+import file_system_adapter.FSAdapter;
 
 public class Ls extends Command {
 
@@ -24,7 +22,7 @@ public class Ls extends Command {
     }
 
     private String[] selectLSType(PathContainer currentDir, String input){
-        FileSystemAdapter adapter = super.getAdapter();
+        FSAdapter adapter = super.getAdapter();
         String currDir = currentDir.getPath();
         String fullPath;
 
