@@ -94,7 +94,7 @@ public class LsTest {
 
 	@Test
 	public void doCommand_Ls_Bt4(){
-		String expected = "TestFile1\nTestFile2\nTestFolder1\nTestFolder2\nTestFolder3\nTestFolder4\n";
+		String expected = "FirstFolder\n";
 		assertEquals(expected, ls.doCommand(currentDir, ""));
 		assertEquals(expected, commandPrompt.command("ls"));
 	}
@@ -122,7 +122,7 @@ public class LsTest {
 
 	@Test
 	public void doCommand_LsDirs_Bt8(){
-		String expected = "SecondFolder";
+		String expected = "FirstFolder\n";
 		assertEquals(expected, ls.doCommand(currentDir, "-dirs"));
 		assertEquals(expected, commandPrompt.command("ls -dirs"));
 	}
@@ -136,28 +136,30 @@ public class LsTest {
 
 	@Test
 	public void doCommand_LsFilesAbsolutePath_Bt10(){
-		String expected = "TestFolder1\nTestFolder2\nTestFolder3\nTestFolder4\n";
+		String expected = "TestFile1\nTestFile2\n";
 		assertEquals(expected, ls.doCommand(currentDir, "/FirstFolder/SecondFolder -files"));
 		assertEquals(expected, commandPrompt.command("ls /FirstFolder/SecondFolder -files"));
 	}
 
 	@Test
-	public void doCommand_LsFilesAbsolutePath_Bt11(){
+	public void doCommand_LsFilesParent_Bt11(){
 		String expected = "TestFolder1\nTestFolder2\nTestFolder3\nTestFolder4\n";
 		assertEquals(expected, ls.doCommand(currentDir, ".. -files"));
 		assertEquals(expected, commandPrompt.command("ls .. -files"));
 	}
 
 	@Test
-	public void doCommand_Ls_Bt12(){
-		String expected = "TestFolder1\nTestFolder2\nTestFolder3\nTestFolder4\n";
+	public void doCommand_LsFiles_Bt12(){
+		String expected = "";
 		assertEquals(expected, ls.doCommand(currentDir, "-files"));
 		assertEquals(expected, commandPrompt.command("ls -files"));
 	}
 
 	@Test
-	public void doCommand_Ls_Bt13(){
-
+	public void doCommand_LsDirsFilesPath_Bt13(){
+		String expected = "TestFolder1\nTestFolder2\nTestFolder3\nTestFolder4\nTestFile1\nTestFile2\n";
+		assertEquals(expected, ls.doCommand(currentDir, "FirstFolder/SecondFolder -dirs") + commandPrompt.command("ls FirstFolder/SecondFolder -files"));
+		assertEquals(expected, commandPrompt.command("ls FirstFolder/SecondFolder -dirs") + commandPrompt.command("ls FirstFolder/SecondFolder -files"));
 	}
 
 	@Test
