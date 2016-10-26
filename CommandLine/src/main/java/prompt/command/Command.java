@@ -12,6 +12,7 @@ public abstract class Command {
     private static FSAdapter adapter;
     public static List<String> commandHistory = new LinkedList<String>();
     public static int maxHistory = 10;
+    public static int maxFSOLength =256;
     private String name;
 
 
@@ -65,7 +66,7 @@ public abstract class Command {
             &&!name.contains("?")
             &&!name.contains("*")
             &&!name.contains("\\") //backslash
-            && (name.length() < 256));
+            && (name.length() < maxFSOLength));
     }
 
     public static boolean validFileName(String fileName) {
