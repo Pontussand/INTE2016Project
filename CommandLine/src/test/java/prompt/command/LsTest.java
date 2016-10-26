@@ -44,7 +44,6 @@ public class LsTest {
 		fakeDir1 = new FakeDirectory("FirstFolder");
 
 		fakeDir2 = new FakeDirectory("SecondFolder");
-		currentDir = new PathContainer(PathContainer.getFullPath("", "FirstFolder"));
 		fakeDir2.addFSO(new FakeDirectory("TestFolder1"));
 		fakeDir2.addFSO(new FakeDirectory("TestFolder2"));
 		fakeDir2.addFSO(new FakeDirectory("TestFolder3"));
