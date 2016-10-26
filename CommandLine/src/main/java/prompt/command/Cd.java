@@ -4,6 +4,8 @@ import file_system_adapter.FSAdapter;
 import prompt.CommandPrompt;
 import prompt.util.PathContainer;
 
+import java.util.Objects;
+
 public class Cd extends Command {
 
 	public static final String NO_SUCH_DIR_MSG = "Could not find that directory :'(";
@@ -37,5 +39,26 @@ public class Cd extends Command {
 		return "";
 	}
 
+
+
+	public int hashCode() {
+		return Objects.hash(getName());
+	}
+
+	public boolean equals(Object o) {
+		if (this == o) {
+			return true;
+		}
+		if (o == null) {
+			return false;
+		}
+		if (getClass() != o.getClass()) {
+			return false;
+		}
+
+		Cd other = (Cd) o;
+
+		return Objects.equals(getName(), other.getName());
+	}
 
 }

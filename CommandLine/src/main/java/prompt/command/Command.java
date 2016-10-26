@@ -33,6 +33,7 @@ public abstract class Command {
         return adapter;
     }
 
+
     protected boolean shouldBeAddedToHistory() {
         return true;
     }
@@ -50,6 +51,10 @@ public abstract class Command {
         }
         return  doCommand(currentDir, target);
     }
+
+    public abstract int hashCode();
+
+    public abstract boolean equals(Object o);
 
     protected abstract String doCommand(PathContainer currentDir, String input);
 

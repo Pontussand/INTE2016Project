@@ -5,6 +5,8 @@ import prompt.util.PathContainer;
 
 import file_system_adapter.FSAdapter;
 
+import java.util.Objects;
+
 public class Mkdir extends Command {
 
 	public static final String ERROR_MSG = "Could not create directory. ;_;";
@@ -33,5 +35,25 @@ public class Mkdir extends Command {
 		} else {
 			return ERROR_MSG;
 		}
+	}
+
+	public int hashCode() {
+		return Objects.hash(getName());
+	}
+
+	public boolean equals(Object o) {
+		if (this == o) {
+			return true;
+		}
+		if (o == null) {
+			return false;
+		}
+		if (getClass() != o.getClass()) {
+			return false;
+		}
+
+		Mkdir other = (Mkdir) o;
+
+		return Objects.equals(getName(), other.getName());
 	}
 }

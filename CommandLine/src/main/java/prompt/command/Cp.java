@@ -4,6 +4,8 @@ import file_system_adapter.FSAdapter;
 import prompt.CommandPrompt;
 import prompt.util.PathContainer;
 
+import java.util.Objects;
+
 public class Cp extends Command {
 	public static final String COULDNT_COPY = "Could not copy. The destination already exist or the source doesn't.";
 
@@ -28,6 +30,27 @@ public class Cp extends Command {
 		}
 
 		return COULDNT_COPY;
+	}
+
+
+	public int hashCode() {
+		return Objects.hash(getName());
+	}
+
+	public boolean equals(Object o) {
+		if (this == o) {
+			return true;
+		}
+		if (o == null) {
+			return false;
+		}
+		if (getClass() != o.getClass()) {
+			return false;
+		}
+
+		Cp other = (Cp) o;
+
+		return Objects.equals(getName(), other.getName());
 	}
 
 }
