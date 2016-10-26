@@ -87,7 +87,7 @@ public class LsTest {
 
 	@Test
 	public void doCommand_lsParent_Bt3(){
-		String expected = "SecondFolder";
+		String expected = "SecondFolder\n";
 		assertEquals(expected, ls.doCommand(currentDir, ".."));
 	//	assertEquals(expected, commandPrompt.command("ls .."));
 	}
