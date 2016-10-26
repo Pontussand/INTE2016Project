@@ -45,10 +45,6 @@ public class CommandPrompt {
 		commands.put(c.getName(), c);
 	}
 
-	public void setCurrentDir(String path) {
-		currentDir.setPath(path);
-	}
-
 	private void run() {
 		while (loop) {
 			System.out.println(command(scan.nextLine()));
@@ -76,6 +72,20 @@ public class CommandPrompt {
 		}
 
 		return command.execute(currentDir, target, commandInput);
+	}
+
+	public void setCurrentDir(String path) {
+		currentDir.setPath(path);
+	}
+
+	protected PathContainer getCurrentDir() {
+		return currentDir;
+	}
+
+	protected HashMap<String, Command> getCommands() {
+		HashMap<String, Command> temp = new HashMap<>();
+		temp.putAll(commands);
+		return temp;
 	}
 
 	public static void main(String[] args) {

@@ -4,7 +4,21 @@ import file_system_adapter.FakeFSAdapter;
 import file_system_adapter.fake_FSO.FakeDirectory;
 import org.junit.Before;
 import org.junit.Test;
+import prompt.command.*;
+import prompt.util.PathContainer;
 
+
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.not;
+import static org.hamcrest.MatcherAssert.assertThat;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+
+import static org.hamcrest.Matchers.isIn;
+import static org.hamcrest.core.Every.everyItem;
 import static org.junit.Assert.assertEquals;
 import static prompt.command.Command.commandHistory;
 
@@ -23,6 +37,14 @@ public class CommandPromptTest {
 		fakeAdapter.mkdir("Folder");
 
 		commandHistory.clear();
+	}
+
+	@Test
+	public void initialize_correct_currentDir() {
+//		method initialize allready called by the constructor
+		PathContainer expectedPath = new PathContainer(fakeAdapter.rootDirectory());
+
+		assertEquals(expectedPath.getPath(), prompt.getCurrentDir().getPath());
 	}
 
 	@Test
