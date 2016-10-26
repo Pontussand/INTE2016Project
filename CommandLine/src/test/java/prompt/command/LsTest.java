@@ -115,7 +115,7 @@ public class LsTest {
 
 	@Test
 	public void doCommand_LsDirsParent_Bt7(){
-		String expected = "SecondFolder";
+		String expected = "SecondFolder\n";
 		assertEquals(expected, ls.doCommand(currentDir, ".. -dirs"));
 		assertEquals(expected, commandPrompt.command("ls .. -dirs"));
 	}
