@@ -70,7 +70,7 @@ public class CommandTest {
     }
 
     @Test
-    public void validFSOName_toLong() {
+    public void validFSOName_tooLong() {
         assertEquals(false, Command.validFSOName(textFileNameLength(256)));
     }
 
