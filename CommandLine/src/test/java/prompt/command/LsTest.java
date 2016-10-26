@@ -143,7 +143,7 @@ public class LsTest {
 
 	@Test
 	public void doCommand_LsFilesParent_Bt11(){
-		String expected = "TestFolder1\nTestFolder2\nTestFolder3\nTestFolder4\n";
+		String expected = "";
 		assertEquals(expected, ls.doCommand(currentDir, ".. -files"));
 		assertEquals(expected, commandPrompt.command("ls .. -files"));
 	}
@@ -163,18 +163,24 @@ public class LsTest {
 	}
 
 	@Test
-	public void doCommand_Ls_Bt14(){
-
+	public void doCommand_LsDirsFilesAbsolutePath_Bt14(){
+		String expected = "TestFolder1\nTestFolder2\nTestFolder3\nTestFolder4\nTestFile1\nTestFile2\n";
+		assertEquals(expected, ls.doCommand(currentDir, "/FirstFolder/SecondFolder -dirs") + commandPrompt.command("ls /FirstFolder/SecondFolder -files"));
+		assertEquals(expected, commandPrompt.command("ls /FirstFolder/SecondFolder -dirs") + commandPrompt.command("ls /FirstFolder/SecondFolder -files"));
 	}
 
 	@Test
-	public void doCommand_Ls_Bt15(){
-
+	public void doCommand_LsDirsFilesParent_Bt15(){
+		String expected = "SecondFolder\n";
+		assertEquals(expected, ls.doCommand(currentDir, ".. -dirs") + commandPrompt.command("ls .. -files"));
+		assertEquals(expected, commandPrompt.command("ls .. -dirs") + commandPrompt.command("ls .. -files"));
 	}
 
 	@Test
-	public void doCommand_Ls_Bt16(){
-
+	public void doCommand_LsDirsFiles_Bt16(){
+		String expected = "FirstFolder\n";
+		assertEquals(expected, ls.doCommand(currentDir, "-dirs") + commandPrompt.command("ls -files"));
+		assertEquals(expected, commandPrompt.command("ls -dirs") + commandPrompt.command("ls -files"));
 	}
 
 
