@@ -158,28 +158,28 @@ public class LsTest {
 	@Test
 	public void doCommand_LsDirsFilesPath_Bt13(){
 		String expected = "TestFolder1\nTestFolder2\nTestFolder3\nTestFolder4\nTestFile1\nTestFile2\n";
-		assertEquals(expected, ls.doCommand(currentDir, "FirstFolder/SecondFolder -dirs") + commandPrompt.command("ls FirstFolder/SecondFolder -files"));
+		assertEquals(expected, ls.doCommand(currentDir, "FirstFolder/SecondFolder -dirs") + commandPrompt.command("FirstFolder/SecondFolder -files"));
 		assertEquals(expected, commandPrompt.command("ls FirstFolder/SecondFolder -dirs") + commandPrompt.command("ls FirstFolder/SecondFolder -files"));
 	}
 
 	@Test
 	public void doCommand_LsDirsFilesAbsolutePath_Bt14(){
 		String expected = "TestFolder1\nTestFolder2\nTestFolder3\nTestFolder4\nTestFile1\nTestFile2\n";
-		assertEquals(expected, ls.doCommand(currentDir, "/FirstFolder/SecondFolder -dirs") + commandPrompt.command("ls /FirstFolder/SecondFolder -files"));
+		assertEquals(expected, ls.doCommand(currentDir, "/FirstFolder/SecondFolder -dirs") + commandPrompt.command("/FirstFolder/SecondFolder -files"));
 		assertEquals(expected, commandPrompt.command("ls /FirstFolder/SecondFolder -dirs") + commandPrompt.command("ls /FirstFolder/SecondFolder -files"));
 	}
 
 	@Test
 	public void doCommand_LsDirsFilesParent_Bt15(){
 		String expected = "SecondFolder\n";
-		assertEquals(expected, ls.doCommand(currentDir, ".. -dirs") + commandPrompt.command("ls .. -files"));
+		assertEquals(expected, ls.doCommand(currentDir, ".. -dirs") + commandPrompt.command(".. -files"));
 		assertEquals(expected, commandPrompt.command("ls .. -dirs") + commandPrompt.command("ls .. -files"));
 	}
 
 	@Test
 	public void doCommand_LsDirsFiles_Bt16(){
 		String expected = "FirstFolder\n";
-		assertEquals(expected, ls.doCommand(currentDir, "-dirs") + commandPrompt.command("ls -files"));
+		assertEquals(expected, ls.doCommand(currentDir, "-dirs") + commandPrompt.command("-files"));
 		assertEquals(expected, commandPrompt.command("ls -dirs") + commandPrompt.command("ls -files"));
 	}
 
