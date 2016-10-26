@@ -20,7 +20,7 @@ public class Touch extends Command {
 	public String doCommand(PathContainer currentPathContainer, String input) {
 
 		if (!validFileName(input)) {
-			return UNABLE_TO_CREATE;
+			return INVALID_FILE_NAME;
 		} else {
 			FSAdapter adapter = super.getAdapter();
 			String fileWithPath = currentPathContainer.getPath() + "/" + input;
