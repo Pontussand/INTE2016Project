@@ -11,8 +11,8 @@ public abstract class Command {
 
     private static FSAdapter adapter;
     public static List<String> commandHistory = new LinkedList<String>();
-    public static int maxHistory = 10;
-    public static int maxFSOLength =256;
+    public static final int MAX_HISTORY = 10;
+    public static final int MAX_FSO_LENGTH = 256;
     private String name;
 
 
@@ -34,13 +34,14 @@ public abstract class Command {
         return adapter;
     }
 
+
     protected boolean shouldBeAddedToHistory() {
         return true;
     }
 
     public void addToHistory(String commandUsed) {
         this.commandHistory.add(commandUsed);
-        if (this.commandHistory.size() > maxHistory) {
+        if (this.commandHistory.size() > MAX_HISTORY) {
             commandHistory.remove(0);
         }
     }
@@ -51,6 +52,10 @@ public abstract class Command {
         }
         return  doCommand(currentDir, target);
     }
+
+    public abstract int hashCode();
+
+    public abstract boolean equals(Object o);
 
     protected abstract String doCommand(PathContainer currentDir, String input);
 
@@ -66,7 +71,7 @@ public abstract class Command {
             &&!name.contains("?")
             &&!name.contains("*")
             &&!name.contains("\\") //backslash
-            && (name.length() < maxFSOLength));
+            && (name.length() < MAX_FSO_LENGTH));
     }
 
     public static boolean validFileName(String fileName) {

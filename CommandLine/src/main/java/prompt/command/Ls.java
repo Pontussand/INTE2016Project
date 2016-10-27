@@ -5,6 +5,8 @@ import prompt.util.PathContainer;
 
 import file_system_adapter.FSAdapter;
 
+import java.util.Objects;
+
 public class Ls extends Command {
 
     public Ls(CommandPrompt prompt){
@@ -60,5 +62,27 @@ public class Ls extends Command {
             fullPath = currDir;
             return adapter.ls(fullPath);
         }
+    }
+
+
+
+    public int hashCode() {
+        return Objects.hash(getName());
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null) {
+            return false;
+        }
+        if (getClass() != o.getClass()) {
+            return false;
+        }
+
+        Ls other = (Ls) o;
+
+        return Objects.equals(getName(), other.getName());
     }
 }

@@ -48,6 +48,12 @@ public class CommandPromptTest {
 	}
 
 	@Test
+	public void initialize_correct_CommandClasses() {
+
+
+	}
+
+	@Test
 	public void command_invalidCommand() {
 		assertEquals("love is an invalid command", prompt.command("love"));
 	}

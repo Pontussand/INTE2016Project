@@ -47,7 +47,7 @@ public class TouchTest {
 
     @Test
     public void doCommand_fileName_toLong() {
-        assertEquals(touch.INVALID_FILE_NAME, touch.doCommand(currentDir,nameLength(Command.maxFSOLength-4) + ".txt"));
+        assertEquals(touch.INVALID_FILE_NAME, touch.doCommand(currentDir,nameLength(Command.MAX_FSO_LENGTH -4) + ".txt"));
     }
 
     @Test
@@ -107,7 +107,7 @@ public class TouchTest {
 
     @Test
     public void doCommand_path_toLong() {
-        assertEquals(touch.INVALID_PATH, touch.doCommand(currentDir,nameLength(Command.maxFSOLength-4) + ".txt"));
+        assertEquals(touch.INVALID_PATH, touch.doCommand(currentDir,nameLength(Command.MAX_FSO_LENGTH -4) + ".txt"));
     }
 
     @Test
@@ -167,7 +167,7 @@ public class TouchTest {
 
     @Test
     public void doCommand_createFile_createDirMaxLength() {
-        assertEquals("", touch.doCommand(currentDir,nameLength(Command.maxFSOLength) + " a.txt"));
+        assertEquals("", touch.doCommand(currentDir,nameLength(Command.MAX_FSO_LENGTH) + " a.txt"));
     }
 
     @Test
@@ -188,6 +188,6 @@ public class TouchTest {
     public void doCommand_createFileMaxLength_givenPath() {
         FSAdapter adapter = Touch.getAdapter();
         adapter.mkdirs("mapp");
-        assertEquals("", touch.doCommand(currentDir,"mapp " + nameLength(Command.maxFSOLength-4) +".txt"));
+        assertEquals("", touch.doCommand(currentDir,"mapp " + nameLength(Command.MAX_FSO_LENGTH -4) +".txt"));
     }
 }
