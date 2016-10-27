@@ -14,23 +14,22 @@ public class profilerTest {
         "cat text.txt",
         "cp text.txt /dest",
         "cd /dest",
+        "pwd",
         "history",
-        "! 4"
+        "! 4",
+        "!!",
+        "mkdirs /dest/newDir"
     };
     
     public static void main(String[] args){
-        new profilerTest().run();
+        new profilerTest().profileing();
     }
     
-    public void run(){
+    public void profileing(){
         prompt = new CommandPrompt(new FakeFSAdapter());
         
         for(String command : commands){
-            exec(command);
+            System.out.println(command + " : " + prompt.command(command));
         }
-    }
-    
-    private void exec(String command){
-        System.out.println(command + " : " + prompt.command(command));
     }
 }
