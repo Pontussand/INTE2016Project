@@ -17,7 +17,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-import static org.hamcrest.Matchers.isIn;
+//import static org.hamcrest.Matchers.isIn;
 import static org.hamcrest.core.Every.everyItem;
 import static org.junit.Assert.assertEquals;
 import static prompt.command.Command.commandHistory;
