@@ -38,7 +38,7 @@ public class PathContainer {
 		boolean fullPath = newPath.startsWith(DIR_SEPERATOR);
 
 		if (fullPath) {
-			result +=  newPath;
+			result = newPath;
 		} else {
 			result += DIR_SEPERATOR + newPath;
 		}

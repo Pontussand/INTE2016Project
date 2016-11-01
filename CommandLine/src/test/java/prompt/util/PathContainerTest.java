@@ -61,4 +61,32 @@ public class PathContainerTest {
 		String actual = PathContainer.getFullPath("/subdir", "folder1");
 		assertEquals(expected, actual);
 	}
+	
+	@Test
+	public void append_anyString(){
+		String before = "/folder/folder";
+		PathContainer container = new PathContainer(before);
+		String toAppend = "appendant";
+		String expected = before + toAppend;
+		container.append(toAppend);
+
+		assertEquals(expected, container.getPath());
+	}
+
+	@Test
+	public void objGetFSOName_fromRootDir(){
+		String expected = "FSOname";
+		String path = "" + expected;
+		PathContainer container = new PathContainer(path);
+		assertEquals(expected, container.getFSOName());
+	}
+
+	@Test
+	public void objGetFSOName_fromSubDir(){
+		String expected = "FSOname";
+		String path = "folder1/folder2/"+expected;
+		PathContainer container = new PathContainer(path);
+		assertEquals(expected, container.getFSOName());
+	}
+
 }
