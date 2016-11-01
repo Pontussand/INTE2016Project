@@ -8,6 +8,7 @@ import prompt.CommandPrompt;
 import prompt.util.PathContainer;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class PwdTest {
 
@@ -16,6 +17,7 @@ public class PwdTest {
     private FakeDirectory root;
     private PathContainer currentDir;
     private String input;
+    private CommandPrompt commandPrompt;
 
     @Before
     public void before() {
@@ -25,11 +27,28 @@ public class PwdTest {
         pwd.setAdapter(fakeAdapter);
         currentDir = new PathContainer("/Folder1/Folder2/Folder3");
         input = null;
-        pwd = new Pwd(new CommandPrompt(fakeAdapter));
+        commandPrompt = new CommandPrompt(fakeAdapter);
+        pwd = new Pwd(commandPrompt);
     }
 
     @Test
     public void doCommand_returnPath() {
         assertEquals("/Folder1/Folder2/Folder3", pwd.doCommand(currentDir,""));
+    }
+
+    @Test
+    public void equals_symetric() {
+        Pwd pwd1 = new Pwd(commandPrompt);
+        Pwd pwd2 = new Pwd(commandPrompt);
+
+        assertTrue(pwd1.equals(pwd2) && pwd2.equals(pwd1));
+    }
+
+    @Test
+    public void hashCode_symetric() {
+        Pwd pwd1 = new Pwd(commandPrompt);
+        Pwd pwd2 = new Pwd(commandPrompt);
+
+        assertTrue(pwd1.hashCode() == pwd2.hashCode());
     }
 }

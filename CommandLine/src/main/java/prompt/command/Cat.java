@@ -34,7 +34,7 @@ public class Cat extends Command {
             return false;
         }
 
-        Mkdir other = (Mkdir) o;
+        Cat other = (Cat) o;
 
         return Objects.equals(getName(), other.getName());
     }

@@ -9,6 +9,7 @@ import prompt.CommandPrompt;
 import prompt.util.PathContainer;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 
 public class MkdirTest {
@@ -17,6 +18,7 @@ public class MkdirTest {
 	private FakeFSAdapter fakeAdapter;
 	private FakeDirectory root;
 	private PathContainer currentDir;
+	private CommandPrompt commandPrompt;
 
 	@Before
 	public void before() {
@@ -26,7 +28,8 @@ public class MkdirTest {
 		mkdir.setAdapter(fakeAdapter);
 		currentDir = new PathContainer("");
 
-		mkdir = new Mkdir(new CommandPrompt(fakeAdapter));
+		commandPrompt = new CommandPrompt(fakeAdapter);
+		mkdir = new Mkdir(commandPrompt);
 	}
 
 	@Test
@@ -74,5 +77,21 @@ public class MkdirTest {
 			ret += "a";
 		}
 		return ret;
+	}
+
+	@Test
+	public void equals_symetric() {
+		Mkdir mkdir1 = new Mkdir(commandPrompt);
+		Mkdir mkdir2 = new Mkdir(commandPrompt);
+
+		assertTrue(mkdir1.equals(mkdir2) && mkdir2.equals(mkdir1));
+	}
+
+	@Test
+	public void hashCode_symetric() {
+		Mkdir mkdir1 = new Mkdir(commandPrompt);
+		Mkdir mkdir2 = new Mkdir(commandPrompt);
+
+		assertTrue(mkdir1.hashCode() == mkdir2.hashCode());
 	}
 }

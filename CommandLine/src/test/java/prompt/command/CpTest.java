@@ -16,6 +16,7 @@ public class CpTest {
 	private Cp cp;
 	private FakeFSAdapter fakeAdapter;
 	private FakeDirectory root;
+	private CommandPrompt commandPrompt;
 
 	private PathContainer workingDir;
 
@@ -24,15 +25,15 @@ public class CpTest {
 		root = new FakeDirectory("");
 		fakeAdapter = new FakeFSAdapter();
 		fakeAdapter.setRoot(root);
-
-		cp = new Cp(new CommandPrompt(fakeAdapter));
+		commandPrompt = new CommandPrompt(fakeAdapter);
+		cp = new Cp(commandPrompt);
 		Command.setAdapter(fakeAdapter);
 
 		workingDir = new PathContainer("");
 	}
 
 	@Test
-	public void doCommand_fileFromRootToSub(){
+	public void doCommand_fileFromRootToSub() {
 		FakeFile file = new FakeFile("file.txt", "");
 		FakeDirectory destination = new FakeDirectory("destination");
 		root.addFSO(file);
@@ -43,7 +44,7 @@ public class CpTest {
 	}
 
 	@Test
-	public void doCommand_fileFromRootToNonexistentSub(){
+	public void doCommand_fileFromRootToNonexistentSub() {
 		FakeFile file = new FakeFile("file.txt", "");
 		root.addFSO(file);
 		assertEquals(cp.COULDNT_COPY, cp.doCommand(workingDir, "file.txt destination"));
@@ -61,9 +62,25 @@ public class CpTest {
 	}
 
 	@Test
-	public void doCommand_dirFromRootToNonexistentSub(){
+	public void doCommand_dirFromRootToNonexistentSub() {
 		FakeDirectory dir = new FakeDirectory("dir");
 		root.addFSO(dir);
 		assertEquals(cp.COULDNT_COPY, cp.doCommand(workingDir, "dir destination"));
+	}
+
+	@Test
+	public void equals_symetric() {
+		Cp cp1 = new Cp(commandPrompt);
+		Cp cp2 = new Cp(commandPrompt);
+
+		assertTrue(cp1.equals(cp2) && cp2.equals(cp1));
+	}
+
+	@Test
+	public void hashCode_symetric() {
+		Cp cp1 = new Cp(commandPrompt);
+		Cp cp2 = new Cp(commandPrompt);
+
+		assertTrue(cp1.hashCode() == cp2.hashCode());
 	}
 }

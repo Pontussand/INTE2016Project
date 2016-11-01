@@ -8,11 +8,12 @@ import prompt.CommandPrompt;
 import prompt.util.PathContainer;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static prompt.command.Command.commandHistory;
 
 public class RepeatLastTest {
 
-    private CommandPrompt prompt;
+    private CommandPrompt commandPrompt;
     private RepeatLast repeatLast;
     private FakeFSAdapter fakeAdapter;
     private FakeDirectory root;
@@ -26,7 +27,8 @@ public class RepeatLastTest {
         fakeAdapter.setRoot(root);
         Command.setAdapter(fakeAdapter);
         currentDir = new PathContainer("");
-        repeatLast = new RepeatLast(prompt = new CommandPrompt(fakeAdapter));
+        commandPrompt = new CommandPrompt(fakeAdapter);
+        repeatLast = new RepeatLast(commandPrompt);
         commandHistory.clear();
     }
 
@@ -44,7 +46,23 @@ public class RepeatLastTest {
     @Test
     public void doCommand_repeatInvalidCommandNotExecuted() {
         commandHistory.add("history");
-        prompt.command("hello");
+        commandPrompt.command("hello");
         assertEquals("0 history\n1 history", repeatLast.doCommand(currentDir, input));
+    }
+
+    @Test
+    public void equals_symetric() {
+        RepeatLast rep1 = new RepeatLast(commandPrompt);
+        RepeatLast rep2 = new RepeatLast(commandPrompt);
+
+        assertTrue(rep1.equals(rep2) && rep2.equals(rep1));
+    }
+
+    @Test
+    public void hashCode_symetric() {
+        RepeatLast rep1 = new RepeatLast(commandPrompt);
+        RepeatLast rep2 = new RepeatLast(commandPrompt);
+
+        assertTrue(rep1.hashCode() == rep2.hashCode());
     }
 }

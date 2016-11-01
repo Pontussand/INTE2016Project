@@ -9,6 +9,7 @@ import prompt.CommandPrompt;
 import prompt.util.PathContainer;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 
 public class AppendTest {
@@ -17,7 +18,7 @@ public class AppendTest {
 	private FakeFSAdapter fakeAdapter;
 	private FakeDirectory root;
 	private PathContainer currentDir;
-
+	private CommandPrompt commandPrompt;
 	private FakeFile testFile;
 
 	@Before
@@ -27,8 +28,8 @@ public class AppendTest {
 		fakeAdapter = new FakeFSAdapter();
 		fakeAdapter.setRoot(root);
 		currentDir = new PathContainer("");
-
-		append = new Append(new CommandPrompt(fakeAdapter));
+		commandPrompt = new CommandPrompt(fakeAdapter);
+		append = new Append(commandPrompt);
 		append.setAdapter(fakeAdapter);
 
 		testFile = new FakeFile("textfile.txt", "");
@@ -61,4 +62,19 @@ public class AppendTest {
 		assertEquals(Append.UNABLE_TO_APPEND, append.doCommand(currentDir, "myFile.txt Blablabla"));
 	}
 
+	@Test
+	public void equals_Symmetric() {
+		Append append1 = new Append(commandPrompt);
+		Append append2 = new Append(commandPrompt);
+
+		assertTrue(append1.equals(append2) && append2.equals(append1));
+	}
+
+	@Test
+	public void hashCode_Symetric() {
+		Append append1 = new Append(commandPrompt);
+		Append append2 = new Append(commandPrompt);
+
+		assertTrue(append1.hashCode() == append2.hashCode());
+	}
 }

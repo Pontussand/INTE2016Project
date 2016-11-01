@@ -9,6 +9,7 @@ import prompt.CommandPrompt;
 import prompt.util.PathContainer;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class TouchTest {
 
@@ -16,6 +17,7 @@ public class TouchTest {
     private FakeFSAdapter fakeAdapter;
     private FakeDirectory root;
     private PathContainer currentDir;
+    private CommandPrompt commandPrompt;
 
     private String nameLength(int length) {
         String fileName = "";
@@ -32,8 +34,10 @@ public class TouchTest {
         fakeAdapter.setRoot(root);
         touch.setAdapter(fakeAdapter);
         currentDir = new PathContainer("");
-        touch = new Touch(new CommandPrompt(fakeAdapter));
+        commandPrompt = new CommandPrompt(fakeAdapter);
+        touch = new Touch(commandPrompt);
     }
+
 
     @Test
     public void doCommand_fileAlreadyExists() {
@@ -189,5 +193,21 @@ public class TouchTest {
         FSAdapter adapter = Touch.getAdapter();
         adapter.mkdirs("mapp");
         assertEquals("", touch.doCommand(currentDir,"mapp " + nameLength(Command.MAX_FSO_LENGTH -4) +".txt"));
+    }
+
+    @Test
+    public void equals_symetric() {
+        Touch touch1 = new Touch(commandPrompt);
+        Touch touch2 = new Touch(commandPrompt);
+
+        assertTrue(touch1.equals(touch2) && touch2.equals(touch1));
+    }
+
+    @Test
+    public void hashCode_symetric() {
+        Touch touch1 = new Touch(commandPrompt);
+        Touch touch2 = new Touch(commandPrompt);
+
+        assertTrue(touch1.hashCode() == touch2.hashCode());
     }
 }

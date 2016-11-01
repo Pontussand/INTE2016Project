@@ -9,7 +9,7 @@ import java.util.Objects;
 
 public class Ls extends Command {
 
-    public Ls(CommandPrompt prompt){
+    public Ls(CommandPrompt prompt) {
         super(prompt, "ls");
     }
 
@@ -23,38 +23,38 @@ public class Ls extends Command {
         return output;
     }
 
-    private String[] selectLSType(PathContainer currentDir, String input){
+    private String[] selectLSType(PathContainer currentDir, String input) {
         FSAdapter adapter = super.getAdapter();
         String currDir = currentDir.getPath();
         String fullPath;
 
         if (input != null && input.length() > 0) {
-            if(input.startsWith("-")){
+            if (input.startsWith("-")){
                 fullPath = currDir;
-                if(input.equals("-dirs") || input.equals("-Dirs")){
+                if (input.equals("-dirs") || input.equals("-Dirs")) {
                     return adapter.lsDir(fullPath);
                 }
-                if(input.equals("-files") || input.equals("-Files")){
+                if (input.equals("-files") || input.equals("-Files")) {
                     return adapter.lsFile(fullPath);
                 } else { //fall input börjar på - men inte är någon av rätt alternativ utförs vanlig ls i mapp man står i.
                     fullPath = PathContainer.getFullPath(currDir, input);
                     return adapter.ls(fullPath);
                 }
             }
-            if(!input.startsWith("-") && input.contains("-")){
+            if (!input.startsWith("-") && input.contains("-")) {
                 String path = input.split(" -")[0];
                 String sort = input.split(" -")[1];
                 fullPath = PathContainer.getFullPath(currDir, path);
-                if(sort.equals("dirs") || sort.equals("Dirs")){
+                if (sort.equals("dirs") || sort.equals("Dirs")) {
                     return adapter.lsDir(fullPath);
                 }
-                if(sort.equals("files") || sort.equals("Files")){
+                if(sort.equals("files") || sort.equals("Files")) {
                     return adapter.lsFile(fullPath);
                 } else { //fall input är String följt utav " -" + ett sorterings alternativ som inte följs görs ls på path'en man valde
                     fullPath = PathContainer.getFullPath(currDir, path);
                     return adapter.ls(fullPath);
                 }
-            }else{ //ls med sökväg
+            } else { //ls med sökväg
                 fullPath = PathContainer.getFullPath(currDir, input);
                 return adapter.ls(fullPath);
             }

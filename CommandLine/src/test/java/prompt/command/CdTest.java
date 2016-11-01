@@ -8,6 +8,7 @@ import prompt.CommandPrompt;
 import prompt.util.PathContainer;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class CdTest {
 
@@ -16,6 +17,7 @@ public class CdTest {
 	private FakeDirectory root;
 
 	private PathContainer currentPathContainer;
+	private CommandPrompt commandPrompt;
 
 	@Before
 	public void before() {
@@ -26,8 +28,9 @@ public class CdTest {
 
 		//root
 		currentPathContainer = new PathContainer("");
+		commandPrompt = new CommandPrompt(fakeAdapter);
 
-		cd = new Cd(new CommandPrompt(fakeAdapter));
+		cd = new Cd(commandPrompt);
 	}
 
 	@Test
@@ -77,6 +80,22 @@ public class CdTest {
 		currentPathContainer.setPath("/sub");
 		assertEquals("", cd.doCommand(currentPathContainer, ""));
 		assertEquals("", currentPathContainer.getPath());
+	}
+
+	@Test
+	public void equals_Symmetric() {
+		Cd cd1 = new Cd(commandPrompt);
+		Cd cd2 = new Cd(commandPrompt);
+
+		assertTrue(cd1.equals(cd2) && cd2.equals(cd1));
+	}
+
+	@Test
+	public void hashCode_Symetric() {
+		Cd cd1 = new Cd(commandPrompt);
+		Cd cd2 = new Cd(commandPrompt);
+
+		assertTrue(cd1.hashCode() == cd2.hashCode());
 	}
 
 }

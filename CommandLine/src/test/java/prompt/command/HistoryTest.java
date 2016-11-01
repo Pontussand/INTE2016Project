@@ -8,11 +8,12 @@ import prompt.CommandPrompt;
 import prompt.util.PathContainer;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static prompt.command.Command.commandHistory;
 
 public class HistoryTest {
 
-    private CommandPrompt prompt;
+    private CommandPrompt commandPrompt;
     private History history;
     private FakeFSAdapter fakeAdapter;
     private FakeDirectory root;
@@ -26,7 +27,8 @@ public class HistoryTest {
         fakeAdapter.setRoot(root);
         Command.setAdapter(fakeAdapter);
         currentDir = new PathContainer("");
-        history = new History(prompt = new CommandPrompt(fakeAdapter));
+        commandPrompt = new CommandPrompt(fakeAdapter);
+        history = new History(commandPrompt);
         commandHistory.clear();
     }
 
@@ -85,6 +87,22 @@ public class HistoryTest {
                 "8 touch file2\n" +
                 "9 touch file3"
                 , history.doCommand(currentDir, input)); // 11 commands executed
+    }
+
+    @Test
+    public void equals_symetric() {
+        History history1 = new History(commandPrompt);
+        History history2 = new History(commandPrompt);
+
+        assertTrue(history1.equals(history2) && history2.equals(history1));
+    }
+
+    @Test
+    public void hashCode_symetric() {
+        History history1 = new History(commandPrompt);
+        History history2 = new History(commandPrompt);
+
+        assertTrue(history1.hashCode() == history2.hashCode());
     }
 }
 
