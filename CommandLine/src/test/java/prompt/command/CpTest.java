@@ -9,11 +9,13 @@ import prompt.CommandPrompt;
 import prompt.util.PathContainer;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public class CpTest {
 
-	private Cp cp;
+	private Cp cp, cp2;
+	private Mkdir mkdir;
 	private FakeFSAdapter fakeAdapter;
 	private FakeDirectory root;
 	private CommandPrompt commandPrompt;
@@ -28,7 +30,8 @@ public class CpTest {
 		commandPrompt = new CommandPrompt(fakeAdapter);
 		cp = new Cp(commandPrompt);
 		Command.setAdapter(fakeAdapter);
-
+		cp2 = new Cp(commandPrompt);
+		mkdir = new Mkdir(commandPrompt);
 		workingDir = new PathContainer("");
 	}
 
@@ -70,17 +73,21 @@ public class CpTest {
 
 	@Test
 	public void equals_symetric() {
-		Cp cp1 = new Cp(commandPrompt);
-		Cp cp2 = new Cp(commandPrompt);
-
-		assertTrue(cp1.equals(cp2) && cp2.equals(cp1));
+		assertTrue(cp.equals(cp2) && cp2.equals(cp));
 	}
 
 	@Test
 	public void hashCode_symetric() {
-		Cp cp1 = new Cp(commandPrompt);
-		Cp cp2 = new Cp(commandPrompt);
+		assertTrue(cp.hashCode() == cp2.hashCode());
+	}
 
-		assertTrue(cp1.hashCode() == cp2.hashCode());
+	@Test
+	public void equals_unsymetric() {
+		assertFalse(cp.equals(mkdir) && mkdir.equals(cp));
+	}
+
+	@Test
+	public void hashCode_unsymetric() {
+		assertFalse(cp.hashCode() == mkdir.hashCode());
 	}
 }

@@ -8,11 +8,13 @@ import prompt.CommandPrompt;
 import prompt.util.PathContainer;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public class CdTest {
 
-	private Cd cd;
+	private Cd cd, cd2;
+	private Mkdir mkdir;
 	private FakeFSAdapter fakeAdapter;
 	private FakeDirectory root;
 
@@ -31,6 +33,9 @@ public class CdTest {
 		commandPrompt = new CommandPrompt(fakeAdapter);
 
 		cd = new Cd(commandPrompt);
+		cd2 = new Cd(commandPrompt);
+		mkdir = new Mkdir(commandPrompt);
+
 	}
 
 	@Test
@@ -83,19 +88,23 @@ public class CdTest {
 	}
 
 	@Test
-	public void equals_Symmetric() {
-		Cd cd1 = new Cd(commandPrompt);
-		Cd cd2 = new Cd(commandPrompt);
-
-		assertTrue(cd1.equals(cd2) && cd2.equals(cd1));
+	public void equals_symmetric() {
+		assertTrue(cd.equals(cd2) && cd2.equals(cd));
 	}
 
 	@Test
-	public void hashCode_Symetric() {
-		Cd cd1 = new Cd(commandPrompt);
-		Cd cd2 = new Cd(commandPrompt);
+	public void hashCode_symetric() {
+		assertTrue(cd.hashCode() == cd2.hashCode());
+	}
 
-		assertTrue(cd1.hashCode() == cd2.hashCode());
+	@Test
+	public void equals_unsymetric() {
+		assertFalse(cd.equals(mkdir) && mkdir.equals(cd));
+	}
+
+	@Test
+	public void hashCode_unsymetric() {
+		assertFalse(cd.hashCode() == mkdir.hashCode());
 	}
 
 }

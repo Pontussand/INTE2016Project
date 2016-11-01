@@ -9,10 +9,12 @@ import prompt.CommandPrompt;
 import prompt.util.PathContainer;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public class CatTest {
-    private Cat cat;
+    private Cat cat, cat2;
+    private Mkdir mkdir;
     private CommandPrompt commandPrompt;
     private FakeFSAdapter fakeAdapter;
     private FakeDirectory root;
@@ -28,6 +30,8 @@ public class CatTest {
         currentDir = new PathContainer("");
         commandPrompt = new CommandPrompt(fakeAdapter);
         cat = new Cat(commandPrompt);
+        cat2 = new Cat(commandPrompt);
+        mkdir = new Mkdir(commandPrompt);
         FakeFile file = new FakeFile("testFakeTextFile.txt", "abc");
         root.addFSO(file);
     }
@@ -44,17 +48,21 @@ public class CatTest {
 
     @Test
     public void equals_Symmetric() {
-        Cat cat1 = new Cat(commandPrompt);
-        Cat cat2 = new Cat(commandPrompt);
-
-        assertTrue(cat1.equals(cat2) && cat2.equals(cat1));
+        assertTrue(cat.equals(cat2) && cat2.equals(cat));
     }
 
     @Test
     public void hashCode_Symetric() {
-        Cat cat1 = new Cat(commandPrompt);
-        Cat cat2 = new Cat(commandPrompt);
+        assertTrue(cat.hashCode() == cat2.hashCode());
+    }
 
-        assertTrue(cat1.hashCode() == cat2.hashCode());
+    @Test
+    public void equals_unsymetric() {
+        assertFalse(cat.equals(mkdir) && mkdir.equals(cat));
+    }
+
+    @Test
+    public void hashCode_unsymetric() {
+        assertFalse(cat.hashCode() == mkdir.hashCode());
     }
 }

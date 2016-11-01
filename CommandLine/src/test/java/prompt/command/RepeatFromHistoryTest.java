@@ -8,13 +8,15 @@ import prompt.CommandPrompt;
 import prompt.util.PathContainer;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static prompt.command.Command.commandHistory;
 
 public class RepeatFromHistoryTest {
 
     private CommandPrompt commandPrompt;
-    private RepeatFromHistory repeatFromHistory;
+    private Mkdir mkdir;
+    private RepeatFromHistory repeatFromHistory, repeatFromHistory2;
     private FakeFSAdapter fakeAdapter;
     private FakeDirectory root;
     private PathContainer currentDir;
@@ -29,6 +31,8 @@ public class RepeatFromHistoryTest {
         currentDir = new PathContainer("");
         commandPrompt = new CommandPrompt(fakeAdapter);
         repeatFromHistory = new RepeatFromHistory(commandPrompt);
+        repeatFromHistory2  = new RepeatFromHistory(commandPrompt);
+        mkdir = new Mkdir(commandPrompt);
         commandHistory.clear();
     }
 
@@ -57,19 +61,23 @@ public class RepeatFromHistoryTest {
 
     @Test
     public void equals_symetric() {
-        RepeatFromHistory rep1 = new RepeatFromHistory(commandPrompt);
-        RepeatFromHistory rep2 = new RepeatFromHistory(commandPrompt);
-
-        assertTrue(rep1.equals(rep2) && rep2.equals(rep1));
+        assertTrue(repeatFromHistory.equals(repeatFromHistory2) && repeatFromHistory.equals(repeatFromHistory2));
     }
 
     @Test
     public void hashCode_symetric() {
-        RepeatFromHistory rep1 = new RepeatFromHistory(commandPrompt);
-        RepeatFromHistory rep2 = new RepeatFromHistory(commandPrompt);
 
-        assertTrue(rep1.hashCode() == rep2.hashCode());
+        assertTrue(repeatFromHistory.hashCode() == repeatFromHistory2.hashCode());
     }
 
+    @Test
+    public void equals_unsymetric() {
+        assertFalse(repeatFromHistory.equals(mkdir) && mkdir.equals(repeatFromHistory));
+    }
+
+    @Test
+    public void hashCode_unsymetric() {
+        assertFalse(repeatFromHistory.hashCode() == mkdir.hashCode());
+    }
 
 }

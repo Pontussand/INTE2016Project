@@ -8,13 +8,15 @@ import prompt.CommandPrompt;
 import prompt.util.PathContainer;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static prompt.command.Command.commandHistory;
 
 public class RepeatLastTest {
 
     private CommandPrompt commandPrompt;
-    private RepeatLast repeatLast;
+    private RepeatLast repeatLast, repeatLast2;
+    private Mkdir mkdir;
     private FakeFSAdapter fakeAdapter;
     private FakeDirectory root;
     private PathContainer currentDir;
@@ -30,6 +32,8 @@ public class RepeatLastTest {
         commandPrompt = new CommandPrompt(fakeAdapter);
         repeatLast = new RepeatLast(commandPrompt);
         commandHistory.clear();
+        repeatLast2 = new RepeatLast(commandPrompt);
+        mkdir = new Mkdir(commandPrompt);
     }
 
     @Test
@@ -52,17 +56,22 @@ public class RepeatLastTest {
 
     @Test
     public void equals_symetric() {
-        RepeatLast rep1 = new RepeatLast(commandPrompt);
-        RepeatLast rep2 = new RepeatLast(commandPrompt);
-
-        assertTrue(rep1.equals(rep2) && rep2.equals(rep1));
+        assertTrue(repeatLast.equals(repeatLast2) && repeatLast2.equals(repeatLast));
     }
 
     @Test
     public void hashCode_symetric() {
-        RepeatLast rep1 = new RepeatLast(commandPrompt);
-        RepeatLast rep2 = new RepeatLast(commandPrompt);
+        assertTrue(repeatLast.hashCode() == repeatLast2.hashCode());
+    }
 
-        assertTrue(rep1.hashCode() == rep2.hashCode());
+
+    @Test
+    public void equals_unsymetric() {
+        assertFalse(repeatLast.equals(mkdir) && mkdir.equals(repeatLast));
+    }
+
+    @Test
+    public void hashCode_unsymetric() {
+        assertFalse(repeatLast.hashCode() == mkdir.hashCode());
     }
 }

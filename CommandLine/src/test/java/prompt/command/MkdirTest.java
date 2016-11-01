@@ -9,12 +9,14 @@ import prompt.CommandPrompt;
 import prompt.util.PathContainer;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 
 public class MkdirTest {
 
-	private Mkdir mkdir;
+	private Mkdir mkdir, mkdir2;
+	private Pwd pwd;
 	private FakeFSAdapter fakeAdapter;
 	private FakeDirectory root;
 	private PathContainer currentDir;
@@ -26,6 +28,9 @@ public class MkdirTest {
 		fakeAdapter = new FakeFSAdapter();
 		fakeAdapter.setRoot(root);
 		mkdir.setAdapter(fakeAdapter);
+
+		mkdir2 = new Mkdir(commandPrompt);
+		pwd = new Pwd(commandPrompt);
 		currentDir = new PathContainer("");
 
 		commandPrompt = new CommandPrompt(fakeAdapter);
@@ -81,17 +86,21 @@ public class MkdirTest {
 
 	@Test
 	public void equals_symetric() {
-		Mkdir mkdir1 = new Mkdir(commandPrompt);
-		Mkdir mkdir2 = new Mkdir(commandPrompt);
-
-		assertTrue(mkdir1.equals(mkdir2) && mkdir2.equals(mkdir1));
+		assertTrue(mkdir.equals(mkdir2) && mkdir2.equals(mkdir));
 	}
 
 	@Test
 	public void hashCode_symetric() {
-		Mkdir mkdir1 = new Mkdir(commandPrompt);
-		Mkdir mkdir2 = new Mkdir(commandPrompt);
+		assertTrue(mkdir.hashCode() == mkdir2.hashCode());
+	}
 
-		assertTrue(mkdir1.hashCode() == mkdir2.hashCode());
+	@Test
+	public void equals_unsymetric() {
+		assertFalse(pwd.equals(mkdir) && mkdir.equals(pwd));
+	}
+
+	@Test
+	public void hashCode_unsymetric() {
+		assertFalse(pwd.hashCode() == mkdir.hashCode());
 	}
 }

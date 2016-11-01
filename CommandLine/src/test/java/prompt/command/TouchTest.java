@@ -9,11 +9,13 @@ import prompt.CommandPrompt;
 import prompt.util.PathContainer;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public class TouchTest {
 
-    private Touch touch;
+    private Touch touch, touch2;
+    private Mkdir mkdir;
     private FakeFSAdapter fakeAdapter;
     private FakeDirectory root;
     private PathContainer currentDir;
@@ -36,6 +38,8 @@ public class TouchTest {
         currentDir = new PathContainer("");
         commandPrompt = new CommandPrompt(fakeAdapter);
         touch = new Touch(commandPrompt);
+        touch2 = new Touch(commandPrompt);
+        mkdir = new Mkdir(commandPrompt);
     }
 
 
@@ -197,17 +201,23 @@ public class TouchTest {
 
     @Test
     public void equals_symetric() {
-        Touch touch1 = new Touch(commandPrompt);
-        Touch touch2 = new Touch(commandPrompt);
 
-        assertTrue(touch1.equals(touch2) && touch2.equals(touch1));
+        assertTrue(touch.equals(touch2) && touch2.equals(touch));
     }
 
     @Test
     public void hashCode_symetric() {
-        Touch touch1 = new Touch(commandPrompt);
-        Touch touch2 = new Touch(commandPrompt);
 
-        assertTrue(touch1.hashCode() == touch2.hashCode());
+        assertTrue(touch.hashCode() == touch2.hashCode());
+    }
+
+    @Test
+    public void equals_unsymetric() {
+        assertFalse(touch.equals(mkdir) && mkdir.equals(touch));
+    }
+
+    @Test
+    public void hashCode_unsymetric() {
+        assertFalse(touch.hashCode() == mkdir.hashCode());
     }
 }

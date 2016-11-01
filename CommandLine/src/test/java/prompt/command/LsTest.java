@@ -11,12 +11,13 @@ import prompt.util.PathContainer;
 import java.nio.file.Path;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 
 public class LsTest {
 
-	private Ls ls;
+	private Ls ls, ls2;
 	private Mkdir mkdir;
 	private Touch touch;
 	private CommandPrompt commandPrompt;
@@ -36,6 +37,7 @@ public class LsTest {
 		commandPrompt = new CommandPrompt(fakeAdapter);
 		Pwd pwd = new Pwd(commandPrompt);
 		ls = new Ls(commandPrompt);
+		ls2 = new Ls(commandPrompt);
 		ls.setAdapter(fakeAdapter);
 		mkdir = new Mkdir(commandPrompt);
 		mkdir.setAdapter(fakeAdapter);
@@ -185,18 +187,22 @@ public class LsTest {
 	}
 
 	@Test
-	public void equals_Symmetric() {
-		Ls ls1 = new Ls(commandPrompt);
-		Ls ls2 = new Ls(commandPrompt);
-
-		assertTrue(ls1.equals(ls2) && ls2.equals(ls1));
+	public void equals_symmetric() {
+		assertTrue(ls.equals(ls2) && ls2.equals(ls));
 	}
 
 	@Test
-	public void hashCode_Symetric() {
-		Ls ls1 = new Ls(commandPrompt);
-		Ls ls2 = new Ls(commandPrompt);
+	public void hashCode_symetric() {
+		assertTrue(ls.hashCode() == ls2.hashCode());
+	}
 
-		assertTrue(ls1.hashCode() == ls2.hashCode());
+	@Test
+	public void equals_unsymetric() {
+		assertFalse(ls.equals(mkdir) && mkdir.equals(ls));
+	}
+
+	@Test
+	public void hashCode_unsymetric() {
+		assertFalse(ls.hashCode() == mkdir.hashCode());
 	}
 }

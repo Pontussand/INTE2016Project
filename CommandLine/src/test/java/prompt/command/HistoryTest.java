@@ -8,13 +8,15 @@ import prompt.CommandPrompt;
 import prompt.util.PathContainer;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static prompt.command.Command.commandHistory;
 
 public class HistoryTest {
 
     private CommandPrompt commandPrompt;
-    private History history;
+    private History history, history2;
+    private Mkdir mkdir;
     private FakeFSAdapter fakeAdapter;
     private FakeDirectory root;
     private PathContainer currentDir;
@@ -30,6 +32,8 @@ public class HistoryTest {
         commandPrompt = new CommandPrompt(fakeAdapter);
         history = new History(commandPrompt);
         commandHistory.clear();
+        history2 = new History(commandPrompt);
+        mkdir = new Mkdir(commandPrompt);
     }
 
     @Test
@@ -91,18 +95,22 @@ public class HistoryTest {
 
     @Test
     public void equals_symetric() {
-        History history1 = new History(commandPrompt);
-        History history2 = new History(commandPrompt);
-
-        assertTrue(history1.equals(history2) && history2.equals(history1));
+        assertTrue(history.equals(history2) && history2.equals(history));
     }
 
     @Test
     public void hashCode_symetric() {
-        History history1 = new History(commandPrompt);
-        History history2 = new History(commandPrompt);
+        assertTrue(history.hashCode() == history2.hashCode());
+    }
 
-        assertTrue(history1.hashCode() == history2.hashCode());
+    @Test
+    public void equals_unsymetric() {
+        assertFalse(history.equals(mkdir) && mkdir.equals(history));
+    }
+
+    @Test
+    public void hashCode_unsymetric() {
+        assertFalse(history.hashCode() == mkdir.hashCode());
     }
 }
 
