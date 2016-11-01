@@ -9,6 +9,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public class FakeFSA_dir {
@@ -64,6 +65,14 @@ public class FakeFSA_dir {
 		FakeFSO actual = folder2.getContent()[0];
 
 		assertEquals(expected, actual);
+	}
+
+	@Test
+	public void mkdirs_dirAlreadyExist(){
+		FakeDirectory sub1 = new FakeDirectory("sub1");
+		root.addFSO(sub1);
+		sub1.addFSO(new FakeDirectory("sub2"));
+		assertFalse(fakeAdapter.mkdirs("/sub1/sub2"));
 	}
 
 	@Test

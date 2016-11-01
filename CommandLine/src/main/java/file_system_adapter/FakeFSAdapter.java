@@ -9,8 +9,6 @@ import java.util.ArrayList;
 
 public class FakeFSAdapter implements FSAdapter {
 	public static final String DIR_SEPERATOR = "/";
-	public static final String NULL_ERROR_MESSAGE = "Directory does not exist";
-	public static final String FILE_ERROR_MESSAGE = "Address leads to a textfile";
 
 
 	private FakeDirectory root = new FakeDirectory("root");
@@ -32,7 +30,7 @@ public class FakeFSAdapter implements FSAdapter {
 			return listOfContent;
 		}
 
-		return checkFSOForLs(fakeFSO);
+		return null;
 	}
 
 	@Override
@@ -48,7 +46,7 @@ public class FakeFSAdapter implements FSAdapter {
 			}
 			return listOfContent;
 		}
-		return checkFSOForLs(fakeFSO);
+		return null;
 	}
 
 	@Override
@@ -66,17 +64,7 @@ public class FakeFSAdapter implements FSAdapter {
 			}
 			return listOfContent;
 		}
-		return checkFSOForLs(fakeFSO);
-	}
-
-	public String[] checkFSOForLs(FakeFSO ffs) {
-		if (ffs == null) {
-			return new String[]{NULL_ERROR_MESSAGE};
-		} else if (ffs instanceof FakeFile) {
-			return new String[]{FILE_ERROR_MESSAGE};
-		} else {
-			return null;
-		}
+		return null;
 	}
 
 	@Override
@@ -208,7 +196,7 @@ public class FakeFSAdapter implements FSAdapter {
 
 	@Override
 	public boolean deleteFSO(String path) {
-		if (isDir(path) || isFile(path)) {
+		if (fsoExist(path)) {
 			FakeDirectory parent = (FakeDirectory) root.pathSearch(PathContainer.getParentPath(path));
 			parent.removeFSOFromContent(PathContainer.getFSOName(path));
 			return true;
