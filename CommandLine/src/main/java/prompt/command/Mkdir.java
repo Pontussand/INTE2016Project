@@ -53,7 +53,6 @@ public class Mkdir extends Command {
 		}
 
 		Mkdir other = (Mkdir) o;
-
 		return Objects.equals(getName(), other.getName());
 	}
 }

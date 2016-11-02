@@ -47,6 +47,16 @@ public class CatTest {
     }
 
     @Test
+    public void equals_itself() {
+        assertTrue(cat.equals(cat));
+    }
+
+    @Test
+    public void equals_null() {
+        assertFalse(cat.equals(null));
+    }
+
+    @Test
     public void equals_Symmetric() {
         assertTrue(cat.equals(cat2) && cat2.equals(cat));
     }

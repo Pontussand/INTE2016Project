@@ -200,6 +200,16 @@ public class TouchTest {
     }
 
     @Test
+    public void equals_itself() {
+        assertTrue(touch.equals(touch));
+    }
+
+    @Test
+    public void equals_null() {
+        assertFalse(touch.equals(null));
+    }
+
+    @Test
     public void equals_symetric() {
 
         assertTrue(touch.equals(touch2) && touch2.equals(touch));

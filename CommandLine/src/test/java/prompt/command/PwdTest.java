@@ -42,6 +42,16 @@ public class PwdTest {
     }
 
     @Test
+    public void equals_null() {
+        assertFalse(pwd.equals(null));
+    }
+
+    @Test
+    public void equals_itself() {
+        assertTrue(pwd.equals(pwd));
+    }
+
+    @Test
     public void equals_symetric() {
         assertTrue(pwd.equals(pwd2) && pwd2.equals(pwd));
     }

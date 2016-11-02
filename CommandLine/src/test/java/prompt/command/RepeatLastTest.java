@@ -55,6 +55,16 @@ public class RepeatLastTest {
     }
 
     @Test
+    public void equals_itself() {
+        assertTrue(repeatLast.equals(repeatLast));
+    }
+
+    @Test
+    public void equals_null() {
+        assertFalse(repeatLast.equals(null));
+    }
+
+    @Test
     public void equals_symetric() {
         assertTrue(repeatLast.equals(repeatLast2) && repeatLast2.equals(repeatLast));
     }

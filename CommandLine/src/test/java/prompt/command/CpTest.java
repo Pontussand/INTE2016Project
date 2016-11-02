@@ -72,6 +72,16 @@ public class CpTest {
 	}
 
 	@Test
+	public void equals_itself() {
+		assertTrue(cp.equals(cp));
+	}
+
+	@Test
+	public void equals_null() {
+		assertFalse(cp.equals(null));
+	}
+
+	@Test
 	public void equals_symetric() {
 		assertTrue(cp.equals(cp2) && cp2.equals(cp));
 	}

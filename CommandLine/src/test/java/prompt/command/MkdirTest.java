@@ -85,6 +85,16 @@ public class MkdirTest {
 	}
 
 	@Test
+	public void equals_itself() {
+		assertTrue(mkdir.equals(mkdir));
+	}
+
+	@Test
+	public void equals_null() {
+		assertFalse(mkdir.equals(null));
+	}
+
+	@Test
 	public void equals_symetric() {
 		assertTrue(mkdir.equals(mkdir2) && mkdir2.equals(mkdir));
 	}

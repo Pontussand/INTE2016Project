@@ -60,6 +60,16 @@ public class RepeatFromHistoryTest {
     }
 
     @Test
+    public void equals_itself() {
+        assertTrue(repeatFromHistory.equals(repeatFromHistory));
+    }
+
+    @Test
+    public void equals_null() {
+        assertFalse(repeatFromHistory.equals(null));
+    }
+
+    @Test
     public void equals_symetric() {
         assertTrue(repeatFromHistory.equals(repeatFromHistory2) && repeatFromHistory.equals(repeatFromHistory2));
     }

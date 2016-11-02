@@ -94,6 +94,16 @@ public class HistoryTest {
     }
 
     @Test
+    public void equals_itself() {
+        assertTrue(history.equals(history));
+    }
+
+    @Test
+    public void equals_null() {
+        assertFalse(history.equals(null));
+    }
+
+    @Test
     public void equals_symetric() {
         assertTrue(history.equals(history2) && history2.equals(history));
     }

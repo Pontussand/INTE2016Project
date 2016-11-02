@@ -187,6 +187,16 @@ public class LsTest {
 	}
 
 	@Test
+	public void equals_itself() {
+		assertTrue(ls.equals(ls));
+	}
+
+	@Test
+	public void equals_null() {
+		assertFalse(ls.equals(null));
+	}
+
+	@Test
 	public void equals_symmetric() {
 		assertTrue(ls.equals(ls2) && ls2.equals(ls));
 	}

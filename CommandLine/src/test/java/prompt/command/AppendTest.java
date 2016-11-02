@@ -58,6 +58,16 @@ public class AppendTest {
 	}
 
 	@Test
+	public void equals_itself() {
+		assertTrue(append.equals(append));
+	}
+
+	@Test
+	public void equals_null() {
+		assertFalse(append.equals(null));
+	}
+
+	@Test
 	public void doCommand_appendFail() {
 		assertEquals(Append.UNABLE_TO_APPEND, append.doCommand(currentDir, "yoyo"));
 	}

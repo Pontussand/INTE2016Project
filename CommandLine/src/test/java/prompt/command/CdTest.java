@@ -88,6 +88,16 @@ public class CdTest {
 	}
 
 	@Test
+	public void equals_itself() {
+		assertTrue(cd.equals(cd));
+	}
+
+	@Test
+	public void equals_null() {
+		assertFalse(cd.equals(null));
+	}
+
+	@Test
 	public void equals_symmetric() {
 		assertTrue(cd.equals(cd2) && cd2.equals(cd));
 	}
