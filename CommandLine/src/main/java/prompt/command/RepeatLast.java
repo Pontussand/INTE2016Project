@@ -27,24 +27,4 @@ public class RepeatLast extends Command {
         return false;
     }
 
-
-    public int hashCode() {
-        return Objects.hash(getName());
-    }
-
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null) {
-            return false;
-        }
-        if (getClass() != o.getClass()) {
-            return false;
-        }
-
-        RepeatLast other = (RepeatLast) o;
-
-        return Objects.equals(getName(), other.getName());
-    }
 }

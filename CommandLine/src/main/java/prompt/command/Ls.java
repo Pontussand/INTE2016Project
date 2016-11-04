@@ -63,26 +63,4 @@ public class Ls extends Command {
             return adapter.ls(fullPath);
         }
     }
-
-
-
-    public int hashCode() {
-        return Objects.hash(getName());
-    }
-
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null) {
-            return false;
-        }
-        if (getClass() != o.getClass()) {
-            return false;
-        }
-
-        Ls other = (Ls) o;
-
-        return Objects.equals(getName(), other.getName());
-    }
 }

@@ -36,23 +36,4 @@ public class Mkdir extends Command {
 			return ERROR_MSG;
 		}
 	}
-
-	public int hashCode() {
-		return Objects.hash(getName());
-	}
-
-	public boolean equals(Object o) {
-		if (this == o) {
-			return true;
-		}
-		if (o == null) {
-			return false;
-		}
-		if (getClass() != o.getClass()) {
-			return false;
-		}
-
-		Mkdir other = (Mkdir) o;
-		return Objects.equals(getName(), other.getName());
-	}
 }

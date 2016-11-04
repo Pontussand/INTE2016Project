@@ -19,26 +19,6 @@ public class Touch extends Command {
 		super(prompt, "touch");
 	}
 
-	public int hashCode() {
-		return Objects.hash(getName());
-	}
-
-	public boolean equals(Object o) {
-		if (this == o) {
-			return true;
-		}
-		if (o == null) {
-			return false;
-		}
-		if (getClass() != o.getClass()) {
-			return false;
-		}
-
-		Touch other = (Touch) o;
-
-		return Objects.equals(getName(), other.getName());
-	}
-
 	public String doCommand(PathContainer currentPathContainer, String input) {
 
 		if (!validFileName(input)) {

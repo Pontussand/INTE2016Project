@@ -30,23 +30,4 @@ public class Append extends Command {
 			return UNABLE_TO_APPEND;
 		}
 	}
-
-	public int hashCode() {
-		return Objects.hash(getName());
-	}
-
-	public boolean equals(Object o) {
-		if (this == o) {
-			return true;
-		}
-		if (o == null) {
-			return false;
-		}
-		if (getClass() != o.getClass()) {
-			return false;
-		}
-
-		Append other = (Append) o;
-		return Objects.equals(getName(), other.getName());
-	}
 }

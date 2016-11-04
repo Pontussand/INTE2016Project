@@ -17,24 +17,4 @@ public class Pwd extends Command {
         return output;
     }
 
-
-    public int hashCode() {
-        return Objects.hash(getName());
-    }
-
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null) {
-            return false;
-        }
-        if (getClass() != o.getClass()) {
-            return false;
-        }
-
-        Pwd other = (Pwd) o;
-
-        return Objects.equals(getName(), other.getName());
-    }
 }
