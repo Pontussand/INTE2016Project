@@ -3,9 +3,7 @@ package file_system_adapter.fake_FSO;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class FakeFileTest {
 	FakeDirectory testDir;
@@ -45,4 +43,32 @@ public class FakeFileTest {
 		assertEquals("This is a file.", file.getContent());
 	}
 
+	@Test
+	public void equals_toSameObject(){
+		FakeFile file = new FakeFile("file.txt", "");
+		assertTrue(file.equals(file));
+	}
+
+	@Test
+	public void equals_toEqualFakeFileNameAndContent(){
+		FakeFile file1 = new FakeFile("file.txt", "A");
+		FakeFile file2 = new FakeFile("file.txt", "A");
+
+		assertTrue(file1.equals(file2));
+	}
+
+	@Test
+	public void equals_toEqualFakeFileNameDifferentContent(){
+		FakeFile file1 = new FakeFile("file.txt", "A");
+		FakeFile file2 = new FakeFile("file.txt", "B");
+
+		assertFalse(file1.equals(file2));
+	}
+
+	@Test
+	public void equals_toEqualFakeDir(){
+		FakeFile file1 = new FakeFile("file.txt", "");
+		FakeDirectory dir = new FakeDirectory("file.txt");
+		assertTrue(file1.equals(dir));
+	}
 }
