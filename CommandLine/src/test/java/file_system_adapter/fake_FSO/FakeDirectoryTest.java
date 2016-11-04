@@ -15,6 +15,31 @@ public class FakeDirectoryTest {
     }
 
     @Test
+    public void constructor_copyOtherDirsAndFiles(){
+        FakeDirectory dir1 = new FakeDirectory("dir1");
+        FakeDirectory dir2 = new FakeDirectory("dir2");
+        FakeFile file1 = new FakeFile("file1.txt", "1content");
+        FakeFile file2 = new FakeFile("file2.txt", "2content");
+
+        testDir.addFSO(dir1);
+        testDir.addFSO(dir2);
+        testDir.addFSO(file1);
+        testDir.addFSO(file2);
+
+        FakeDirectory cpyDir = new FakeDirectory(testDir);
+        FakeFSO[] content = cpyDir.getContent();
+        assertEquals(dir1, content[0]);
+        assertEquals(dir2, content[1]);
+        assertEquals(file1, content[2]);
+        assertEquals(file2, content[3]);
+
+        assertNotSame(dir1, content[0]);
+        assertNotSame(dir2, content[1]);
+        assertNotSame(file1, content[2]);
+        assertNotSame(file2, content[3]);
+    }
+
+    @Test
     public void addFSO_OneDir() {
         FakeDirectory newDir = new FakeDirectory("name");
         assertTrue(testDir.addFSO(newDir));
@@ -129,7 +154,23 @@ public class FakeDirectoryTest {
         assertArrayEquals(expectedContent, fakeDir.getContent());
     }
 
+    @Test
+    public void equals_toSameObject(){
+        FakeDirectory dir = new FakeDirectory("dir");
+        assertTrue(dir.equals(dir));
+    }
 
+    @Test
+    public void equals_toSameNameFakeFile(){
+        FakeDirectory dir = new FakeDirectory("dir");
+        assertFalse(dir.equals(new FakeFile("dir", "")));
+    }
 
+    @Test
+    public void equals_toSameNameDir(){
+        FakeDirectory dir1 = new FakeDirectory("dir");
+        FakeDirectory dir2 = new FakeDirectory("dir");
+        assertTrue(dir1.equals(dir2));
+    }
 
 }
