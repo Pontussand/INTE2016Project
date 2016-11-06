@@ -56,6 +56,13 @@ public class CdTest {
 	}
 
 	@Test
+	public void doCommand_goToNonExistantAbsoluteFolder(){
+		String ret = cd.doCommand(currentPathContainer, "/noDirectory");
+		assertEquals(Cd.NO_SUCH_DIR_MSG, ret);
+		assertEquals("", currentPathContainer.getPath());
+	}
+
+	@Test
 	public void doCommand_goFromRoot(){
 		FakeDirectory sub1 = new FakeDirectory("sub1");
 		FakeDirectory sub2 = new FakeDirectory("sub2");

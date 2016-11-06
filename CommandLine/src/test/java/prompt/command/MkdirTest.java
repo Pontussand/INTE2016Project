@@ -16,6 +16,7 @@ import static org.junit.Assert.assertTrue;
 public class MkdirTest {
 
 	private Mkdir mkdir, mkdir2;
+	private Mkdirs mkdirs1;
 	private Pwd pwd;
 	private FakeFSAdapter fakeAdapter;
 	private FakeDirectory root;
@@ -30,6 +31,7 @@ public class MkdirTest {
 		mkdir.setAdapter(fakeAdapter);
 
 		mkdir2 = new Mkdir(commandPrompt);
+		mkdirs1 = new Mkdirs(commandPrompt);
 		pwd = new Pwd(commandPrompt);
 		currentDir = new PathContainer("");
 
@@ -49,6 +51,28 @@ public class MkdirTest {
 	}
 
 	@Test
+	public void doCommand_mkDirsNewDir() {
+		FakeDirectory expectedDir = new FakeDirectory("NewFolder");
+
+		assertEquals("", mkdirs1.doCommand(currentDir, "NewFolder"));
+
+		FakeFSO[] rootContent = root.getContent();
+		assertEquals(1, rootContent.length);
+		assertEquals(expectedDir, rootContent[0]);
+	}
+
+	@Test
+	public void doCommand_mkDirsNewDir2() {
+		FakeDirectory expectedDir = new FakeDirectory("NewFolder");
+
+		assertEquals("", mkdirs1.doCommand(currentDir, "/NewFolder"));
+
+		FakeFSO[] rootContent = root.getContent();
+		assertEquals(1, rootContent.length);
+		assertEquals(expectedDir, rootContent[0]);
+	}
+
+	@Test
 	public void doCommand_newDir2() {
 		FakeDirectory expectedDir = new FakeDirectory("NewFolder");
 
@@ -58,6 +82,17 @@ public class MkdirTest {
 		assertEquals(1, rootContent.length);
 		assertEquals(expectedDir, rootContent[0]);
 	}
+
+	@Test
+	public void doCommand_newmkDirsAlreadyExisting() {
+		String existingFolder = "java";
+
+		assertEquals("", (mkdirs1.doCommand(currentDir, existingFolder)));
+
+		String newFolder = "java";
+		assertEquals(Mkdir.ERROR_MSG, mkdirs1.doCommand(currentDir, newFolder));
+	}
+
 
 	@Test
 	public void doCommand_newDirAlreadyExisting() {

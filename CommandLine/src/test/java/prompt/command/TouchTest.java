@@ -45,6 +45,7 @@ public class TouchTest {
 
     @Test
     public void doCommand_fileAlreadyExists() {
+        touch.doCommand(currentDir,"fil.txt");
         assertEquals(touch.FILE_EXISTS, touch.doCommand(currentDir,"fil.txt"));
     }
 
