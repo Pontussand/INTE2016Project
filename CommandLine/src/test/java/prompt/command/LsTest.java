@@ -73,6 +73,19 @@ public class LsTest {
 
 
 
+	@Test
+	public void doCommand_LsPath_incorrectFlagAfterPath() {
+		String expected = "TestFile1\nTestFile2\nTestFolder1\nTestFolder2\nTestFolder3\nTestFolder4\n";
+		assertEquals(expected, ls.doCommand(currentDir, "FirstFolder/SecondFolder -test"));
+		assertEquals(expected, commandPrompt.command("ls FirstFolder/SecondFolder -test"));
+	}
+
+	@Test
+	public void doCommand_LsFlagDoesntExist() {
+		String expected = "TestFile1\nTestFile2\nTestFolder1\nTestFolder2\nTestFolder3\nTestFolder4\n";
+		assertEquals(expected, ls.doCommand(currentDir, "-test"));
+		assertEquals(expected, commandPrompt.command("ls -test"));
+	}
 
 	@Test
 	public void doCommand_LsPath_Bt1() {
