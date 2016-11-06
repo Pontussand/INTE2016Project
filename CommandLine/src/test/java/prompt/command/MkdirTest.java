@@ -49,6 +49,17 @@ public class MkdirTest {
 	}
 
 	@Test
+	public void doCommand_newDir2() {
+		FakeDirectory expectedDir = new FakeDirectory("NewFolder");
+
+		assertEquals("", mkdir.doCommand(currentDir, "/NewFolder"));
+
+		FakeFSO[] rootContent = root.getContent();
+		assertEquals(1, rootContent.length);
+		assertEquals(expectedDir, rootContent[0]);
+	}
+
+	@Test
 	public void doCommand_newDirAlreadyExisting() {
 		String existingFolder = "java";
 
