@@ -82,12 +82,6 @@ public class CommandPrompt {
 		return currentDir;
 	}
 
-	protected HashMap<String, Command> getCommands() {
-		HashMap<String, Command> temp = new HashMap<>();
-		temp.putAll(commands);
-		return temp;
-	}
-
 	public static void main(String[] args) {
 		System.out.println("Command Prompt starting...");
 

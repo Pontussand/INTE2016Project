@@ -115,7 +115,7 @@ public class TouchTest {
     }
 
     @Test
-    public void doCommand_path_toLong() {
+    public void doCommand_path_tooLong() {
         assertEquals(touch.INVALID_PATH, touch.doCommand(currentDir,nameLength(Command.MAX_FSO_LENGTH -4) + ".txt"));
     }
 
